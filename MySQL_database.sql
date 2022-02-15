@@ -26,12 +26,18 @@ DROP TABLE IF EXISTS `post`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `post` (
   `postID` int NOT NULL AUTO_INCREMENT,
-  `userID` varchar(45) NOT NULL,
+  `userID` int NOT NULL,
   `postText` varchar(100) DEFAULT NULL,
   `parentPostID` int DEFAULT NULL,
   `timePosted` datetime DEFAULT NULL,
   `topicID` int DEFAULT NULL,
-  PRIMARY KEY (`postID`)
+  PRIMARY KEY (`postID`),
+  KEY `FK_post_userID_user_userID_idx` (`userID`),
+  KEY `FK_post_topicID_topic_topicID_idx` (`topicID`),
+  KEY `FK_post_postParentID_post_postID_idx` (`parentPostID`),
+  CONSTRAINT `FK_post_parentPostID_post_postID` FOREIGN KEY (`parentPostID`) REFERENCES `post` (`postID`),
+  CONSTRAINT `FK_post_topicID_topic_topicID` FOREIGN KEY (`topicID`) REFERENCES `topic` (`topicID`),
+  CONSTRAINT `FK_post_userID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -60,7 +66,10 @@ DROP TABLE IF EXISTS `topicfollower`;
 CREATE TABLE `topicfollower` (
   `topicID` int NOT NULL,
   `followerID` int NOT NULL,
-  PRIMARY KEY (`topicID`,`followerID`)
+  PRIMARY KEY (`topicID`,`followerID`),
+  KEY `FK_topicfollower_followerID_user_userID_idx` (`followerID`),
+  CONSTRAINT `FK_topicfollower_followerID_user_userID` FOREIGN KEY (`followerID`) REFERENCES `user` (`userID`),
+  CONSTRAINT `FK_topicfollower_topicID_topic_topicID` FOREIGN KEY (`topicID`) REFERENCES `topic` (`topicID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -72,7 +81,7 @@ DROP TABLE IF EXISTS `user`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `user` (
-  `userID` int unsigned NOT NULL AUTO_INCREMENT,
+  `userID` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
   `password` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
@@ -94,7 +103,10 @@ DROP TABLE IF EXISTS `userfollower`;
 CREATE TABLE `userfollower` (
   `userID` int NOT NULL,
   `followerID` int NOT NULL,
-  PRIMARY KEY (`userID`,`followerID`)
+  PRIMARY KEY (`userID`,`followerID`),
+  KEY `FK_userfollower_followerID_user_userID_idx` (`followerID`),
+  CONSTRAINT `FK_userfollower_followerID_user_userID` FOREIGN KEY (`followerID`) REFERENCES `user` (`userID`),
+  CONSTRAINT `FK_userfollower_userID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -107,4 +119,4 @@ CREATE TABLE `userfollower` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-14 19:36:47
+-- Dump completed on 2022-02-14 20:14:33
