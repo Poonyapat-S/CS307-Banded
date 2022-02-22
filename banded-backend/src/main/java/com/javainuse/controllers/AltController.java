@@ -8,16 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/api")
 public class AltController {
-    User user = new User("Hello","abc123","poke");
-    @GetMapping
-    public String test(){
-        return user.toString();
-    }
     @GetMapping("/")
     public String homePage(){
         return "Homepage";
     }
-    @GetMapping("/user")
+    @GetMapping("/user/login")
     public String isUser(){
         return ("Welcome user!");
     }
