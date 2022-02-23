@@ -9,6 +9,9 @@ import { UserComponent } from './user/user.component';
 import { AddUserComponent } from './add-user/add-user.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { LoginUserComponent } from './login-user/login-user.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
+import { TimelineComponent } from './timeline/timeline.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { FooterComponent } from './footer/footer.component';
     UserComponent,
     AddUserComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    LoginUserComponent,
+    CreateAccountComponent,
+    TimelineComponent
   ],
   imports: [
     BrowserModule,
