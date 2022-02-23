@@ -1,5 +1,6 @@
 package com.javainuse.classes;
 
+import com.javainuse.classes.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
