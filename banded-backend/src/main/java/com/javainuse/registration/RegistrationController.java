@@ -1,6 +1,7 @@
 package com.javainuse.registration;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +18,8 @@ public class RegistrationController {
     //object to the register method in registration service. If the input is not formatted as a regRequest it will error
     // TODO find a way to actually send over a registration object, idk how
     @PostMapping
-    public String register(@RequestBody String email){
+    public ResponseEntity<String> register(@RequestBody RegistrationRequest RR){
         System.out.println("Received Request");
-        return registrationService.register(email);
+        return registrationService.register(RR);
     }
 }
