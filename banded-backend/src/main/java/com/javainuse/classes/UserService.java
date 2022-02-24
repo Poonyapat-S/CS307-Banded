@@ -31,5 +31,16 @@ public class UserService implements UserDetailsService {
         boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
         return userExists;
     }
+    public String alterBio(String email, String bio){
+        if(bio.length() > 280){
+            return "bio is too long";
+        }
+        else{
+            User toUpdate = userRepository.findByEmail(email).orElseThrow(()
+                    -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+            toUpdate.setBio(bio);
+            return toUpdate.toString();
+        }
+    }
 
 }

@@ -180,4 +180,16 @@ public class User implements UserDetails {
         }
         return topicID;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                "username='" + userName + '\'' +
+                "email='" + email + '\'' +
+                ", bio='" + bio + '\'' +
+                ", favBand='" + favBand + '\'' +
+                ", favSong='" + favSong + '\'' +
+                '}';
+    }
 }
