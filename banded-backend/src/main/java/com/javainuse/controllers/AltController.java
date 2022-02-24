@@ -1,4 +1,4 @@
-/*
+
 package com.javainuse.controllers;
 
 import com.javainuse.classes.User;
@@ -9,13 +9,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(path = "/api")
 public class AltController {
-    @GetMapping("/")
+    @GetMapping("/login")
     public String homePage(){
-        return "Homepage";
+        return "This is the temp homepage";
     }
-    @GetMapping("/user/login")
-    public String isUser(){
-        return ("Welcome user!");
-    }
-}*/
+}
 
