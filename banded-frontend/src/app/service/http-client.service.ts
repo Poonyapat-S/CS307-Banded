@@ -7,7 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class User{
   constructor(
     public name:string,
-    public username:string,
+    public userName:string,
     public password:string,
     public email:string,
     public confPassword:string,
@@ -23,11 +23,11 @@ export class HttpClientService {
 
   getUsers() {
     console.log("test call");
-    return this.httpClient.get<User[]>('http://localhost:8080/users/');
+    return this.httpClient.get<User[]>('http://localhost:8080/api/user/allusers');
   }
 
   public deleteUsers(user: User) {
-    return this.httpClient.delete<User>("http://localhost:8080/users/"+user.username);
+    return this.httpClient.delete<User>("http://localhost:8080/users/"+user.userName);
   }
 
   public createUser(user: User) {
