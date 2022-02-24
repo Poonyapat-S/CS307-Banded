@@ -19,4 +19,11 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
     }
+
+    //checks databased for a user's email to see if it already exists. Returns true if user exists
+    public Boolean duplicateEmail(User user){
+        boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
+        return userExists;
+    }
+
 }
