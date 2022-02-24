@@ -30,7 +30,7 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
         http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/v*/registration/**")
+                .antMatchers("/api/v*/registration/**","/api/service/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and()
@@ -41,7 +41,7 @@ public class WebSecConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.authenticationProvider(new DaoAuthenticationProvider());
+        auth.authenticationProvider(daoAuthenticationProvider());
     }
 
     @Bean
