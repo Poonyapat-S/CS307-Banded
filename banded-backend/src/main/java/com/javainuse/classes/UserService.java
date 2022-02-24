@@ -19,11 +19,28 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
     }
+    public String deleteByEmail(String email){
+        User toDelete=userRepository.findByEmail(email).orElseThrow(()
+                -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+        userRepository.delete(toDelete);
+        return "Deleted";
+    }
 
     //checks databased for a user's email to see if it already exists. Returns true if user exists
     public Boolean duplicateEmail(User user){
         boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
         return userExists;
+    }
+    public String alterBio(String email, String bio){
+        if(bio.length() > 280){
+            return "bio is too long";
+        }
+        else{
+            User toUpdate = userRepository.findByEmail(email).orElseThrow(()
+                    -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+            toUpdate.setBio(bio);
+            return toUpdate.toString();
+        }
     }
 
 }
