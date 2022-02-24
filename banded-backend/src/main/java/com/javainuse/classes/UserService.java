@@ -39,8 +39,34 @@ public class UserService implements UserDetailsService {
             User toUpdate = userRepository.findByEmail(email).orElseThrow(()
                     -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
             toUpdate.setBio(bio);
+            userRepository.save(toUpdate);
             return toUpdate.toString();
         }
     }
+    public String followTopic(String email,String band){
+        User toUpdate = userRepository.findByEmail(email).orElseThrow(()
+                -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+        if(toUpdate.getFavBand() != band){
+            toUpdate.setFavBand(band);
+            userRepository.save(toUpdate);
+            return String.format("Followed %s",band);
+        }
+        else{
+            return "This band is already your favorite!";
+        }
+    }
+    public String unfollowTopic(String email){
+        User toUpdate = userRepository.findByEmail(email).orElseThrow(()
+                -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+        if(toUpdate.getFavBand() != null){
+            toUpdate.setFavBand(null);
+            userRepository.save(toUpdate);
+            return "Unfollowed your favorite band";
+        }
+        else{
+            return "You don't have a favorite band!";
+        }
+    }
+
 
 }

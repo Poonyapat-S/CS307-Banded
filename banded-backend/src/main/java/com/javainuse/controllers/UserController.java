@@ -28,6 +28,14 @@ public class UserController {
     public String updateBio(@RequestParam String email, @RequestParam String newBio){
         return userService.alterBio(email,newBio);
     }
+    @PostMapping(path = "/follow")
+    public String followBand(@RequestParam String email, @RequestParam String band){
+        return userService.followTopic(email,band);
+    }
+    @PostMapping(path = "/unfollow")
+    public String unfollowBand(@RequestParam String email){
+        return userService.unfollowTopic(email);
+    }
 
 
 }
