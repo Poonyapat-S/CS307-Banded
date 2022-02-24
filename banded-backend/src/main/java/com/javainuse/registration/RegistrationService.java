@@ -22,13 +22,16 @@ public class RegistrationService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final EmailValidator emailValidator;
-
-    //The register method. This will place a new user in the database when called.
+    private final StrengthCheck strengthCheck;
+	
+	//The register method. This will place a new user in the database when called.
     public ResponseEntity<String> register(RegistrationRequest userReg) {
         try {
             Optional<User> tempList;
             tempList = userRepository.findByEmail(userReg.getEmail());
             if(tempList.isPresent()) return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate Email");
+            String flags = strengthCheck.checkPassword(userReg.getPassword());
+            if (flags.length() > 0) return ResponseEntity.status(HttpStatus.CONFLICT).body(flags);
             userRepository.findByUserName(userReg.getUsername()).orElseThrow(() -> new UsernameNotFoundException(String.format("", "")));
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate Username");
         } catch(UsernameNotFoundException e) {
