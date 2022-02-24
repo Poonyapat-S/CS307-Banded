@@ -10,8 +10,13 @@
         </div>
 
         <div class="form-group">
-            <label for="name">Username:</label>
-            <input [(ngModel)]="user.userName" placeholder="Username" name="userID" class="form-control" id="userID">
+            <label for="username">Username:</label>
+            <input [(ngModel)]="user.username" placeholder="Username" name="username" class="form-control" id="username">
+        </div>
+
+        <div class="form-group">
+            <label for="username">Email:</label>
+            <input [(ngModel)]="user.email" placeholder="Email" name="email" class="form-control" id="email">
         </div>
 
         <div class="form-group">
@@ -21,7 +26,7 @@
 
         <div class="form-group">
             <label for="password">Confirm Password:</label>
-            <input [(ngModel)]="user.password" placeholder="Password" name="password" class="form-control" id="password">
+            <input [(ngModel)]="user.confPassword" placeholder="Confirm Password" name="ConfirmPassword" class="form-control" id="ConfPassword">
         </div>
         <button class="btn btn-success" (click)="createUser()">Create</button>
     </form>

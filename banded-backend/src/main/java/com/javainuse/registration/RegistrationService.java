@@ -5,6 +5,8 @@ import com.javainuse.classes.User;
 import com.javainuse.classes.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -22,17 +24,16 @@ public class RegistrationService {
     private final EmailValidator emailValidator;
 
     //The register method. This will place a new user in the database when called.
-    public String register(RegistrationRequest userReg) {
+    public ResponseEntity<String> register(RegistrationRequest userReg) {
         try {
             Optional<User> tempList;
             tempList = userRepository.findByEmail(userReg.getEmail());
-            if(tempList.isPresent()) return "duplicate email";
+            if(tempList.isPresent()) return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate Email");
             userRepository.findByUserName(userReg.getUsername()).orElseThrow(() -> new UsernameNotFoundException(String.format("", "")));
-            return "duplicate username";
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate Username");
         } catch(UsernameNotFoundException e) {
-            System.out.println("Unique email");
             if (emailValidator.validateEmail(userReg.getEmail()) == false) {
-                return "didnt work";
+                return ResponseEntity.status(HttpStatus.CONFLICT).body("Invalid Email");
             }
             User user = new User();
             user.setName(userReg.getName());
@@ -40,7 +41,7 @@ public class RegistrationService {
             user.setPassword(passwordEncoder.encode(userReg.getPassword()));
             user.setEmail(userReg.getEmail());
             userRepository.save(user);
-            return "works";
+            return new ResponseEntity("User registered successfully", HttpStatus.OK);
         }
     }
 }
