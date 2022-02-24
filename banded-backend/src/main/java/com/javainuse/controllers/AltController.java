@@ -1,3 +1,4 @@
+/*
 package com.javainuse.controllers;
 
 import com.javainuse.classes.User;
@@ -16,4 +17,5 @@ public class AltController {
     public String isUser(){
         return ("Welcome user!");
     }
-}
+}*/
+
