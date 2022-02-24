@@ -67,6 +67,11 @@ public class UserService implements UserDetailsService {
             return "You don't have a favorite band!";
         }
     }
+    public String viewOther(String username){
+        User toView = userRepository.findByUserName(username).orElseThrow(()
+                -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,username)));
+        return toView.toString();
+    }
 
 
 }

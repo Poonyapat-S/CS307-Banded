@@ -36,6 +36,10 @@ public class UserController {
     public String unfollowBand(@RequestParam String email){
         return userService.unfollowTopic(email);
     }
+    @PostMapping(path = "/view")
+    public String viewProfile(@RequestParam String username){
+        return userService.viewOther(username);
+    }
 
 
 }
