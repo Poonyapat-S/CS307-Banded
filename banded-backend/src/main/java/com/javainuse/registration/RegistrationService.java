@@ -6,19 +6,19 @@ import com.javainuse.classes.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.net.UnknownServiceException;
-import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Service
 @AllArgsConstructor
 public class RegistrationService {
 
     @Autowired
-    private UserRepository userRepository;
-
+    private final UserRepository userRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
     private final EmailValidator emailValidator;
 
     //The register method. This will place a new user in the database when called.
@@ -37,7 +37,7 @@ public class RegistrationService {
             User user = new User();
             user.setName(userReg.getName());
             user.setUserName(userReg.getUsername());
-            user.setPassword(userReg.getPassword());
+            user.setPassword(passwordEncoder.encode(userReg.getPassword()));
             user.setEmail(userReg.getEmail());
             userRepository.save(user);
             return "works";
