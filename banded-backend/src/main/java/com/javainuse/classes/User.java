@@ -120,7 +120,7 @@ public class User implements UserDetails {
         }
     }
 
-    private int getUserIDByUsername(String username)
+    private int getUserIDByUsername(String username) throws SQLException
     {
         String dbURL = "jdbc:mysql://localhost:3306/cs307group27?useSSL=false";
         String dbUsername = "Group27";
@@ -129,7 +129,7 @@ public class User implements UserDetails {
         PreparedStatement pstmt = null;
         int userID = -1;
         String query = "SELECT userID FROM user WHERE username = ?";
-        try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword)
+        try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword))
         {
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, username);
@@ -151,7 +151,7 @@ public class User implements UserDetails {
     }
 
     //TODO: this method should be moved to the topic class
-    private int getTopicIDByTopic(String topic)
+    private int getTopicIDByTopic(String topic) throws SQLException
     {
         String dbURL = "jdbc:mysql://localhost:3306/cs307group27?useSSL=false";
         String dbUsername = "Group27";
@@ -160,7 +160,7 @@ public class User implements UserDetails {
         PreparedStatement pstmt = null;
         int topicID = -1;
         String query = "SELECT topicID FROM topic WHERE topicName = ?";
-        try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword)
+        try (Connection conn = DriverManager.getConnection(dbURL, dbUsername, dbPassword))
         {
             pstmt = conn.prepareStatement(query);
             pstmt.setString(1, topic);

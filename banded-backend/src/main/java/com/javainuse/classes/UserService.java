@@ -19,6 +19,12 @@ public class UserService implements UserDetailsService {
         return userRepository.findByEmail(email)
                 .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
     }
+    public String deleteByEmail(String email){
+        User toDelete=userRepository.findByEmail(email).orElseThrow(()
+                -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+        userRepository.delete(toDelete);
+        return "Deleted";
+    }
 
     //checks databased for a user's email to see if it already exists. Returns true if user exists
     public Boolean duplicateEmail(User user){
