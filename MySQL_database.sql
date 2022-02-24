@@ -1,5 +1,9 @@
 CREATE DATABASE  IF NOT EXISTS `cs307group27` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `cs307group27`;
+
+create user 'springuser'@'%' identified by 'password';
+grant all on cs307group27.* to 'springuser'@'%';
+
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: cs307group27
