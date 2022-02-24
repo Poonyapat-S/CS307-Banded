@@ -28,6 +28,6 @@ export class HttpClientService {
   }
 
   public createUser(user: User) {
-    return this.httpClient.post<User>("http://localhost:8080/users", user);
+    return this.httpClient.post<User>("http://localhost:8080/users/", user);
   }
 }

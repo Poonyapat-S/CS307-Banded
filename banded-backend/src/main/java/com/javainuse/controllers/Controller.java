@@ -4,50 +4,53 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.javainuse.classes.NewUser;
+import com.javainuse.exception.ResourceNotFoundException;
+import com.javainuse.repository.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.javainuse.classes.User;
 
-@CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping(path = "/users")
 @RestController
+@CrossOrigin(origins = "*")
 public class Controller {
-    private List<User> UserList = createList();
 
-    @CrossOrigin(origins = "http://localhost:4200")
+    @Autowired
+    UserRepository userRepository;
+
+    private List<User> UserList = new ArrayList<User>();
+
     @GetMapping(produces = "application/json")
     public List<User> firstPage() {
+        UserList = userRepository.findAll();
         return UserList;
     }
-    @CrossOrigin(origins = "http://localhost:4200")
+
     @DeleteMapping(path = { "/{id}" })
-    public User delete(@PathVariable("id") String id) {
-        User deletedUser = null;
-        for(User user: UserList) {
-            if(user.getuserID().equals(id)) {
-                deletedUser = user;
-                UserList.remove(user);
+    public User delete(@PathVariable("id") Integer id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("User", "id", id));
+        for(User u: UserList) {
+            if(u.getuserID() == id) {
+                UserList.remove(u);
                 break;
             }
         }
-        return deletedUser;
-    }
-    @CrossOrigin(origins = "http://localhost:4200")
-    @PostMapping
-    public User create(@RequestBody NewUser user) {
-        User u = new User(user);
-        UserList.add(u);
-        System.out.println(UserList);
-        return u;
+        userRepository.delete(user);
+        return user;
     }
 
-    private static List<User> createList() {
-        List<User> UserList = new ArrayList<>();
-        User usr1 = new User("1234", "ABCD", "ABCD");
-        User usr2 = new User("5678", "EFGH", "IJKL");
-        UserList.add(usr1);
-        UserList.add(usr2);
-        return UserList;
+    @PostMapping
+    public User create(@RequestBody NewUser u) {
+        User user = new User();
+        user.setUserName(u.userName);
+        user.setPassword(u.password);
+        user.setName(u.name);
+        UserList.add(user);
+        userRepository.save(user);
+        return user;
     }
+
 
 }

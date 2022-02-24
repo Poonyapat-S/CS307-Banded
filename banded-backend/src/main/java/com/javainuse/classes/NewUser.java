@@ -4,11 +4,14 @@ public class NewUser {
     public String name;
     public String userName;
     public String password;
+
     public NewUser(String name, String userName, String password) {
         this.name = name;
         this.userName = userName;
         this.password = password;
     }
+
+    public NewUser() {}
 
     public String getName() {
         return name;
@@ -32,5 +35,14 @@ public class NewUser {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "NewUser{" +
+                "name='" + name + '\'' +
+                ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 }
