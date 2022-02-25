@@ -17,20 +17,15 @@ public class UserController {
 
     @GetMapping
     public String home(@AuthenticationPrincipal User user) {
-        String str = "Name: " + user.getName() + '\n';
-        str += "Email: " + user.getEmail() + '\n';
-        str += "Bio: " + user.getBio() + '\n';
-        str += "Favorite band" + user.getFavBand() + '\n';
-        str += "Favorite song" + user.getFavSong() + '\n';
-        return str;
+        return user.toString();
     }
     @PostMapping(path = "/bio")
     public String updateBio(@RequestParam String email, @RequestParam String newBio){
         return userService.alterBio(email,newBio);
     }
     @PostMapping(path = "/follow")
-    public String followBand(@RequestParam String email, @RequestParam String band){
-        return userService.followTopic(email,band);
+    public String followBand(@AuthenticationPrincipal User user, @RequestParam String band){
+        return userService.followTopic(user.getEmail(),band);
     }
     @PostMapping(path = "/unfollow")
     public String unfollowBand(@RequestParam String email){
