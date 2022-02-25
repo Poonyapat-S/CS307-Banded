@@ -12,6 +12,7 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginUserComponent } from './login-user/login-user.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TimelineComponent } from './timeline/timeline.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { TimelineComponent } from './timeline/timeline.component';
     FooterComponent,
     LoginUserComponent,
     CreateAccountComponent,
-    TimelineComponent
+    TimelineComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,
