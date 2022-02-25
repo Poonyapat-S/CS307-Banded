@@ -1,0 +1,57 @@
+body {
+    background-color: lightgrey;
+    padding: 0px;
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+  }
+  
+  div{
+    width: 1000px;
+    margin: 0 auto;
+    flex-shrink: 3;
+  }
+  
+  /* Start of the margins construction */
+  .v1 {
+    border-left: 2px solid black;
+    height: 100%;
+    position: absolute;
+    left: 20%;
+    margin-left: -3px;
+    top: 0;
+  }
+  
+  .v2 {
+    border-left: 2px solid black;
+    height: 100%;
+    position: absolute;
+    left: 80%;
+    margin-left: -3px;
+    top: 0;
+  }
+  
+  .dashed-border {
+    width: 100%;
+    top: 13.5%;
+    border: 1px solid black;
+  }
+  
+  hr{
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    width: 2px;
+    color: solid black;
+  }
+  /* End of the margins construction */
+  
+  
+  /* Banded Header */
+  .banded {
+    color: black;
+    font-size: 60px;
+    position: relative;
+    top: 3%;
+    left: 22%;
+    font-family: 'Courier New', Courier, monospace;
+  }
