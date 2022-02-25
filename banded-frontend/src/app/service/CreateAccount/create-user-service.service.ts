@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 // import { throws } from 'assert';
 
-export class User{
+export class NewUser{
   constructor(
     public name:string,
     public userName:string,
@@ -17,20 +17,11 @@ export class User{
 @Injectable({
   providedIn: 'root'
 })
-export class HttpClientService {
+export class CreateUserService {
 
   constructor( private httpClient:HttpClient) { }
 
-  getUsers() {
-    console.log("test call");
-    return this.httpClient.get<User[]>('http://localhost:8080/api/user/allusers');
-  }
-
-  public deleteUsers(user: User) {
-    return this.httpClient.delete<User>("http://localhost:8080/users/"+user.userName);
-  }
-
-  public createUser(user: User) {
+  public createUser(user: NewUser) {
     return this.httpClient.post("http://localhost:8080/api/v1/registration", user, {responseType: 'text'});
   }
 }

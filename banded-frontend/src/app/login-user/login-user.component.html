@@ -23,22 +23,18 @@
             <h2 class="text-center">Login</h2>
             <form>
                 <div class="form-group">
-                    <label for="name">Username:</label>
-
-                    <input [(ngModel)]="user.userName" placeholder="Username" name="userID" class="form-control" id="userID">
-
-                    <input [(ngModel)]="user.username" placeholder="Username" name="userID" class="form-control" id="userID">
+                    <label for="name">Email:</label>
+                    <input [(ngModel)]="username" placeholder="Email" name="username" class="form-control" id="username">
                 </div>
         
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input [(ngModel)]="user.password" placeholder="Password" name="password" class="form-control" id="password">
+                    <input [(ngModel)]="password" placeholder="Password" name="password" class="form-control" id="password">
                 </div>
                 <!-- <button class="btn btn-success" (click)="createUser()">Create</button> //-->
             </form>
             <p></p>
-            <input type = "button" onclick="loginRequest()" value = "Go" />
-
+            <button (click)=login() class="btn btn-success">Login</button>
 
         </div>
    </body>  

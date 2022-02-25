@@ -1,6 +1,8 @@
 package com.javainuse.controllers;
 
+import com.javainuse.classes.DummyUser;
 import com.javainuse.classes.User;
+import com.javainuse.classes.UserRepository;
 import com.javainuse.classes.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,12 +10,17 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(path = "/api/user")
 public class UserController {
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private final UserRepository userRepository;
 
     @GetMapping
     public String home(@AuthenticationPrincipal User user) {
@@ -24,6 +31,12 @@ public class UserController {
         str += "Favorite song" + user.getFavSong() + '\n';
         return str;
     }
+
+    @GetMapping(path="/allusers")
+    public List<DummyUser> getAllUser() {
+        return DummyUser.parseUserList(userRepository.findAll());
+    }
+
     @PostMapping(path = "/bio")
     public String updateBio(@RequestParam String email, @RequestParam String newBio){
         return userService.alterBio(email,newBio);
