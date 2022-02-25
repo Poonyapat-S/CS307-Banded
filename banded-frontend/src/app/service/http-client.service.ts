@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 // import { throws } from 'assert';
 
 export class User{
   constructor(
+    public userID:string,
     public name:string,
-    public username:string,
+    public userName:string,
     public password:string,
-    public email:string,
-    public confPassword:string,
   ) {}
 }
 
@@ -27,10 +24,10 @@ export class HttpClientService {
   }
 
   public deleteUsers(user: User) {
-    return this.httpClient.delete<User>("http://localhost:8080/users/"+user.username);
+    return this.httpClient.delete<User>("http://localhost:8080/users/"+user.userID);
   }
 
   public createUser(user: User) {
-    return this.httpClient.post("http://localhost:8080/api/v1/registration", user, {responseType: 'text'});
+    return this.httpClient.post<User>("http://localhost:8080/users/", user);
   }
 }

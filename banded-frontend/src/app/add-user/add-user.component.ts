@@ -8,7 +8,7 @@ import { HttpClientService, User } from '../service/http-client.service';
 })
 export class AddUserComponent implements OnInit {
 
-  user: User = new User("", "", "", "", "");
+  user: User = new User("", "", "", "");
 
   constructor(private httpClientService: HttpClientService) { }
 
@@ -16,7 +16,7 @@ export class AddUserComponent implements OnInit {
   }
 
   createUser(): void {
-    this.httpClientService.createUser(this.user);
+    this.httpClientService.createUser(this.user).subscribe(data => {alert("User created successfully")});
   };
 
 }
