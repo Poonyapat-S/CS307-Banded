@@ -7,7 +7,6 @@ import { UserComponent } from './user/user.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
 
-
 const routes: Routes = [
   { path: '', component: TimelineComponent},
   { path:'view-users', component: UserComponent},

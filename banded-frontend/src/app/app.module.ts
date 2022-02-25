@@ -25,7 +25,6 @@ import { ProfileComponent } from './profile/profile.component';
     CreateAccountComponent,
     TimelineComponent,
     ProfileComponent
-
   ],
   imports: [
     BrowserModule,
