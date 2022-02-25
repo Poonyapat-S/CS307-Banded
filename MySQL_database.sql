@@ -1,5 +1,9 @@
 CREATE DATABASE  IF NOT EXISTS `cs307group27` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `cs307group27`;
+
+CREATE USER IF NOT EXISTS 'springuser'@'%' IDENTIFIED BY 'password';
+grant all on cs307group27.* to 'springuser'@'%';
+
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: cs307group27
@@ -83,14 +87,16 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userID` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `email` varchar(45) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `bio` varchar(100) DEFAULT NULL,
   `favBand` varchar(45) DEFAULT NULL,
   `favSong` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`userID`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  UNIQUE KEY `email_UNIQUE` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,4 +125,4 @@ CREATE TABLE `userfollower` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-14 20:14:33
+-- Dump completed on 2022-02-23 12:03:43
