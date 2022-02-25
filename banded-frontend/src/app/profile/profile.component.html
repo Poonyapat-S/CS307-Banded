@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -50,12 +51,47 @@
   <button class= "settings">Settings</button>
 
   <!--The border less buttons for editBio and DeleteAccount-->
+  <!-- This is what was old
   <a href="http://google.com"><button class="editBio">Edit Bio</button></a>
+  -->
+
+  
   <a href="http://google.com"><button class="deleteAccount">Delete Account</button></a>
+
   
+ 
+  <button class="editBio" onclick="openForm()">Edit Bio</button>
+  <div class="form-popup" id="myForm">
+    <form action= "/action_page" class="form-container">
+      <h1>Enter New Bio</h1>
+      <input type="text" placeholder="Enter New Bio" name="bio" required>
+      <button type="submit" class="btn submit">Submit</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+      
+    </form>
+  </div>
+
   
+  <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+    
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+   
+  </script>
+  
+ 
 
 
+<div class="popup">
+
+
+</div>
+ 
+ 
   
 </body>
 <!--THis is the second change for the test Sam-->
