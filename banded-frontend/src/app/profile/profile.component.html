@@ -34,7 +34,8 @@
   -->
   <p class="userName">John_Doe</p>
   <p class="smallUserName">John_Doe</p>
-  <p class="bio">This is a sample bio</p>
+  <p  id="bio" class ="bio">This is a sample bio</p>
+
   <p class = "topicHeader"> Topics Following:</p>
   <p class="topicsFollowed"> Topics will show here</p>
   <img class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
@@ -63,9 +64,9 @@
   <button class="editBio" onclick="openForm()">Edit Bio</button>
   <div class="form-popup" id="myForm">
     <form action= "/action_page" class="form-container">
-      <h1>Enter New Bio</h1>
-      <input type="text" placeholder="Enter New Bio" name="bio" required>
-      <button type="submit" class="btn submit">Submit</button>
+      <h1 id="titleenter">Enter New Bio</h1>
+      <input type="text" placeholder="Enter New Bio" name="bio" id="newText">
+      <button type="button"  class="btn submit" onclick="submitForm()">Submit</button>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
       
     </form>
@@ -80,8 +81,20 @@
     function closeForm() {
       document.getElementById("myForm").style.display = "none";
     }
-   
+
+    function submitForm() {
+      let text = document.getElementById("newText").value;
+      document.getElementById("bio").innerText = text;
+      /*Need backend function here */
+      /*tEST */
+      closeForm();
+
+    }
+    
+  
+    
   </script>
+  
   
  
 

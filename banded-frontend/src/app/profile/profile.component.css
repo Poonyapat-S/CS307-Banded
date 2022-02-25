@@ -195,16 +195,18 @@ hr{
 
   .form-popup {
     display: none;
+  
     position: fixed;
-    bottom: 0;
+    bottom: 100px;
     right: 15px;
     
     z-index: 9;
   }
   .form-container {
-    max-width: 300px;
+    max-width: 500px;
     padding: 10px;
-    background-color: white;
+    background-color: lightgrey;
+    
   }
 
   
