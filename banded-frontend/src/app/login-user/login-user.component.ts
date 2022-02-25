@@ -13,6 +13,7 @@ export class LoginUserComponent implements OnInit {
   private invalidLogin: boolean = true;
   private loginSuccess: boolean = false;
 
+
   constructor(private auth: AuthenticationService) { }
 
   ngOnInit(): void {
