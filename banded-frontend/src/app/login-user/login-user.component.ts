@@ -8,6 +8,7 @@ import { HttpClientService, User } from '../service/http-client.service';
 })
 export class LoginUserComponent implements OnInit {
 
+
   user: User = new User("", "", "", "", "");
 
   constructor(private httpClientService: HttpClientService) { }
