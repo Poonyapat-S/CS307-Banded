@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService, User } from '../service/http-client.service';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-login-user',
@@ -8,15 +8,26 @@ import { HttpClientService, User } from '../service/http-client.service';
 })
 export class LoginUserComponent implements OnInit {
 
-  user: User = new User("", "", "", "", "");
+  public username: string = "";
+  public password: string = "";
+  private invalidLogin: boolean = true;
+  private loginSuccess: boolean = false;
 
-  constructor(private httpClientService: HttpClientService) { }
+  constructor(private auth: AuthenticationService) { }
 
   ngOnInit(): void {
   }
 
-  createUser(): void {
+  login(): void {
+    this.auth.authenticationService(this.username, this.password).subscribe((result)=> {
+      this.invalidLogin = false;
+      this.loginSuccess = true;
+      alert('Login Successful.');
+    }, () => {
+      this.invalidLogin = true;
+      this.loginSuccess = false;
+      alert("Invalid Credentials");
+    });      
     
-    this.httpClientService.createUser(this.user);
   };
 }

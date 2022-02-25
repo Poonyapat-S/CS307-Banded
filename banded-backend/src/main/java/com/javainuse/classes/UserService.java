@@ -15,9 +15,12 @@ public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,email)));
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println(username);
+        User user = userRepository.findByUserName(username)
+                .orElseThrow(() -> new UsernameNotFoundException(String.format(USER_NOT_FOUND,username)));
+        System.out.println(user.getPassword());
+        return user;
     }
     public String deleteByEmail(String email){
         User toDelete=userRepository.findByEmail(email).orElseThrow(()

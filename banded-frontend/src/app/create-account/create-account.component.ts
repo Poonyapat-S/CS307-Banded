@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClientService, User } from '../service/http-client.service';
+import { CreateUserService, NewUser } from '../service/CreateAccount/create-user-service.service';
 
 @Component({
   selector: 'app-create-account',
@@ -8,9 +8,9 @@ import { HttpClientService, User } from '../service/http-client.service';
 })
 export class CreateAccountComponent implements OnInit {
 
-  user: User = new User("", "", "", "", "");
+  user: NewUser = new NewUser("", "", "", "", "");
 
-  constructor(private httpClientService: HttpClientService) { }
+  constructor(private httpClientService: CreateUserService) { }
 
   ngOnInit(): void {
   }

@@ -1,6 +1,13 @@
 package com.javainuse.classes;
 
-public enum UserAuthorities {
+import org.springframework.security.core.GrantedAuthority;
+
+public enum UserAuthorities implements GrantedAuthority {
     USER,
-    ADMIN
+    ADMIN;
+
+    @Override
+    public String getAuthority() {
+        return name();
+    }
 }
