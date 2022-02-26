@@ -34,10 +34,11 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
                 UserDetails userDetails = userService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities());
+                        userDetails, userDetails.getPassword(), userDetails.getAuthorities());
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
 
                 SecurityContextHolder.getContext().setAuthentication(authentication);
+                System.out.println("Not caught exception: " + username);
             }
         } catch (Exception e) {
             logger.error("Cannot set user authentication: {}", e);
@@ -48,8 +49,9 @@ public class AuthTokenFilter extends OncePerRequestFilter {
 
     private String parseJwt(HttpServletRequest request) {
         String headerAuth = request.getHeader("Authorization");
-
+        System.out.println("Header: " + headerAuth);
         if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
+            System.out.println(headerAuth.substring(7, headerAuth.length()));
             return headerAuth.substring(7, headerAuth.length());
         }
 

@@ -16,7 +16,11 @@ public class AuthEntryPointJwt implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response,
                          AuthenticationException authException) throws IOException, ServletException {
-        response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error: Unauthorized");
+        response.resetBuffer();
+        response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+        response.setHeader("Content-Type", "application/json");
+        response.getOutputStream().print("{\"errorMessage\":\"Invalid Credentials\"}");
+        response.flushBuffer();
     }
 
 }
