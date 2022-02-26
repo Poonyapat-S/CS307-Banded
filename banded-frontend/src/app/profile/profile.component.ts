@@ -8,6 +8,7 @@ import { Profile, ProfileService } from '../service/profile.service';
 })
 export class ProfileComponent implements OnInit {
   public currProfile: Profile;
+  newBio = "";
 
   constructor(private profileService: ProfileService) {this.currProfile = new Profile("", "", "", "", "", ""); }
 
@@ -23,4 +24,7 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  updateBio(): void {
+    this.profileService.updateBio(this.newBio);
+  };
 }

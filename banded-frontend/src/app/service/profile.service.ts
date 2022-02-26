@@ -21,4 +21,8 @@ export class ProfileService {
   public getProfile() {
     return this.httpClient.get<Profile>("http://localhost:8080/profile");
   }
+
+  public updateBio(newBio : Profile["bio"]) {
+    this.httpClient.post("http://localhost:8080/api/user/bio", newBio, {responseType: 'text'})
+  }
 }

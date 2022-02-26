@@ -60,7 +60,7 @@
   <div class="form-popup" id="myForm">
     <form action= "/action_page" class="form-container">
       <h1 id="titleenter">Enter New Bio</h1>
-      <input type="text" placeholder="Enter New Bio" name="bio" id="newText">
+      <input [(ngModel)]="currProfile.bio" placeholder="Enter New Bio" name="bio" id="newText">
       <button type="button"  class="btn submit" onclick="submitForm()">Submit</button>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
@@ -77,6 +77,10 @@
       let text = document.getElementById("newText").value;
       document.getElementById("bio").innerText = text;
       /*Need backend function here */
+      if (this.currProfile.bio == "") {
+        alert("Cannot change bio!");
+        return;
+      }
       /*tEST */
       closeForm();
     }
