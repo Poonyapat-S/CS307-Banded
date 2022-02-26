@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthenticationService, Credentials } from '../service/auth/authentication.service';
 import { TokenService } from '../service/auth/token.service';
 import { Router } from '@angular/router';
+import {loadProfile} from 'CS307-Banded/banded-frontend/src/app/profile/profile.component.ts'
 
 @Component({
   selector: 'app-login-user',
@@ -36,6 +37,7 @@ export class LoginUserComponent implements OnInit {
         this.roles = this.tokenService.getUser().roles;
         this.submitted = true;
         alert("Login Successful");
+        loadProfile();
         setTimeout(this.loginProfile.bind(this),5000)},
       error: (err) => {
         console.log(err.status)
