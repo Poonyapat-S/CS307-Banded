@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile, ProfileService } from '../service/profile.service';
+import { ActivatedRoute } from '@angular/router';
+import { Profile, ProfileService } from '../service/profile/profile.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,14 +10,14 @@ import { Profile, ProfileService } from '../service/profile.service';
 export class ProfileComponent implements OnInit {
   public currProfile: Profile;
 
-  constructor(private profileService: ProfileService) {this.currProfile = new Profile("", "", "", "", "", ""); }
+  constructor(private profileService: ProfileService, private route: ActivatedRoute) {this.currProfile = new Profile("", "", "", "", "", ""); }
 
-  async ngOnInit() {
-    await this.loadProfile();
+  ngOnInit() {
+    this.currProfile = this.route.snapshot.data['profileget'];
     console.log(this.currProfile)
   }
 
-  public async loadProfile() {
+  public async loadProfile(): Promise<any> {
     this.profileService.getProfile().subscribe((data: Profile) => {
       console.log(data);
       this.currProfile = data

@@ -6,6 +6,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { UserComponent } from './user/user.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ProfileGetResolver } from './service/profile/profile-get';
 
 const routes: Routes = [
   { path: '', component: TimelineComponent},
@@ -13,7 +14,7 @@ const routes: Routes = [
   { path:'adduser', component: AddUserComponent},
   { path: 'login', component: LoginUserComponent},
   { path: 'create-account', component: CreateAccountComponent},
-  { path: 'profile', component: ProfileComponent}
+  { path: 'profile', component: ProfileComponent, resolve: {profileget: ProfileGetResolver}}
 ];
 
 @NgModule({
