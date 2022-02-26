@@ -11,3 +11,16 @@ function submitForm() {
     document.getElementById("bio").innerText = text;
     closeForm();
   }
+
+  function openFormDelete() {
+    document.getElementById("myDeleteAcc").style.display = "block";
+  }
+  function closeFormDelete() {
+    document.getElementById("myDeleteAcc").style.display = "none";
+  }
+
+  function submitDeletion(){
+    /*Send back to timeline */
+    
+    closeFormDelete()
+  }

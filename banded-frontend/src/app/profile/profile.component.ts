@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 declare function openform():void;
 declare function closeform():void;
 declare function submitForm():void;
+declare function openformDelete():void;
+declare function closeformDelete():void;
+declare function submitDeletion():void;
 declare const val:string;
 @Component({
   selector: 'app-profile',
