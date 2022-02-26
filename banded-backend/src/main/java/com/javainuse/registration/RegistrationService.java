@@ -34,7 +34,7 @@ public class RegistrationService {
             if(tempList.isPresent()) return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate Email");
             String flags = strengthCheck.checkPassword(userReg.getPassword());
             if (flags.length() > 0) return ResponseEntity.status(HttpStatus.CONFLICT).body(flags);
-            userRepository.findByUserName(userReg.getUsername()).orElseThrow(() -> new UsernameNotFoundException(String.format("", "")));
+            userRepository.findByUserName(userReg.getUserName()).orElseThrow(() -> new UsernameNotFoundException(String.format("", "")));
             return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate Username");
         } catch(UsernameNotFoundException e) {
             if (emailValidator.validateEmail(userReg.getEmail()) == false) {
@@ -42,7 +42,7 @@ public class RegistrationService {
             }
             User user = new User();
             user.setName(userReg.getName());
-            user.setUserName(userReg.getUsername());
+            user.setUserName(userReg.getUserName());
             user.setPassword(passwordEncoder.encode(userReg.getPassword()));
             user.setEmail(userReg.getEmail());
             userRepository.save(user);
