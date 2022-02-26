@@ -1,6 +1,6 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -14,6 +14,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
 
+import { authInterceptorProviders } from './_helper/auth.interceptor';
+import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +34,7 @@ import { ProfileComponent } from './profile/profile.component';
     HttpClientModule,
     FormsModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [authInterceptorProviders, UnauthInterceptorProvider],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

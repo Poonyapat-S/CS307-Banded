@@ -23,14 +23,21 @@
             <h2 class="text-center">Login</h2>
             <form>
                 <div class="form-group">
-                    <label for="name">Email:</label>
-                    <input [(ngModel)]="username" placeholder="Email" name="username" class="form-control" id="username">
+                    <label for="name">Username:</label>
+                    <input [(ngModel)]="credentials.username" placeholder="Username" name="username" class="form-control" id="username">
                 </div>
         
                 <div class="form-group">
                     <label for="password">Password:</label>
-                    <input [(ngModel)]="password" placeholder="Password" name="password" class="form-control" id="password">
+                    <input [(ngModel)]="credentials.password" placeholder="Password" name="password" class="form-control" id="password">
                 </div>
+
+                <div class="form-group">
+                    <div class="alert alert-danger" role="alert" *ngIf="submitted && isLoginFailed">
+                        Login failed: {{ errorMessage }}
+                    </div>
+                </div>
+
                 <!-- <button class="btn btn-success" (click)="createUser()">Create</button> //-->
             </form>
             <p></p>
