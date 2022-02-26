@@ -7,7 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
 export class NewUser{
   constructor(
     public name:string,
-    public userName:string,
+    public username:string,
     public password:string,
     public email:string,
     public confPassword:string,

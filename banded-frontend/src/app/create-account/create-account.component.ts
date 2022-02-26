@@ -21,7 +21,7 @@ export class CreateAccountComponent implements OnInit {
       alert("Name can't be empty!!");
       return;
     }
-    if (this.user.userName == "") {
+    if (this.user.username == "") {
       alert("Username can't be empty!!");
       return;
     }

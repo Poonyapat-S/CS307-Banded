@@ -17,7 +17,7 @@
     
             <div class="form-group">
                 <label for="name">Username:</label>
-                <input [(ngModel)]="user.userName" placeholder="Username" name="userName" class="form-control" id="userName">
+                <input [(ngModel)]="user.username" placeholder="Username" name="userName" class="form-control" id="userName">
             </div>
     
             <div class="form-group">
@@ -27,7 +27,7 @@
     
             <div class="form-group">
                 <label for="password">Confirm Password:</label>
-                <input [(ngModel)]="user.password" placeholder="Password" name="password" class="form-control" id="password">
+                <input [(ngModel)]="user.confPassword" placeholder="Password" name="password" class="form-control" id="password">
             </div>
             <p></p>
             <input type = "button" (click)="createUser()" value = "Create" />
