@@ -13,6 +13,8 @@ import { LoginUserComponent } from './login-user/login-user.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 
 import { authInterceptorProviders } from './_helper/auth.interceptor';
 import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
@@ -33,6 +35,7 @@ import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    NgbModule,
   ],
   providers: [authInterceptorProviders, UnauthInterceptorProvider],
   bootstrap: [AppComponent],
