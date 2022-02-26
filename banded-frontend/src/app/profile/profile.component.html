@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
@@ -21,7 +20,7 @@
   <!--Banded Header-->
   <p class = "banded"> Banded</p>
 
-  <!--
+  <!-- 
     Start of Place Holder Section:
 
     These are the place holders below that need to be changed
@@ -32,10 +31,9 @@
     4. small profile pic (upper right)
     5. topics followed
   -->
-  <p class="userName">{{currProfile.name}}</p>
+  <p class="Name">{{currProfile.name}}</p>
   <p class="smallUserName">{{currProfile.userName}}</p>
-  <p  id="bio" class ="bio">{{currProfile.bio}}</p>
-
+  <p class="bio">{{currProfile.bio}}</p>
   <p class = "topicHeader"> Topics Following:</p>
   <p class="topicsFollowed"> Topics will show here</p>
   <img class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
@@ -52,68 +50,13 @@
   <button class= "settings">Settings</button>
 
   <!--The border less buttons for editBio and DeleteAccount-->
-  <!-- This is what was old
   <a href="http://google.com"><button class="editBio">Edit Bio</button></a>
-  -->
-
-  <button class="editBio" onclick="openForm()">Edit Bio</button>
-  <div class="form-popup" id="myForm">
-    <form action= "/action_page" class="form-container">
-      <h1 id="titleenter">Enter New Bio</h1>
-      <input type="text" placeholder="Enter New Bio" name="bio" id="newText">
-      <button type="button"  class="btn submit" onclick="submitForm()">Submit</button>
-      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-    </form>
-  </div>
-
-  <script>
-    function openForm() {
-      document.getElementById("myForm").style.display = "block";
-    }
-    function closeForm() {
-      document.getElementById("myForm").style.display = "none";
-    }
-    function submitForm() {
-      let text = document.getElementById("newText").value;
-      document.getElementById("bio").innerText = text;
-      /*Need backend function here */
-      /*tEST */
-      closeForm();
-    }
-  </script>
+  <a href="http://google.com"><button class="deleteAccount">Delete Account</button></a>
+  
+  
 
 
- <!--Below Starts Delete Account-->
-  <button class="deleteAccount" onclick="openFormDelete()">Delete Account</button>
-  <div class="form-popup-dc" id="myDeleteAcc">
-    <form action= "/action_page" class="form-container-dc">
-      <h1 id="areYouSure">Are You Sure You Want To Delete Your Account?</h1>
-      <a href="timeline.component.html"><button type="button"  class="btn delete" onclick="submitDelete()">Delete Account</button></a>
-      <button type="button" class="btn cancel" onclick="closeFormDelete()">Cancel</button>
-    </form>
-  </div>
-
-  <script>
-     function openFormDelete() {
-      document.getElementById("myDeleteAcc").style.display = "block";
-    }
-    function closeFormDelete() {
-      document.getElementById("myDeleteAcc").style.display = "none";
-    }
-      function submitDeletion(){
-        /*NEED BACKEND FUNCTION HERE TO ACTUALLY DELETE */
-        closeFormDelete()
-      }
-  </script>
-
-
-
-
-
-
-
-
-
+  
 </body>
 <!--THis is the second change for the test Sam-->
 </html>
