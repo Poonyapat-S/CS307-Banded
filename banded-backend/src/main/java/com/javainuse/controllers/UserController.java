@@ -38,16 +38,16 @@ public class UserController {
     }
 
     @PostMapping(path = "/bio")
-    public String updateBio(@RequestParam String email, @RequestParam String newBio){
-        return userService.alterBio(email,newBio);
+    public String updateBio(@AuthenticationPrincipal User user, @RequestParam String newBio){
+        return userService.alterBio(user.getEmail(),newBio);
     }
     @PostMapping(path = "/follow")
-    public String followBand(@RequestParam String email, @RequestParam String band){
-        return userService.followTopic(email,band);
+    public String followBand(@AuthenticationPrincipal User user, @RequestParam String band){
+        return userService.followTopic(user.getEmail(),band);
     }
     @PostMapping(path = "/unfollow")
-    public String unfollowBand(@RequestParam String email){
-        return userService.unfollowTopic(email);
+    public String unfollowBand(@AuthenticationPrincipal User user){
+        return userService.unfollowTopic(user.getEmail());
     }
     @PostMapping(path = "/view")
     public String viewProfile(@RequestParam String username){
