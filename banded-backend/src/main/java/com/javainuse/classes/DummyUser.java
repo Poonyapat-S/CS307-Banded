@@ -15,6 +15,7 @@ public class DummyUser {
     private Integer userID;
     private String name;
     private String userName;
+    @JsonIgnore
     private String password;
     private String email = "user@example.com";
     private String bio;

@@ -20,7 +20,8 @@ export class UnauthInterceptor implements HttpInterceptor {
   constructor(private router: Router) {}
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(catchError(error => this.handleError(error)));
+    return next.handle(req);
+    // return next.handle(req).pipe(catchError(error => this.handleError(error)));
   }
 
   handleError(error: HttpErrorResponse): Observable<any> {
