@@ -23,6 +23,8 @@ export class LoginUserComponent implements OnInit {
   ngOnInit(): void {
   }
 
+ 
+
   login(): void {
     this.auth.login(this.credentials).subscribe({next: (data) => {this.tokenService.saveToken(data.accessToken);
         this.tokenService.saveUser(data);
@@ -32,7 +34,9 @@ export class LoginUserComponent implements OnInit {
         this.roles = this.tokenService.getUser().roles;
         this.submitted = true;
         alert("Login Successful");
-        this.router.navigate(['profile'])},
+        setTimeout(this.router.navigate(['profile']),5000)
+  /*  this.router.navigate(['profile']) */    }, 
+        
       error: (err) => {
         console.log(err.status)
         this.errorMessage = "Invalid Credentials";
