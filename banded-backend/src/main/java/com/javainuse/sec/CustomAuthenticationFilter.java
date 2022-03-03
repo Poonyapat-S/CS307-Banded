@@ -36,7 +36,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
             // Get username & password from request (JSON) any way you like
             ObjectMapper mapper = new ObjectMapper();
             Credentials creds = mapper.readValue(request.getInputStream(),Credentials.class);
-            Authentication auth = new UsernamePasswordAuthenticationToken(creds.getUsername(),
+            Authentication auth = new UsernamePasswordAuthenticationToken(creds.getUserName(),
                    creds.getPassword());
             System.out.println("USNAME: " + request.getParameter("username"));
             return authManager.authenticate(auth);

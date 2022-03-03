@@ -6,7 +6,7 @@ import { BYPASS_UNAUTH } from 'src/app/_helper/unauth.interceptor';
 
 export class Credentials {
   constructor(
-  public username: string,
+  public userName: string,
   public password: string,
   ) {}
 }
