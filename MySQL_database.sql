@@ -1,9 +1,5 @@
 CREATE DATABASE  IF NOT EXISTS `cs307group27` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
 USE `cs307group27`;
-
-CREATE USER IF NOT EXISTS 'springuser'@'%' IDENTIFIED BY 'password';
-grant all on cs307group27.* to 'springuser'@'%';
-
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: cs307group27
@@ -31,10 +27,11 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `postID` int NOT NULL AUTO_INCREMENT,
   `userID` int NOT NULL,
-  `postText` varchar(100) DEFAULT NULL,
+  `postText` varchar(255) DEFAULT NULL,
   `parentPostID` int DEFAULT NULL,
   `timePosted` datetime DEFAULT NULL,
   `topicID` int DEFAULT NULL,
+  `isAnon` bit(1) NOT NULL,
   PRIMARY KEY (`postID`),
   KEY `FK_post_userID_user_userID_idx` (`userID`),
   KEY `FK_post_topicID_topic_topicID_idx` (`topicID`),
@@ -42,6 +39,42 @@ CREATE TABLE `post` (
   CONSTRAINT `FK_post_parentPostID_post_postID` FOREIGN KEY (`parentPostID`) REFERENCES `post` (`postID`),
   CONSTRAINT `FK_post_topicID_topic_topicID` FOREIGN KEY (`topicID`) REFERENCES `topic` (`topicID`),
   CONSTRAINT `FK_post_userID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `reaction`
+--
+
+DROP TABLE IF EXISTS `reaction`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reaction` (
+  `reactionID` int NOT NULL AUTO_INCREMENT,
+  `postID` int NOT NULL,
+  `userID` int NOT NULL,
+  PRIMARY KEY (`reactionID`,`postID`,`userID`),
+  KEY `FK_reaction_userID_user_userID_idx` (`userID`),
+  KEY `FK_reaction_postID_post_postID_idx` (`postID`),
+  CONSTRAINT `FK_reaction_postID_post_postID` FOREIGN KEY (`postID`) REFERENCES `post` (`postID`),
+  CONSTRAINT `FK_reaction_userID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `savedpost`
+--
+
+DROP TABLE IF EXISTS `savedpost`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `savedpost` (
+  `savedPostID` int NOT NULL,
+  `saverUserID` int NOT NULL,
+  PRIMARY KEY (`savedPostID`,`saverUserID`),
+  KEY `FK_savedpost_saverUserID_user_userID_idx` (`saverUserID`),
+  CONSTRAINT `FK_savedpost_savedPostID_post_postID` FOREIGN KEY (`savedPostID`) REFERENCES `post` (`postID`),
+  CONSTRAINT `FK_savedpost_saverUserID_user_userID` FOREIGN KEY (`saverUserID`) REFERENCES `user` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -57,7 +90,7 @@ CREATE TABLE `topic` (
   `topicName` varchar(45) NOT NULL,
   PRIMARY KEY (`topicID`),
   UNIQUE KEY `topicName_UNIQUE` (`topicName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,12 +120,15 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userID` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `password` varchar(100) NOT NULL,
+  `password` varchar(45) NOT NULL,
   `email` varchar(45) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `bio` varchar(100) DEFAULT NULL,
-  `favBand` varchar(45) DEFAULT NULL,
-  `favSong` varchar(45) DEFAULT NULL,
+  `fav_band` varchar(45) DEFAULT NULL,
+  `fav_song` varchar(45) DEFAULT NULL,
+  `enabled` bit(1) DEFAULT NULL,
+  `locked` bit(1) DEFAULT NULL,
+  `user_authorities` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
@@ -125,4 +161,4 @@ CREATE TABLE `userfollower` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-23 12:03:43
+-- Dump completed on 2022-03-22 17:14:41
