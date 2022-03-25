@@ -31,7 +31,7 @@ CREATE TABLE `post` (
   `parentPostID` int DEFAULT NULL,
   `timePosted` datetime DEFAULT NULL,
   `topicID` int DEFAULT NULL,
-  `isAnon` bit(1) NOT NULL,
+  `isAnon` bit(1) NOT NULL DEFAULT 0,
   PRIMARY KEY (`postID`),
   KEY `FK_post_userID_user_userID_idx` (`userID`),
   KEY `FK_post_topicID_topic_topicID_idx` (`topicID`),
@@ -166,7 +166,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `userID` int NOT NULL AUTO_INCREMENT,
   `username` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
   `email` varchar(45) NOT NULL,
   `name` varchar(45) DEFAULT NULL,
   `bio` varchar(100) DEFAULT NULL,

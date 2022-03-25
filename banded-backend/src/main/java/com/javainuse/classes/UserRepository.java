@@ -8,7 +8,7 @@ import java.util.Optional;
 
 @Repository
 @Transactional(readOnly = true)
-public interface UserRepository extends JpaRepository<User,Integer> {
+public interface  UserRepository extends JpaRepository<User,Integer> {
     //Optional<User> findByUsername(String username);
     //Returns a user based on the given email string
     Optional<User> findByEmail(String email);
