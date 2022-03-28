@@ -27,8 +27,12 @@ public class Post {
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name="userID")
     private User user;
+
     @Column(name = "userID", updatable = false, insertable = false)
     private Integer userID;
+
+    @Column(name = "postTitle")
+    private String postTitle;
 
     @Column(name = "postText")
     private String postText;
@@ -56,18 +60,20 @@ public class Post {
     @Column(name="isAnon")
     private Boolean isAnon;
 
-    public Post(User user, Post parentPost, Topic topic, String postText, Boolean isAnon) {
+    public Post(User user, Post parentPost, Topic topic, String postTitle, String postText, Boolean isAnon) {
         this.user = user;
         this.parentPost = parentPost;
         this.topic = topic;
+        this.postTitle = postTitle;
         this.postText = postText;
         this.isAnon = isAnon;
     }
 
-    public Post(User user, Post parentPost, Topic topic, String postText) {
+    public Post(User user, Post parentPost, String postTitle, Topic topic, String postText) {
         this.user = user;
         this.parentPost = parentPost;
         this.topic = topic;
+        this.postTitle = postTitle;
         this.postText = postText;
         this.isAnon = false;
     }

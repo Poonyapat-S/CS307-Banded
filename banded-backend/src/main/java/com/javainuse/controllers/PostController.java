@@ -44,10 +44,7 @@ public class PostController {
             System.out.println(topic.getTopicName());
             topicRepository.save(topic);
         }
-        newPost.setTopic(topic);
-        newPost.setUser(user);
-        newPost.setPostTime(LocalDateTime.now());
-        newPost.setIsAnon(false);
+        newPost = new Post(user, null, topic, request.getPostTitle(), request.getPostText(), request.getIsAnon());
         System.out.println(user.getUserID());
         postRepository.save(newPost);
         return new ResponseEntity<String>(HttpStatus.OK);

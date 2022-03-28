@@ -27,6 +27,7 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `postID` int NOT NULL AUTO_INCREMENT,
   `userID` int NOT NULL,
+  `postTitle` varchar(255) NOT NULL DEFAULT "Default Title",
   `postText` varchar(255) DEFAULT NULL,
   `parentPostID` int DEFAULT NULL,
   `timePosted` datetime DEFAULT NULL,
