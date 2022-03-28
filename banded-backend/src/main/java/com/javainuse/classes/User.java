@@ -1,7 +1,8 @@
 package com.javainuse.classes;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
-import net.minidev.json.annotate.JsonIgnore;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,6 +11,7 @@ import javax.persistence.*;
 import java.sql.*;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,7 +20,6 @@ import java.util.Collections;
 @Entity
 @Table(name = "user")
 public class User implements UserDetails {
-    @JsonIgnore
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="userID")
@@ -37,12 +38,19 @@ public class User implements UserDetails {
     private String favBand;
     @Column(name="favSong")
     private String favSong;
+
+//    @JsonBackReference
+//    @OneToMany
+//    private List<Post> posts;
     @Enumerated(EnumType.STRING)
     @JsonIgnore
+    @Transient
     private UserAuthorities userAuthorities = UserAuthorities.USER;
     @JsonIgnore
+    @Transient
     private Boolean locked = false;
     @JsonIgnore
+    @Transient
     private Boolean enabled = true;
     //steven
 
