@@ -24,6 +24,7 @@ public class PostController {
     private PostRepository postRepository;
     private TopicRepository topicRepository;
     private UserRepository userRepository;
+    private PostService postService;
 
     @GetMapping
     public List<Post> timeline(@AuthenticationPrincipal User user) {
@@ -69,10 +70,24 @@ public class PostController {
         try {
            Topic foundTopic = topicRepository.findByTopicName(topicName).orElseThrow(() -> new Exception());
            List<Post> postList = postRepository.findByTopic(foundTopic);
-           return postList;
+           return postService.anonymizeForTopics(postList);
         }
         catch(Exception e) {
             return new ArrayList<Post>();
+        }
+    }
+
+    @PostMapping(path="/{postId}")
+    public ResponseEntity<?> replyPost(@AuthenticationPrincipal User user, @PathVariable Integer postId, @RequestBody newPostRequest request) {
+        try {
+            Post parentPost = postRepository.findById(postId).orElseThrow(() -> new Exception());
+            Topic topic = parentPost.getTopic();
+            Post newPost = new Post(user, parentPost, topic, request.getPostTitle(), request.getPostText(), request.getIsAnon());
+            postRepository.save(newPost);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
     }
 }
