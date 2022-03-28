@@ -6,6 +6,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -43,7 +44,8 @@ public class PostService {
         return posts;
     }
 
-    public List<Post> anonymizeForTopics(List<Post> posts){
+    public List<Post> anonymizeName(List<Post> posts){
+        //
         List<Post> toReturn = posts;
         for(int i = 0; i < toReturn.size(); i++){
             if (toReturn.get(i).getIsAnon()){
@@ -53,13 +55,13 @@ public class PostService {
         }
         return toReturn;
     }
-    public List<Post> anonymizeForUsers(String username) {
-        List<Post> posts = new ArrayList<>();
-        try {
-            posts = postRepository.findByUserAndIsAnonFalse(userRepository.findByUserName(username).orElseThrow(()
-                    -> (new UsernameNotFoundException(String.format("", "")))));
-        } catch (Exception e) {
-            posts = new ArrayList<>();
+    //removes any posts from post list provided that are anonymous
+    public List<Post> anonymizeRemove(List<Post> posts) {
+        Iterator<Post> iter = posts.listIterator();
+        while(iter.hasNext()){
+            if(iter.next().getIsAnon()){
+                iter.remove();
+            }
         }
         return posts;
     }
