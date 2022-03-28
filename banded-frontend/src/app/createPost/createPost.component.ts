@@ -13,22 +13,16 @@ declare function makeAnon():void;
 
 //Important
 //Need new Service for createPost below here
+//This is just a copy paste version
 export class createPostComponent implements OnInit {
-  public currProfile: Profile;
+  
 
-  constructor(private profileService: ProfileService, private route: ActivatedRoute) {this.currProfile = new Profile("", "", "", "", "", ""); }
+  constructor() { }
 
   ngOnInit() {
-    this.currProfile = this.route.snapshot.data['profileget'];
-    console.log(this.currProfile)
+   
   }
 
-  public async loadProfile(): Promise<any> {
-    this.profileService.getProfile().subscribe((data: Profile) => {
-      console.log(data);
-      this.currProfile = data
-    });
-  }
 
 }
 

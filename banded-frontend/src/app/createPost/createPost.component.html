@@ -30,33 +30,33 @@
   <label class="enterCaption">Enter Caption:</label>
   <label class="addTopic">Add Topic:</label>
   <label class="anonymousOrNot">Do you want to post anonymously?</label>
+ 
+  <label class = "capRemLab">Characters Remaining</label>
+  <label id="capRem" class = "capRem1">100</label>
+  <label id="titleRem" class = "titleRem1">100</label>
+  <label id="topicRem" class = "topicRem1">100</label>
+  
 
 <form class="caption">
-    <input type="text" placeholder="Enter Post Caption" name="postCaption" id="EnterPostCaption" maxlength="100"  size="100">
+    <input type="text" placeholder="Enter Post Caption" name="postCaption" id="EnterPostCaption" maxlength="100"  size="100" onkeyup="countCapChars()">
 </form>
 
 <form class="title">
-  <input type="text" placeholder="Enter Post Title" name="postTitle" id="EnterPostTitle" maxlength="100"  size="100">
+  <input type="text" placeholder="Enter Post Title" name="postTitle" id="EnterPostTitle" maxlength="100"  size="100" onkeyup="countTitleChars()">
 </form>
 
 <form class="topic">
-  <input type="text" placeholder="Enter One New Topic" name="postTopic" id="EnterPostTopic" maxlength="20"  size="25">
+  <input type="text" placeholder="Enter One New Topic" name="postTopic" id="EnterPostTopic" maxlength="20"  size="25" onkeyup="countTopicChars()">
+</form>
+
+<form>
+<div>
+<button type="button" id="aButton" onclick="makeAnon()" class="anonymousButtons1">Post Anonymously</button>
+<button type="button" id="pubButton" onclick="makePublic()" class="publicButton1">Post Publicly</button>
+</div>
 </form>
 
 
-<button type="button" id="aButton" onclick="makeAnon()" class="anonymousButtons1">Post Anonymously</button>
-<button type="button" id="pubButton" onclick="test()" class="publicButton1">Post Publicly</button>
-
-
-<!--
-<button type="butotn" id="topicButton" class="topicButton">Add Topic</button>
--->
-<script src="./createPost.component.js">
-  function test() {
-   alert('YUESSIEKLNFS:LJKDF;lksjDEF')
-  }
-    
-</script>
 
 
 </body>
