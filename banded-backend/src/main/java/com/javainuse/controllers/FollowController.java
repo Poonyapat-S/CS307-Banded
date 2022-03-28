@@ -24,28 +24,28 @@ public class FollowController {
 	private UserFollowerRepository userFollowerRepository;
 	private TopicFollowerRepository topicFollowerRepository;
 	
-	@PostMapping(path = "followuser")
-	public ResponseEntity<String> followUser(@AuthenticationPrincipal User currUser, @RequestBody userInfoRequest newFollow) {
+	@PostMapping(path = "/followuser")
+	public ResponseEntity<String> followUser(@AuthenticationPrincipal User currUser, @RequestBody String newFollow) {
 		Integer followingID = currUser.getUserID();
 		User followedUser;
 		
 		//attempt to retrieve ID of who is being followed by retrieving User Object via given userName
 		try {
-			followedUser = userRepository.findByUserName(newFollow.getUserName()).orElseThrow(() -> new Exception());
+			followedUser = userRepository.findByUserName(newFollow).orElseThrow(() -> new Exception());
 		} catch (Exception e) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("FOLLOW FAILURE: User with userName [" + newFollow.getUserName() + "] not found");
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("FOLLOW FAILURE: User with userName [" + newFollow + "] not found");
 		}
 		Integer followedID = followedUser.getUserID();
 		
 		//check that this row does not already exist
 		if (userFollowerRepository.existsByFollowingIDAndFollowedID(followingID, followedID)) {
-			return ResponseEntity.status(HttpStatus.CONFLICT).body("FOLLOW FAILURE: current user already follows [" + newFollow.getUserName() + "]");
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("FOLLOW FAILURE: current user already follows [" + newFollow + "]");
 		}
 		
 		//follow data does not already exist and both users are valid, so insert new row in UserFollower table
-		UserFollower newUserFollower = new UserFollower(followingID, followedID);
+		UserFollower newUserFollower = new UserFollower(currUser, followedUser);
 		userFollowerRepository.save(newUserFollower);
-		System.out.println(currUser.getUsername() + " (userID:" + followingID + ") followed " + newFollow.getUserName()
+		System.out.println(currUser.getUsername() + " (userID:" + followingID + ") followed " + newFollow
 			+ " (userID:" + followedID + ")");
 		
 		return new ResponseEntity<>(HttpStatus.OK);

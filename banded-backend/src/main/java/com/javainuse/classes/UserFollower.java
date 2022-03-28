@@ -39,6 +39,10 @@ public class UserFollower {
 	@Column(name = "followerID", updatable = false, insertable = false)
 	private Integer followedID;
 	
+	public UserFollower(User followingUser, User followedUser) {
+		this.followingUser = followingUser;
+		this.followedUser = followedUser;
+	}
 	public UserFollower(Integer followingID, Integer followedID) {
 		this.followingID = followingID;
 		this.followedID = followedID;
