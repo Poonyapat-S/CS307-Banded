@@ -20,8 +20,8 @@ public class FollowService {
 	private TopicFollowerRepository topicFollowerRepository;
 	
 	public List<User> retrieveFollowedUsers(Integer userID) {
-		List<UserFollower> userFollowerObjects = new ArrayList<>();
-		List<User> users = new ArrayList<User>();
+		List<UserFollower> userFollowerObjects;
+		List<User> users = new ArrayList<>();
 		try {
 			//retrieve all relevant rows from UserFollower table as a List of UserFollower objects
 			userFollowerObjects = userFollowerRepository.findByFollowingID(userID);
@@ -49,7 +49,7 @@ public class FollowService {
 	
 	//retrieves a List of all the topics that the user associated with given userID follows
 	public List<Topic> retrieveFollowedTopics(Integer userID) {
-		List<TopicFollower> topicFollowerObjects = new ArrayList<>();
+		List<TopicFollower> topicFollowerObjects;
 		List<Topic> topics = new ArrayList<>();
 		try {
 			//retrieve all relevant rows from TopicFollower table as a List of TopicFollower objects

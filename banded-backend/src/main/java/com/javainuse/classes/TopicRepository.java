@@ -12,4 +12,5 @@ public interface TopicRepository extends JpaRepository<Topic, Integer> {
     Optional<Topic> findByTopicID(Integer topicID);
     
     Boolean existsByTopicName(String topicName);
+    boolean existsByTopicID(Integer topicID);
 }
