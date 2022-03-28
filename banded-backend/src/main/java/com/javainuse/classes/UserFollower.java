@@ -21,6 +21,9 @@ import java.util.List;
 @Table(name = "userfollower")
 public class UserFollower {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="userFollowerID")
+	private Integer userFollowerID;
 	
 	@JsonIgnore
 	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)

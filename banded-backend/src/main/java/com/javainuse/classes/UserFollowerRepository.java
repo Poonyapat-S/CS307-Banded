@@ -7,12 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Repository
-@Transactional(readOnly = true)
 public interface UserFollowerRepository extends JpaRepository<UserFollower,Integer> {
 	List<UserFollower> findByFollowingID(Integer followingID); //given id of user, returns userfollower objects with ids of the people they follow
 	List<UserFollower> findByFollowedID(Integer followedID); //given id of user, returns userfollower objects with ids of people that follow them
-	
-	
-	
-	
 }
