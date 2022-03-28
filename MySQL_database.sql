@@ -27,7 +27,6 @@ DROP TABLE IF EXISTS `post`;
 CREATE TABLE `post` (
   `postID` int NOT NULL AUTO_INCREMENT,
   `userID` int NOT NULL,
-  `postTitle` varchar(255) NOT NULL DEFAULT "Default Title",
   `postText` varchar(255) DEFAULT NULL,
   `parentPostID` int DEFAULT NULL,
   `timePosted` datetime NOT NULL,
@@ -72,7 +71,7 @@ DROP TABLE IF EXISTS `savedpost`;
 CREATE TABLE `savedpost` (
   `postID` int NOT NULL,
   `userID` int NOT NULL,
-  `savedPostID` int NOT NULL,
+  `savedPostID` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`savedPostID`),
   KEY `FK_savedpost_userID_user_userID_idx` (`userID`),
   KEY `FK_savedpost_postID_post_postID_idx` (`postID`),
@@ -106,7 +105,7 @@ DROP TABLE IF EXISTS `topicfollower`;
 CREATE TABLE `topicfollower` (
   `userID` int NOT NULL,
   `topicID` int NOT NULL,
-  `topicfollowerID` int NOT NULL,
+  `topicfollowerID` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`topicfollowerID`),
   KEY `FK_topicfollower_followerID_user_userID_idx` (`userID`),
   KEY `FK_topicfollower_topicID_topic_topicID_idx` (`topicID`),
@@ -150,7 +149,7 @@ DROP TABLE IF EXISTS `userfollower`;
 CREATE TABLE `userfollower` (
   `userID` int NOT NULL,
   `followerID` int NOT NULL,
-  `userFollowerID` int NOT NULL,
+  `userFollowerID` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`userFollowerID`),
   KEY `FK_userID_idx` (`userID`),
   KEY `FK_followerID_idx` (`followerID`),
@@ -168,4 +167,4 @@ CREATE TABLE `userfollower` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-03-28 11:39:14
+-- Dump completed on 2022-03-28 19:24:54
