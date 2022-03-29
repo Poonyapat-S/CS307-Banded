@@ -7,6 +7,7 @@ import { UserComponent } from './user/user.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileGetResolver } from './service/profile/profile-get';
+import { createPostComponent } from './createPost/createPost.component';
 
 const routes: Routes = [
   { path: '', component: TimelineComponent},
@@ -14,8 +15,9 @@ const routes: Routes = [
   { path:'adduser', component: AddUserComponent},
   { path: 'login', component: LoginUserComponent},
   { path: 'create-account', component: CreateAccountComponent},
-  { path: 'profile', component: ProfileComponent, resolve: {profileget: ProfileGetResolver}}
-];
+  { path: 'profile', component: ProfileComponent, resolve: {profileget: ProfileGetResolver}},
+//Added Below
+  { path: 'createPost', component: createPostComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

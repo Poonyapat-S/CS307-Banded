@@ -13,6 +13,10 @@ import { LoginUserComponent } from './login-user/login-user.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
+
+//Sam added line below
+import { createPostComponent } from './createPost/createPost.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -28,7 +32,9 @@ import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
     LoginUserComponent,
     CreateAccountComponent,
     TimelineComponent,
-    ProfileComponent
+    ProfileComponent,
+    //Sam added line below just in case
+    createPostComponent
   ],
   imports: [
     BrowserModule,

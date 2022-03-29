@@ -24,15 +24,16 @@ public class FollowController {
 	private UserFollowerRepository userFollowerRepository;
 	private TopicFollowerRepository topicFollowerRepository;
 	
+	
+	/* -=- USER-RELATED FUNCTIONS -=- */
 	@PostMapping(path = "/followuser")
-
 	public ResponseEntity<String> followUser(@AuthenticationPrincipal User currUser, @RequestBody String newFollow) {
 		Integer followingID = currUser.getUserID();
 		User followedUser;
 		
 		//attempt to retrieve ID of who is being followed by retrieving User Object via given userName
 		try {
-			followedUser = userRepository.findByUserName(newFollow).orElseThrow(() -> new Exception());
+			followedUser = userRepository.findByUserName(newFollow).orElseThrow(Exception::new);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("FOLLOW FAILURE: User with userName [" + newFollow + "] not found");
 		}
@@ -53,6 +54,38 @@ public class FollowController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	@PostMapping(path = "/unfollowuser")
+	public ResponseEntity<String> unfollowUser(@AuthenticationPrincipal User currUser, @RequestBody String unfollowedUserName) {
+		if (!userRepository.existsByUserName(unfollowedUserName)) {
+			//if the username cannot be found, return an error
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("UNFOLLOW FAILURE: User with userName [" + unfollowedUserName + "] not found");
+		}
+		
+		//establish User object from given userName to create UserFollower object for deletion
+		User unfollowedUser;
+		try {
+			unfollowedUser = userRepository.findByUserName(unfollowedUserName).orElseThrow(Exception::new);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("UNFOLLOW FAILURE: empty Optional object returned when retrieving data with userName + " +unfollowedUserName);
+		}
+		
+		//make sure the follower connection already exists before trying to delete it
+		if (!userFollowerRepository.existsByFollowingUserAndFollowedUser(currUser, unfollowedUser)) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("UNFOLLOW FAILURE: no row deleted bc + " +
+					currUser.getUsername() + " (userID:" + currUser.getUserID() + ") was not following " +
+					unfollowedUserName + " (userID:" + unfollowedUser.getUserID() + ")");
+		}
+		
+		//delete the "follow link" between users
+		UserFollower rowToBeDeleted = new UserFollower(currUser, unfollowedUser);
+		userFollowerRepository.delete(rowToBeDeleted);
+		System.out.println("Successfully unfollowed [" + unfollowedUserName + "]");
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	
+	/* -=-TOPIC-RELATED FUNCTIONS-=- */
 	@PostMapping(path = "/followtopic")
 	public ResponseEntity<String> followTopic(@AuthenticationPrincipal User currUser, @RequestBody String newFollow) {
 		if (!topicRepository.existsByTopicName(newFollow)) {
@@ -60,9 +93,9 @@ public class FollowController {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("FOLLOW FAILURE: Topic with topicName [" + newFollow + "] not found");
 		}
 		
-		Topic followedTopic = new Topic();
+		Topic followedTopic;
 		try {
-			followedTopic = topicRepository.findByTopicName(newFollow).orElseThrow(() -> new Exception());
+			followedTopic = topicRepository.findByTopicName(newFollow).orElseThrow(Exception::new);
 		} catch (Exception e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("FOLLOW FAILURE: idk how this happened but some " +
 					"sort of Optional<> issue with Topic with topicName [" + newFollow + "]");
@@ -79,6 +112,35 @@ public class FollowController {
 		topicFollowerRepository.save(newTopicFollow);
 		System.out.println(currUser.getUsername() + " (userID:" + currUser.getUserID() + ") followed " + newFollow
 				+ " (topicID:" + followedTopic.getTopicID() + ")");
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	@PostMapping(path = "/unfollowtopic")
+	public ResponseEntity<String> unfollowTopic(@AuthenticationPrincipal User currUser, @RequestBody String unfollowedTopicName) {
+		if (!topicRepository.existsByTopicName(unfollowedTopicName)) {
+			//if the topic name cannot be found, return an error
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("UNFOLLOW FAILURE: Topic with topicName [" + unfollowedTopicName + "] not found");
+		}
+		
+		//establish Topic object from given topic name to create TopicFollower object for deletion
+		Topic unfollowedTopic;
+		try {
+			unfollowedTopic = topicRepository.findByTopicName(unfollowedTopicName).orElseThrow(Exception::new);
+		} catch (Exception e) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("UNFOLLOW FAILURE: empty Optional object returned when retrieving data with topic + " + unfollowedTopicName);
+		}
+		
+		//make sure the follower connection already exists before trying to delete it
+		if (!topicFollowerRepository.existsByUserAndTopic(currUser, unfollowedTopic)) {
+			return ResponseEntity.status(HttpStatus.CONFLICT).body("UNFOLLOW FAILURE: no row deleted bc + " +
+					currUser.getUsername() + " (userID:" + currUser.getUserID() + ") was not following " +
+					unfollowedTopicName + " (topicID:" + unfollowedTopic.getTopicID() + ")");
+		}
+		
+		//delete the "follow link" between user and given topic
+		TopicFollower rowToBeDeleted = new TopicFollower(currUser, unfollowedTopic);
+		topicFollowerRepository.delete(rowToBeDeleted);
+		System.out.println("Successfully unfollowed [" + unfollowedTopicName + "]");
 		
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
