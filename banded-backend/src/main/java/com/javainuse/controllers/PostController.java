@@ -24,6 +24,7 @@ public class PostController {
     private PostRepository postRepository;
     private TopicRepository topicRepository;
     private UserRepository userRepository;
+    private FollowService followService;
 
     @GetMapping
     public List<Post> timeline(@AuthenticationPrincipal User user) {
@@ -77,6 +78,23 @@ public class PostController {
         catch(Exception e) {
             return new ArrayList<Post>();
         }
+    }
+
+    @GetMapping(path = "/getUserTimeline")
+    public List<Post> genUserTimeline(@AuthenticationPrincipal User user, @RequestParam int count){
+        List<User> followedUsers = followService.retrieveFollowedUsers(user.getUserID());
+        List<Topic> followedTopics = followService.retrieveFollowedTopics(user.getUserID());
+        List<Post> allPosts = new ArrayList<Post>();
+        for(int i = 0; i < followedUsers.size(); i++){
+            allPosts.addAll(postRepository.findByUserAndIsAnonFalse(followedUsers.get(i)));
+            allPosts.addAll(postRepository.findByTopic(followedTopics.get(i)));
+        }
+        List<Post> toReturn = new ArrayList<Post>();
+        int i = count;
+        while(i < count+10 && i < allPosts.size()){
+            toReturn.add(allPosts.get(i));
+        }
+        return toReturn;
     }
 }
 
