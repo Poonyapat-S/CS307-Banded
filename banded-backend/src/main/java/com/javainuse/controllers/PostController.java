@@ -86,12 +86,15 @@ public class PostController {
         List<Post> allPosts = new ArrayList<Post>();
         for(int i = 0; i < followedUsers.size(); i++){
             allPosts.addAll(postRepository.findByUserAndIsAnonFalse(followedUsers.get(i)));
+        }
+        for(int i = 0; i < followedTopics.size(); i++){
             allPosts.addAll(postRepository.findByTopic(followedTopics.get(i)));
         }
         List<Post> toReturn = new ArrayList<Post>();
         int i = count;
         while(i < count+10 && i < allPosts.size()){
             toReturn.add(allPosts.get(i));
+            i++;
         }
         return toReturn;
     }
