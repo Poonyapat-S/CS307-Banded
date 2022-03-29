@@ -5,11 +5,11 @@ function makeAnon() {
   let topic = document.getElementById("EnterPostTopic").value;
 
   var str = document.getElementById("EnterPostTopic").value;
-  
+
   if(title == "") {
     alert('Post title is blank!')
   } else if (caption == "") {
-    alert('Post caption is blank!') 
+    alert('Post caption is blank!')
   } else if (topic == "") {
     alert('Post Topic is blank!')
   } else if (containsSpecialChars(str)) {
@@ -21,6 +21,15 @@ function makeAnon() {
     // -- post caption
     // -- topic
     // -- anonymous bit
+    var event = new CustomEvent('onPost', {
+      detail: {
+        postTitle: title,
+        postText: caption,
+        topicName: topic,
+        isAnon: true
+      }
+    })
+    window.dispatchEvent(event);
     alert('Posted Successfully!')
     //------------------------------------------------------------------
     //The Below Code is to reset the page
@@ -38,28 +47,38 @@ function makeAnon() {
 //no special characters or spaces in topic
 
   function makePublic() {
+    console.log("Public")
     let title = document.getElementById("EnterPostTitle").value;
     let caption = document.getElementById("EnterPostCaption").value;
     let topic = document.getElementById("EnterPostTopic").value;
 
-   
+
     var str = document.getElementById("EnterPostTopic").value;
-  
+
     if(title == "") {
       alert('Post title is blank!')
     } else if (caption == "") {
-      alert('Post caption is blank!') 
+      alert('Post caption is blank!')
     } else if (topic == "") {
       alert('Post Topic is blank!')
     } else if (containsSpecialChars(str)) {
       alert('Special Characters Not Allowed in Topic Field')
     } else {
       //document.getElementById("aButton").style.color = "blue";
-      //THIS IS THE PLACE TO SEND BACKEND INFORMATION FOR AN ANONYMOUS POST
+      //THIS IS THE PLACE TO SEND BACKEND INFORMATION FOR A PUBLIC POST
       // -- post title
       // -- post caption
       // -- topic
       // -- anonymous bit
+      var event = new CustomEvent('onPost', {
+        detail: {
+          postTitle: title,
+          postText: caption,
+          topicName: topic,
+          isAnon: false
+        }
+      })
+      window.dispatchEvent(event);
       alert('Posted Successfully!')
       //------------------------------------------------------------------
       //The Below Code is to reset the page
@@ -77,22 +96,22 @@ function makeAnon() {
      const remChars =  255 - l.value.length;
 
      let lbl = document.getElementById("capRem");
-     lbl.innerText = remChars; 
+     lbl.innerText = remChars;
   }
 
-  
+
   function countTitleChars(){
     const a = document.getElementById("EnterPostTitle");
     const remChars1 =  255 - a.value.length;
 
     let lbl1 = document.getElementById("titleRem");
-    lbl1.innerText = remChars1; 
+    lbl1.innerText = remChars1;
  }
 
 
  function containsSpecialChars(str) {
-   
-   
+
+
   let specialChars = `\`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~`;
 
  // let x = specialChars.charAt(3);
@@ -111,7 +130,7 @@ function makeAnon() {
       }
     }
   }
-  
+
 }
 
  function countTopicChars(){
@@ -120,8 +139,7 @@ function makeAnon() {
   const remChars11 =  45 - a1.value.length;
 
   let lbl11 = document.getElementById("topicRem");
-  lbl11.innerText = remChars11; 
+  lbl11.innerText = remChars11;
 }
 
 
-  
