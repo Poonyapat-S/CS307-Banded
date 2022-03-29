@@ -146,7 +146,7 @@ body {
     -ms-transform: rotate(45deg);
     -o-transform: rotate(45deg);
     transform: rotate(45deg);
-    background-color: red;
+    
     border-color: red;
     border-width: 0px;
   }
@@ -162,7 +162,7 @@ body {
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%;
-    background-color: red;
+    
     border-color: red;
     border-width: 0px;
   }
@@ -177,7 +177,7 @@ body {
     -moz-border-radius: 50%;
     -o-border-radius: 50%;
     border-radius: 50%;
-    background-color: red;
+   
     border-color: red;
     border-width: 0px;
   }
@@ -271,3 +271,12 @@ body {
     position: absolute; left: 830px; top: 30%;
     font-family: 'Courier New', Courier, monospace;
  }
+ .followThisUser {
+  text-align: center;
+  color: black;
+  text-decoration: inline-block;
+  background-color: lightgrey;
+  font-size: 20px;
+  position: absolute; left: 2%; top: 17%;
+  font-family: 'Courier New', Courier, monospace;
+}

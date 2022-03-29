@@ -35,6 +35,20 @@ function loadLikedStatus() {
 //    document.getElementById("heart-a").style.backgroundColor = "red";
 //    document.getElementById("heart-b").style.backgroundColor = "red";
 // }
+
+
+//This is the part that loads in whether it was saved or not already
+//if (post was NOT already saved) {
+    document.getElementById("savePost").textContent = 'Save Post';
+//} else {
+    // document.getElementById("savePost").textContent = 'Unsave Post'
+ 
+//}
+
+//if(post User is NOT already followed) {
+    document.getElementById("followThisUser").textContent = 'Follow This User';
+    // } else {
+        // document.getElementById("followThisUser").textContent = 'Unfollow This User'
 }
 
 function openForm() {
@@ -52,3 +66,18 @@ function submitForm() {
 
     closeForm();
   }
+
+function followUser() {
+    //BACKEND CODE TO FOLLOW USER
+
+    if(document.getElementById("followThisUser").textContent == 'Follow This User') {
+        document.getElementById("followThisUser").textContent = 'Unfollow This User'
+    } else {
+        document.getElementById("followThisUser").textContent = 'Follow This User'
+    }
+    
+}
+
+  
+
+

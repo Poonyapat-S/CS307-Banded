@@ -16,7 +16,7 @@ import { ProfileComponent } from './profile/profile.component';
 
 
 import { createPostComponent } from './createPost/createPost.component';
-import { topicsPageComponent } from './topicsPage/topicsPage.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -35,7 +35,7 @@ import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
     ProfileComponent,
     //Sam added line below just in case
     createPostComponent, 
-    topicsPageComponent
+  
   ],
   imports: [
     BrowserModule,

@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+<head onload="forceRefresh()">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link href="./postViewingPage.component.css" rel="stylesheet">
+
 </head>
 
 <body onload="loadLikedStatus()">
@@ -15,9 +16,10 @@
   <!--Banded Header-->
   <p class = "banded">Banded</p>
 
-  <!-- PLUG BACKEND CALLS HERE / Replace placeholders-->
+  <button id= "followThisUser" class = "followThisUser" onclick="followUser()">Follow This User</button>
   
 <div class="container">
+    <!-- PLUG BACKEND CALLS HERE / Replace placeholders-->
     <p class="postCreatorsName">Gerald_Green</p>
     <p class="postTimeStamp">11/18/2000</p>
     <p class="postTitle">Indie Rock Sucks</p>
@@ -28,7 +30,7 @@
     <button id ="heart" class= "heart-shape" onclick="toggleLike()"></button>
     <button id ="heart-a" class= "heart-shape-a" onclick="toggleLike()"></button>
     <button id ="heart-b" class= "heart-shape-b" onclick="toggleLike()"></button>
-    <button id = "savePost" class = "savePost" onclick="toggleSave()">Save Post</button>
+    <button id = "savePost" class = "savePost" onclick="toggleSave()">Save/Unsave Post</button>
    
     <button class="commentPost" onclick="openForm()">Comment On Post</button>
     <div class="form-popup" id="myForm">

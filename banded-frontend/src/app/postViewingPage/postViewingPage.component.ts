@@ -10,6 +10,10 @@ export class postViewingPageComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    
   }
 
+
 }
+
+

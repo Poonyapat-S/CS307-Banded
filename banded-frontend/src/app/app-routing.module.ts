@@ -8,7 +8,6 @@ import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileGetResolver } from './service/profile/profile-get';
 import { createPostComponent } from './createPost/createPost.component';
-import { topicsPageComponent } from './topicsPage/topicsPage.component';
 import { postViewingPageComponent } from './postViewingPage/postViewingPage.component';
 
 const routes: Routes = [
@@ -19,7 +18,6 @@ const routes: Routes = [
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'profile', component: ProfileComponent, resolve: {profileget: ProfileGetResolver}},
   { path: 'createPost', component: createPostComponent},
-  {path: 'topicsPage', component: topicsPageComponent} ,
   {path: 'postViewingPage', component: postViewingPageComponent}];
 
 @NgModule({
