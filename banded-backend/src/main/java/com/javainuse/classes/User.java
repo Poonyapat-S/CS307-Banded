@@ -34,9 +34,9 @@ public class User implements UserDetails {
     private String email = "user@example.com";
     @Column(name="bio")
     private String bio;
-    @Column(name="favBand")
+    @Column(name="fav_band")
     private String favBand;
-    @Column(name="favSong")
+    @Column(name="fav_song")
     private String favSong;
 
 //    @JsonBackReference
