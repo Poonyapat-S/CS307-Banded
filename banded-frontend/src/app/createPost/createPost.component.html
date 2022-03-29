@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./createPost.component.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="div"></div>
+  
+
+  <!--Below Are the Verticle Lines for Margins-->
+  <div class="v1"></div>
+  <div class="v2"></div>
+  <hr class="dashed-border">
+
+
+
+
+  <!--Banded Header-->
+  <p class = "banded"> Banded</p>
+  <p class = "createPost"> Create Your Post</p>
+  <button class="addPhoto">Add Photo</button>
+  <button class="addAudioFile">Add Audio File</button>
+  <button class="addVideo">Add Video</button>
+  <button class= "settings">Settings</button>
+
+  <label class="enterTitle">Enter Title:</label>
+  <label class="enterCaption">Enter Caption:</label>
+  <label class="addTopic">Add Topic:</label>
+  <label class="anonymousOrNot">Do you want to post anonymously?</label>
+ 
+  <label class = "capRemLab">Characters Remaining</label>
+  <label id="capRem" class = "capRem1">255</label>
+  <label id="titleRem" class = "titleRem1">255</label>
+  <label id="topicRem" class = "topicRem1">45</label>
+  
+
+<form class="caption">
+    <input type="text" placeholder="Enter Post Caption" name="postCaption" id="EnterPostCaption" maxlength="255"  size="100" onkeyup="countCapChars()">
+</form>
+
+<form class="title">
+  <input type="text" placeholder="Enter Post Title" name="postTitle" id="EnterPostTitle" maxlength="255"  size="100" onkeyup="countTitleChars()">
+</form>
+
+<form class="topic">
+  <input type="text" placeholder="Enter One New Topic" name="postTopic" id="EnterPostTopic" maxlength="45"  size="25" onkeyup="countTopicChars()">
+</form>
+
+<form>
+<div>
+<button type="button" id="aButton" onclick="makeAnon()" class="anonymousButtons1">Post Anonymously</button>
+<button type="button" id="pubButton" onclick="makePublic()" class="publicButton1">Post Publicly</button>
+</div>
+</form>
+
+
+
+
+</body>

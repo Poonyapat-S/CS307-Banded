@@ -9,5 +9,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class newPostRequest {
     public String topicName;
+    public String postTitle;
     public String postText;
+    public Boolean isAnon;
 }

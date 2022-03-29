@@ -3,7 +3,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="./timeline.component.css" rel="stylesheet">
-  
+
   <script type="text/javascript">
     function vis() {
       if(currProfile == null) {
@@ -27,20 +27,40 @@
   <div class="v2"></div>
 
   <!-- code foe the timeline header (title and profile info) -->
-  <div class="timeline-header"> 
+  <div class="timeline-header">
     <!--Banded Header-->
     <div class = "title"> Banded</div>
+
 
     <!-- if signed in displays profile info -->
     <div class="user">
       <div class="smallUserName">{{currProfile.userName}}</div>
       <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
-    </div>      
+    </div>
   </div>
-  
+
   <!-- line for end of header -->
   <hr>
-  
+
+  <!-- The four buttons on the left hand side-->
+
+  <!--Sam's Change to try and get create post button to work-->
+
+
+    <a routerLink="/createPost" class="nav-link"><button class="createPost">Create Post</button></a>
+
+<!---->
+
+<!--
+  <a href="createPost.component.html"><button class="createPost">Create Post</button></a>
+  -->
+
+
+  <button class="directMessages">Direct Messages</button>
+  <button class="followingTags">Following Tags</button>
+  <button class= "settings">Settings</button>
+
+
   <div class="container">
     <!-- The four buttons on the left hand side -->
     <div>
@@ -53,7 +73,7 @@
       <button class="side-button">Browse Tags</button>
       <p></p>
       <button class="side-button">Settings</button>
-      
+
     </div>
 
     <div class="timeline">
@@ -72,14 +92,14 @@
           <div class="post-text"> What up everyone! Anyone know any fun events going on? </div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
-      
+
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of second post -->
       <div class="post">
@@ -94,14 +114,14 @@
           <div class="post-text"> Hey guys Im new to banded and was looking for music recs! HMU!!</div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
 
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of third post -->
       <div class="post">
@@ -132,20 +152,20 @@
         </div>
         <div class="post-content">
           <div class = "post-title"> Then what am I?</div>
-          <div class="post-text"> This is me. This is the shape that let others recognize me as myself. 
-            It is my symbol for myself. This is, this is, and this is as well. Representations. 
-            Everything is merely a description, not the real myself. Everything is simply a shape, a form, 
+          <div class="post-text"> This is me. This is the shape that let others recognize me as myself.
+            It is my symbol for myself. This is, this is, and this is as well. Representations.
+            Everything is merely a description, not the real myself. Everything is simply a shape, a form,
             an identifier to let others recognize me as me. Then what am I?</div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
 
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of fourth post -->
       <div class="post">
@@ -160,14 +180,14 @@
           <div class="post-text"> Enter text here. </div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
 
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of fifth post -->
       <div class="post">
@@ -182,14 +202,14 @@
           <div class="post-text"> Enter text here. </div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
 
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of sixth post -->
       <div class="post">
@@ -204,14 +224,14 @@
           <div class="post-text"> Enter text here. </div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
 
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of seventh post -->
       <div class="post">
@@ -226,14 +246,14 @@
           <div class="post-text"> Enter text here. </div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
 
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of eigth post -->
       <div class="post">
@@ -248,14 +268,14 @@
           <div class="post-text"> Enter text here. </div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
 
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of ninth post -->
       <div class="post">
@@ -270,14 +290,14 @@
           <div class="post-text"> Enter text here. </div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
       </div>
 
       <!-- spacing between posts -->
-      <p></p> 
+      <p></p>
 
       <!-- start of tenth post -->
       <div class="post">
@@ -292,7 +312,7 @@
           <div class="post-text"> Enter text here. </div>
         </div>
         <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page 
+          <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
           <a href="/login" class="reply-button">Reply --> </a>
         </div>
@@ -300,7 +320,7 @@
 
       <!-- end of posts -->
     </div>
-    
+
     <div class="timeline-footer">
       <!-- TODO this needs to pass a int to backend too -->
       <button (click)=reloadPage() class="btn btn-success">Refresh</button>
