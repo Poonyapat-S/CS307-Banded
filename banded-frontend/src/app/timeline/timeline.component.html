@@ -34,7 +34,7 @@
 
     <!-- if signed in displays profile info -->
     <div class="user">
-      <div class="smallUserName">{{currProfile.userName}}</div>
+      <div class="smallUserName">{{this.currProfile.userName}}</div>
       <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
     </div>
   </div>
@@ -63,17 +63,16 @@
     <div class="timeline">
 
       <!-- start of first post -->
-      <div class="post">
-        <div class="post-time"> 3/29/22 3:00 pm</div>
+      <div class="post" *ngFor="let post of posts">
+        <div class="post-time"> {{this.convertDateTime(post.postTime)}} </div>
         <div class="post-tags">
           <div class="name"></div> Tags:
-          <div class="tag"> Question </div>
-          <div class="tag"> Event </div>
+          <div class="tag"> {{post.topicName}} </div>
         </div>
 
         <div class="post-content">
-          <div class = "post-title"> Events? </div>
-          <div class="post-text"> What up everyone! Anyone know any fun events going on? </div>
+          <div class = "post-title"> {{post.postTitle}} </div>
+          <div class="post-text"> {{post.postText}} </div>
         </div>
         <div class="post-footer">
           <!-- Sam this the button that will redirect to the post page
@@ -84,223 +83,6 @@
 
       <!-- spacing between posts -->
       <p></p>
-
-      <!-- start of second post -->
-      <div class="post">
-        <div class="post-time"> 3/28/22 2:00 pm</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> Songs </div>
-          <div class="tag"> Recomendations </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Song Recomendations</div>
-          <div class="post-text"> Hey guys Im new to banded and was looking for music recs! HMU!!</div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
-
-      <!-- spacing between posts -->
-      <p></p>
-
-      <!-- start of third post -->
-      <div class="post">
-        <div class="post-time"> 3/26/22 4:00 am</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> everything </div>
-          <div class="tag"> is </div>
-          <div class="tag"> simply </div>
-          <div class="tag"> a </div>
-          <div class="tag"> shape </div>
-          <div class="tag"> a </div>
-          <div class="tag"> form </div>
-          <div class="tag"> an </div>
-          <div class="tag"> identifier </div>
-          <div class="tag"> to </div>
-          <div class="tag"> help </div>
-          <div class="tag"> others </div>
-          <div class="tag"> recognize </div>
-          <div class="tag"> me </div>
-          <div class="tag"> as </div>
-          <div class="tag"> me </div>
-          <div class="tag"> but </div>
-          <div class="tag"> what </div>
-          <div class="tag"> am </div>
-          <div class="tag"> I </div>
-          <div class="tag"> testing for overflow </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Then what am I?</div>
-          <div class="post-text"> This is me. This is the shape that let others recognize me as myself.
-            It is my symbol for myself. This is, this is, and this is as well. Representations.
-            Everything is merely a description, not the real myself. Everything is simply a shape, a form,
-            an identifier to let others recognize me as me. Then what am I?</div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
-
-      <!-- spacing between posts -->
-      <p></p>
-
-      <!-- start of fourth post -->
-      <div class="post">
-        <div class="post-time"> 2/05/22 6:00 pm</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> Tag 1 </div>
-          <div class="tag"> Tag 2 </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Title </div>
-          <div class="post-text"> Enter text here. </div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
-
-      <!-- spacing between posts -->
-      <p></p>
-
-      <!-- start of fifth post -->
-      <div class="post">
-        <div class="post-time"> mm/dd/yy 00:00 am</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> Tag 1 </div>
-          <div class="tag"> Tag 2 </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Title </div>
-          <div class="post-text"> Enter text here. </div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
-
-      <!-- spacing between posts -->
-      <p></p>
-
-      <!-- start of sixth post -->
-      <div class="post">
-        <div class="post-time"> mm/dd/yy 00:00 am</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> Tag 1 </div>
-          <div class="tag"> Tag 2 </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Title </div>
-          <div class="post-text"> Enter text here. </div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
-
-      <!-- spacing between posts -->
-      <p></p>
-
-      <!-- start of seventh post -->
-      <div class="post">
-        <div class="post-time"> mm/dd/yy 00:00 am</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> Tag 1 </div>
-          <div class="tag"> Tag 2 </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Title </div>
-          <div class="post-text"> Enter text here. </div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
-
-      <!-- spacing between posts -->
-      <p></p>
-
-      <!-- start of eigth post -->
-      <div class="post">
-        <div class="post-time"> mm/dd/yy 00:00 am</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> Tag 1 </div>
-          <div class="tag"> Tag 2 </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Title </div>
-          <div class="post-text"> Enter text here. </div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
-
-      <!-- spacing between posts -->
-      <p></p>
-
-      <!-- start of ninth post -->
-      <div class="post">
-        <div class="post-time"> mm/dd/yy 00:00 am</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> Tag 1 </div>
-          <div class="tag"> Tag 2 </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Title </div>
-          <div class="post-text"> Enter text here. </div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
-
-      <!-- spacing between posts -->
-      <p></p>
-
-      <!-- start of tenth post -->
-      <div class="post">
-        <div class="post-time"> mm/dd/yy 00:00 am</div>
-        <div class="post-tags">
-          <div class="name"></div> Tags:
-          <div class="tag"> Tag 1 </div>
-          <div class="tag"> Tag 2 </div>
-        </div>
-        <div class="post-content">
-          <div class = "post-title"> Title </div>
-          <div class="post-text"> Enter text here. </div>
-        </div>
-        <div class="post-footer">
-          <!-- Sam this the button that will redirect to the post page
-          currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
-        </div>
-      </div>
 
       <!-- end of posts -->
     </div>

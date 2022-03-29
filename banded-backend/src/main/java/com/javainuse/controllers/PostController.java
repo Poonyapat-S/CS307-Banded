@@ -29,7 +29,11 @@ public class PostController {
 
     @GetMapping
     public List<Post> timeline(@AuthenticationPrincipal User user) {
-        return postRepository.findAll();
+        List<Post> toReturn = postRepository.findAll();
+        for(Post post: toReturn) {
+            post.setTopicName(post.getTopic().getTopicName());
+        }
+        return toReturn;
     }
 
     @PostMapping
@@ -59,7 +63,11 @@ public class PostController {
         if(user.getUsername() == userName) return postRepository.findByUser(user);
         try {
             User foundUser = userRepository.findByUserName(userName).orElseThrow(() -> new UsernameNotFoundException(String.format("", "")));
-            return postRepository.findByUserAndIsAnonFalse(foundUser);
+            List<Post> toReturn = postRepository.findByUserAndIsAnonFalse(foundUser);
+            for(Post post: toReturn) {
+                post.setTopicName(post.getTopic().getTopicName());
+            }
+            return toReturn;
         }
         catch(Exception e) {
             return new ArrayList<Post>();
