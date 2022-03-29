@@ -47,6 +47,7 @@ public class PostController {
             topicRepository.save(topic);
         }
         newPost = new Post(user, null, topic, request.getPostTitle(), request.getPostText(), request.getIsAnon());
+        newPost.setPostTime(LocalDateTime.now());
         System.out.println(user.getUserID());
         postRepository.save(newPost);
         return new ResponseEntity<String>(HttpStatus.OK);
