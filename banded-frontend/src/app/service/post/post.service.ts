@@ -9,7 +9,7 @@ export class PostService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public get_timeline() {
-    return this.httpClient.get<Post[]>("http://localhost:8080/api/posts");
+  public get_timeline(count: number) {
+    return this.httpClient.get<Post[]>("http://localhost:8080/api/posts/timeline?count="+count.toString());
   }
 }

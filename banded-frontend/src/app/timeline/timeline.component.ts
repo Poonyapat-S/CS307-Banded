@@ -14,11 +14,12 @@ import { Profile, ProfileService } from '../service/profile/profile.service';
 export class TimelineComponent implements OnInit {
   public currProfile: Profile;
   public posts: Post[];
+  private count: number;
 
-  constructor(private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute) {this.currProfile = new Profile("", "", "", "", "", ""); this.posts=[]}
+  constructor(private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute) {this.currProfile = new Profile("", "", "", "", "", ""); this.posts=[], this.count=0}
 
   ngOnInit() {
-    this.postService.get_timeline().pipe(delay(500)).subscribe((data: Post[]) => {this.posts=data; console.log(data)});
+    this.postService.get_timeline(0).pipe(delay(500)).subscribe((data: Post[]) => {this.posts=data; console.log(data)});
     this.profileService.getProfile().subscribe(data => this.currProfile=data);
     console.log(this.currProfile)
   }

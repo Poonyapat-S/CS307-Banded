@@ -83,7 +83,7 @@ public class PostController {
         try {
            Topic foundTopic = topicRepository.findByTopicName(topicName).orElseThrow(() -> new Exception());
            List<Post> postList = postRepository.findByTopic(foundTopic);
-           return postService.anonymizeForTopics(postList);
+           return postService.anonymizeName(postList);
         }
         catch(Exception e) {
             return new ArrayList<Post>();
@@ -101,15 +101,23 @@ public class PostController {
         for(int i = 0; i < followedTopics.size(); i++){
             allPosts.addAll(postService.anonymizeName(postRepository.findByTopic(followedTopics.get(i))));
         }
+        allPosts.addAll(postService.anonymizeName(postRepository.findByUser(user)));
+        System.out.println(allPosts);
         Comparator<Post> dateComparator = (Post p1, Post p2) ->p1.getPostTime().compareTo(p2.getPostTime());
         Collections.sort(allPosts,dateComparator);
         List<Post> noDup = allPosts.stream().distinct().collect(Collectors.toList());
         List<Post> toReturn = new ArrayList<Post>();
         int i = count;
+        System.out.println(i);
+        System.out.println(noDup);
         while(i < count+10 && i < noDup.size()){
             toReturn.add(noDup.get(i));
             i++;
         }
+        for(Post post: toReturn) {
+            post.setTopicName(post.getTopic().getTopicName());
+        }
+        System.out.println(toReturn);
         return toReturn;
     }
 
