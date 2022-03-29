@@ -41,4 +41,17 @@ public class PostService {
         }
         return posts;
     }
+
+    public List<Post> anonymizeName(List<Post> posts){
+        //
+        List<Post> toReturn = posts;
+        for(int i = 0; i < toReturn.size(); i++){
+            if (toReturn.get(i).getIsAnon()){
+                //iterates through a list of fetched posts and changes all anonymous tagged names to anonymous
+                toReturn.get(i).getUser().setName("Anonymous");
+            }
+        }
+        return toReturn;
+    }
+
 }

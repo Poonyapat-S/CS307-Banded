@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @RestController
@@ -25,6 +27,7 @@ public class PostController {
     private TopicRepository topicRepository;
     private UserRepository userRepository;
     private FollowService followService;
+    private PostService postService;
 
     @GetMapping
     public List<Post> timeline(@AuthenticationPrincipal User user) {
@@ -85,11 +88,13 @@ public class PostController {
         List<Topic> followedTopics = followService.retrieveFollowedTopics(user.getUserID());
         List<Post> allPosts = new ArrayList<Post>();
         for(int i = 0; i < followedUsers.size(); i++){
-            allPosts.addAll(postRepository.findByUserAndIsAnonFalse(followedUsers.get(i)));
+            allPosts.addAll(postService.anonymizeName(postRepository.findByUserAndIsAnonFalse(followedUsers.get(i))));
         }
         for(int i = 0; i < followedTopics.size(); i++){
             allPosts.addAll(postRepository.findByTopic(followedTopics.get(i)));
         }
+        Comparator<Post> dateComparator = (Post p1, Post p2) ->p1.getPostTime().compareTo(p2.getPostTime());
+        Collections.sort(allPosts,dateComparator);
         List<Post> toReturn = new ArrayList<Post>();
         int i = count;
         while(i < count+10 && i < allPosts.size()){
