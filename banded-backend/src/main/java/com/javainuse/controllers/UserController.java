@@ -41,6 +41,7 @@ public class UserController {
     public String updateBio(@AuthenticationPrincipal User user, @RequestParam String newBio){
         return userService.alterBio(user.getEmail(),newBio);
     }
+    /* commenting out below bc it will likely not be used, but will be preserved just in case
     @PostMapping(path = "/follow")
     public String followBand(@AuthenticationPrincipal User user, @RequestParam String band){
         return userService.followTopic(user.getEmail(),band);
@@ -48,7 +49,7 @@ public class UserController {
     @PostMapping(path = "/unfollow")
     public String unfollowBand(@AuthenticationPrincipal User user){
         return userService.unfollowTopic(user.getEmail());
-    }
+    }*/
     @PostMapping(path = "/view")
     public String viewProfile(@RequestParam String username){
         return userService.viewOther(username);
