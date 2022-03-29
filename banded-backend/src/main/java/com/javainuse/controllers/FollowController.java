@@ -25,6 +25,7 @@ public class FollowController {
 	private TopicFollowerRepository topicFollowerRepository;
 	
 	@PostMapping(path = "/followuser")
+
 	public ResponseEntity<String> followUser(@AuthenticationPrincipal User currUser, @RequestBody String newFollow) {
 		Integer followingID = currUser.getUserID();
 		User followedUser;
