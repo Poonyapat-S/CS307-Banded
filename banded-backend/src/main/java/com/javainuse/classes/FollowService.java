@@ -9,6 +9,7 @@ import java.util.Optional;
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class FollowService {
 	@Autowired
 	private UserRepository userRepository;
