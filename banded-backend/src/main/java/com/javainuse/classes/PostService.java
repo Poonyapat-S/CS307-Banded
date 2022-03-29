@@ -43,7 +43,7 @@ public class PostService {
         return posts;
     }
 
-    public List<Post> anonymizeForTopics(List<Post> posts){
+    public List<Post> anonymizeName(List<Post> posts){
         List<Post> toReturn = posts;
         for(int i = 0; i < toReturn.size(); i++){
             if (toReturn.get(i).getIsAnon()){

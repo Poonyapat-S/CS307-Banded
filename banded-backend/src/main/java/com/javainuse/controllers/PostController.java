@@ -13,7 +13,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -89,17 +92,23 @@ public class PostController {
 
     @GetMapping(path = "/timeline")
     public List<Post> genUserTimeline(@AuthenticationPrincipal User user, @RequestParam int count){
-        List<User> followedUsers = followService.retrieveFollowedUsers(user.getUserID());
+      List<User> followedUsers = followService.retrieveFollowedUsers(user.getUserID());
         List<Topic> followedTopics = followService.retrieveFollowedTopics(user.getUserID());
         List<Post> allPosts = new ArrayList<Post>();
         for(int i = 0; i < followedUsers.size(); i++){
             allPosts.addAll(postRepository.findByUserAndIsAnonFalse(followedUsers.get(i)));
-            allPosts.addAll(postRepository.findByTopic(followedTopics.get(i)));
         }
+        for(int i = 0; i < followedTopics.size(); i++){
+            allPosts.addAll(postService.anonymizeName(postRepository.findByTopic(followedTopics.get(i))));
+        }
+        Comparator<Post> dateComparator = (Post p1, Post p2) ->p1.getPostTime().compareTo(p2.getPostTime());
+        Collections.sort(allPosts,dateComparator);
+        List<Post> noDup = allPosts.stream().distinct().collect(Collectors.toList());
         List<Post> toReturn = new ArrayList<Post>();
         int i = count;
-        while(i < count+10 && i < allPosts.size()){
-            toReturn.add(allPosts.get(i));
+        while(i < count+10 && i < noDup.size()){
+            toReturn.add(noDup.get(i));
+            i++;
         }
         return toReturn;
     }
