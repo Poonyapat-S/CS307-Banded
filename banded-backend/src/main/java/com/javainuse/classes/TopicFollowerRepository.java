@@ -8,4 +8,6 @@ import java.util.List;
 @Repository
 public interface TopicFollowerRepository extends JpaRepository<TopicFollower,Integer> {
 	List<TopicFollower> findByUserID(Integer userID); //retrieves all rows for given userID, i.e. List of TopicFollower objects (all the topics user is following)
+	boolean existsByUserAndTopic(User user, Topic topic); //checks if a TopicFollower row already exists that contains given User and Topic
+	
 }
