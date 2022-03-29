@@ -31,6 +31,10 @@ public class TopicFollower {
 	@Column(name = "topicID", updatable = false, insertable = false)
 	private Integer topicID;
 	
+	public TopicFollower(User user, Topic topic) {
+		this.user = user;
+		this.topic = topic;
+	}
 	public TopicFollower(Integer userID, Integer topicID) {
 		this.userID = userID;
 		this.topicID = topicID;
