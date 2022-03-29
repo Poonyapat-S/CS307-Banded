@@ -56,6 +56,11 @@ hr{
   font-family: 'Courier New', Courier, monospace;
 }
 
+.testerButton {
+  position: absolute;
+  top: 60%;
+  left: 2%;
+}
 /* Start of 4 buttons on the left */
 .createPost {
   text-align: center;
@@ -94,6 +99,16 @@ hr{
   background-color: lightgrey;
   font-size: 20px;
   position: absolute; left: 2%; top: 32%;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.topicsFollowed {
+  text-align: center;
+  color: black;
+  text-decoration: inline-block;
+  background-color: lightgrey;
+  font-size: 20px;
+  position: absolute; right: 8%; top: 17%;
   font-family: 'Courier New', Courier, monospace;
 }
 

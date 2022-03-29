@@ -14,9 +14,9 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
 
-//Sam added line below
-import { createPostComponent } from './createPost/createPost.component';
 
+import { createPostComponent } from './createPost/createPost.component';
+import { topicsPageComponent } from './topicsPage/topicsPage.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -34,7 +34,8 @@ import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
     TimelineComponent,
     ProfileComponent,
     //Sam added line below just in case
-    createPostComponent
+    createPostComponent, 
+    topicsPageComponent
   ],
   imports: [
     BrowserModule,
