@@ -90,5 +90,16 @@ public class PostController {
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping(path="/{postId}")
+    public Post getPost(@AuthenticationPrincipal User user, @PathVariable Integer postId) {
+        try {
+            Post parentPost = postRepository.findById(postId).orElseThrow(() -> new Exception());
+            return parentPost;
+        }
+        catch (Exception e){
+            return null;
+        }
+    }
 }
 

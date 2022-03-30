@@ -18,7 +18,7 @@ const routes: Routes = [
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'profile', component: ProfileComponent, resolve: {profileget: ProfileGetResolver}},
   { path: 'createPost', component: createPostComponent},
-  {path: 'postViewingPage', component: postViewingPageComponent}];
+  {path: 'postViewingPage/:postID', component: postViewingPageComponent}];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

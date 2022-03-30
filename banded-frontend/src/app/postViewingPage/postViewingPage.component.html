@@ -17,13 +17,13 @@
   <p class = "banded">Banded</p>
 
   <button id= "followThisUser" class = "followThisUser" onclick="followUser()">Follow This User</button>
-  
+
 <div class="container">
     <!-- PLUG BACKEND CALLS HERE / Replace placeholders-->
     <p class="postCreatorsName">Gerald_Green</p>
     <p class="postTimeStamp">11/18/2000</p>
-    <p class="postTitle">Indie Rock Sucks</p>
-    <label class="postCaption">The main objective of this lab was to learn and show the importance of total carbohydrate analysis, and the different methods for analyzing them. In this lab we used the Phenol-Sulphuric Acid Method for total dffdsdfsdfsdfssfdsdfsdfsdfsdfsddfsdfsfdsfsdddd</label>
+    <p class="postTitle">{{ this.currPost.postTitle }}</p>
+    <label class="postCaption">{{ this.currPost.postText }}</label>
     <label class="topicHeader">Topic:</label>
     <label class="postTopic">RNB Vibes</label>
 
@@ -31,7 +31,7 @@
     <button id ="heart-a" class= "heart-shape-a" onclick="toggleLike()"></button>
     <button id ="heart-b" class= "heart-shape-b" onclick="toggleLike()"></button>
     <button id = "savePost" class = "savePost" onclick="toggleSave()">Save/Unsave Post</button>
-   
+
     <button class="commentPost" onclick="openForm()">Comment On Post</button>
     <div class="form-popup" id="myForm">
     <form action= "/action_page" class="form-container">
