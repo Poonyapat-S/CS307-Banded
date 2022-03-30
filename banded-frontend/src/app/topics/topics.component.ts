@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { TopicTimelineComponent } from '../topic-timeline/topic-timeline.component';
 
 @Component({
   selector: 'app-topics',
@@ -9,7 +11,7 @@ export class TopicsComponent implements OnInit {
 
 // this page is to display all the topics
 
-  constructor() { }
+  constructor(private router: Router, private topicTimeline: TopicTimelineComponent) { }
 
   ngOnInit(): void {
   }
@@ -33,6 +35,12 @@ export class TopicsComponent implements OnInit {
         alert("Unfollowed topic "  + topicName);
         return;
       }
+  }
+
+  toTopic(topicName: string) {
+    this.topicTimeline.load_page(topicName, 0);
+    this.router.navigate(['topic'])
+    
   }
 
 }
