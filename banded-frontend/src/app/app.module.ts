@@ -13,6 +13,7 @@ import { LoginUserComponent } from './login-user/login-user.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
+import { commentViewerComponent } from './commentViewer/commentViewer.component';
 
 
 import { createPostComponent } from './createPost/createPost.component';
@@ -35,7 +36,8 @@ import { TopicsComponent } from './topics/topics.component';
     TimelineComponent,
     ProfileComponent,
     createPostComponent,
-    TopicsComponent
+    TopicsComponent,
+    commentViewerComponent
   ],
   imports: [
     BrowserModule,

@@ -10,6 +10,7 @@ import { ProfileGetResolver } from './service/profile/profile-get';
 import { createPostComponent } from './createPost/createPost.component';
 import { postViewingPageComponent } from './postViewingPage/postViewingPage.component';
 import { TopicsComponent } from './topics/topics.component';
+import { commentViewerComponent } from './commentViewer/commentViewer.component';
 
 const routes: Routes = [
   { path: '', component: TimelineComponent},
@@ -20,7 +21,8 @@ const routes: Routes = [
   { path: 'profile', component: ProfileComponent, resolve: {profileget: ProfileGetResolver}},
   { path: 'createPost', component: createPostComponent},
   {path: 'postViewingPage/:postID', component: postViewingPageComponent},
-  { path: 'topics', component: TopicsComponent}
+  { path: 'topics', component: TopicsComponent},
+  { path: 'commentViewer', component: commentViewerComponent}
 ];
 
 @NgModule({

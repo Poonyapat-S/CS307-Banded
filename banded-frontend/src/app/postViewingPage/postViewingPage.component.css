@@ -94,6 +94,19 @@ body {
     font-weight: bold;
   }
 
+  .commentViewer {
+    font-family:'Courier New', Courier, monospace;
+    text-decoration: inline-block;
+    font-size: 20px;
+    background-color: lemonchiffon;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 20%;
+    position: absolute;
+    top: 61%;
+    left: 46%;
+}
+
   .topicHeader {
     color: black;
     font-size: 25px;
