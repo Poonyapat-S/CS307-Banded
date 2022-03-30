@@ -39,7 +39,7 @@ export class LoginUserComponent implements OnInit {
         this.submitted = true;
         this.isLoginFailed = true;
       }})
-    
+
   };
 
   reloadPage(): void {

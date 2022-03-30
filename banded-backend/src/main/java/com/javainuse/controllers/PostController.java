@@ -32,7 +32,11 @@ public class PostController {
 
     @GetMapping
     public List<Post> timeline(@AuthenticationPrincipal User user) {
-        return postRepository.findAll();
+        List<Post> toReturn = postRepository.findAll();
+        for(Post post: toReturn) {
+            post.setTopicName(post.getTopic().getTopicName());
+        }
+        return toReturn;
     }
 
     @PostMapping
@@ -49,10 +53,8 @@ public class PostController {
             System.out.println(topic.getTopicName());
             topicRepository.save(topic);
         }
-        newPost.setTopic(topic);
-        newPost.setUser(user);
+        newPost = new Post(user, null, topic, request.getPostTitle(), request.getPostText(), request.getIsAnon());
         newPost.setPostTime(LocalDateTime.now());
-        newPost.setIsAnon(false);
         System.out.println(user.getUserID());
         postRepository.save(newPost);
         return new ResponseEntity<String>(HttpStatus.OK);
@@ -64,7 +66,11 @@ public class PostController {
         if(user.getUsername() == userName) return postRepository.findByUser(user);
         try {
             User foundUser = userRepository.findByUserName(userName).orElseThrow(() -> new UsernameNotFoundException(String.format("", "")));
-            return postRepository.findByUserAndIsAnonFalse(foundUser);
+            List<Post> toReturn = postRepository.findByUserAndIsAnonFalse(foundUser);
+            for(Post post: toReturn) {
+                post.setTopicName(post.getTopic().getTopicName());
+            }
+            return toReturn;
         }
         catch(Exception e) {
             return new ArrayList<Post>();
@@ -77,12 +83,13 @@ public class PostController {
         try {
            Topic foundTopic = topicRepository.findByTopicName(topicName).orElseThrow(() -> new Exception());
            List<Post> postList = postRepository.findByTopic(foundTopic);
-           return postList;
+           return postService.anonymizeForTopics(postList);
         }
         catch(Exception e) {
             return new ArrayList<Post>();
         }
     }
+
     @GetMapping(path = "/timeline")
     public List<Post> genUserTimeline(@AuthenticationPrincipal User user, @RequestParam int count){
       List<User> followedUsers = followService.retrieveFollowedUsers(user.getUserID());
@@ -105,6 +112,21 @@ public class PostController {
             i++;
         }
         return toReturn;
+    }
+
+    @PostMapping(path="/{postId}")
+    public ResponseEntity<?> replyPost(@AuthenticationPrincipal User user, @PathVariable Integer postId, @RequestBody newPostRequest request) {
+        try {
+            Post parentPost = postRepository.findById(postId).orElseThrow(() -> new Exception());
+            Topic topic = parentPost.getTopic();
+            Post newPost = new Post(user, parentPost, topic, request.getPostTitle(), request.getPostText(), request.getIsAnon());
+            postRepository.save(newPost);
+            return new ResponseEntity<String>(HttpStatus.OK);
+        }
+        catch (Exception e){
+            return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+        }
+
     }
 }
 

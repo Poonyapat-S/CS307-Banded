@@ -15,23 +15,13 @@
   <div class="v2"></div>
   <hr class="dashed-border">
 
-
+<!--THis is now gone. Maybe someone deleted it? Could cause concerns later - Sam.-->
   <script src="./profilePageAssets.ts"></script>
 
   <!--Banded Header-->
   <p class = "banded"> Banded</p>
 
-  <!--
-    Start of Place Holder Section:
-
-    These are the place holders below that need to be changed
-    This includes:
-    1. username
-    2. small username (upper right)
-    3. profile pic
-    4. small profile pic (upper right)
-    5. topics followed
-  -->
+ 
   <p class="userName">{{currProfile.name}}</p>
   <p class="smallUserName">{{currProfile.userName}}</p>
   <p  id="bio" class ="bio">{{currProfile.bio}}</p>
@@ -41,10 +31,7 @@
   <img class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
   <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
 
-  <!--
-    End of placeholder section
-  -->
-
+  
   <!-- The four buttons on the left hand side-->
   <button class="createPost">Create Post</button>
   <button class="directMessages">Direct Messages</button>
@@ -60,8 +47,8 @@
   <div class="form-popup" id="myForm">
     <form action= "/action_page" class="form-container">
       <h1 id="titleenter">Enter New Bio</h1>
-      <input type="text" placeholder="Enter New Bio" name="bio" id="newText">
-      <button type="button"  class="btn submit" onclick="submitForm()">Submit</button>
+      <input [(ngModel)]="this.editBioText" type="text" placeholder="Enter New Bio" name="bio" id="newText">
+      <button type="button"  class="btn submit" onclick="submitForm()" (click)="this.editProfile();">Submit</button>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
   </div>
@@ -75,7 +62,6 @@
     }
     function submitForm() {
       let text = document.getElementById("newText").value;
-      document.getElementById("bio").innerText = text;
       /*Need backend function here */
       /*tEST */
       closeForm();
@@ -88,7 +74,7 @@
   <div class="form-popup-dc" id="myDeleteAcc">
     <form action= "/action_page" class="form-container-dc">
       <h1 id="areYouSure">Are You Sure You Want To Delete Your Account?</h1>
-      <a href="timeline.component.html"><button type="button"  class="btn delete" onclick="submitDelete()">Delete Account</button></a>
+      <button type="button"  class="btn delete" onclick="submitDelete()" (click)="deleteProfile()">Delete Account</button>
       <button type="button" class="btn cancel" onclick="closeFormDelete()">Cancel</button>
     </form>
   </div>

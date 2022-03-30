@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
 
 @Service
 @AllArgsConstructor
@@ -43,7 +44,6 @@ public class PostService {
     }
 
     public List<Post> anonymizeName(List<Post> posts){
-        //
         List<Post> toReturn = posts;
         for(int i = 0; i < toReturn.size(); i++){
             if (toReturn.get(i).getIsAnon()){
@@ -53,5 +53,14 @@ public class PostService {
         }
         return toReturn;
     }
-
+    public List<Post> anonymizeForUsers(String username) {
+        List<Post> posts = new ArrayList<>();
+        try {
+            posts = postRepository.findByUserAndIsAnonFalse(userRepository.findByUserName(username).orElseThrow(()
+                    -> (new UsernameNotFoundException(String.format("", "")))));
+        } catch (Exception e) {
+            posts = new ArrayList<>();
+        }
+        return posts;
+    }
 }
