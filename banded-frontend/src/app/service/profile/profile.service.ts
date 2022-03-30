@@ -23,6 +23,10 @@ export class ProfileService {
     return this.httpClient.get<Profile>("http://localhost:8080/profile").pipe(delay(500));
   }
 
+  public getUserProfile(userName: string) {
+    return this.httpClient.get<Profile>("http://localhost:8080/profile/"+userName).pipe(delay(500));
+  }
+
   public editBio(userName:string, text: string) {
     console.log("http://localhost:8080/profile/editbio/"+userName);
     console.log(text);

@@ -12,15 +12,28 @@ import { Router } from '@angular/router';
 export class ProfileComponent implements OnInit {
   public currProfile: Profile;
   public editBioText: string;
+  public currUserName: string;
+  public viewingUserName: string;
 
   constructor(private profileService: ProfileService, private tokenService: TokenService, private router: Router, private route: ActivatedRoute) {
+    this.viewingUserName="";
     this.currProfile = new Profile("", "", "", "", "", "");
     this.editBioText = "";
+    this.currUserName = this.tokenService.getUser().userName;
+    this.route.params.subscribe(params => {
+      if(params['userName']) {
+        this.viewingUserName=params['userName'];
+        this.profileService.getUserProfile(params['userName']).subscribe({next: data=>this.currProfile=data, error: err=>alert("Not Found")});
+      }
+      else {
+        this.viewingUserName=this.currUserName;
+        this.profileService.getProfile().subscribe({next: data=>this.currProfile=data, error: err=>alert("Not Found")});
+      }
+    })
   }
 
   ngOnInit() {
-    this.currProfile = this.route.snapshot.data['profileget'];
-    console.log(this.currProfile)
+
   }
 
   public async loadProfile(): Promise<any> {
