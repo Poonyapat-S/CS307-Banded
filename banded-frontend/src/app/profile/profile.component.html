@@ -47,8 +47,8 @@
   <div class="form-popup" id="myForm">
     <form action= "/action_page" class="form-container">
       <h1 id="titleenter">Enter New Bio</h1>
-      <input type="text" placeholder="Enter New Bio" name="bio" id="newText">
-      <button type="button"  class="btn submit" onclick="submitForm()">Submit</button>
+      <input [(ngModel)]="this.editBioText" type="text" placeholder="Enter New Bio" name="bio" id="newText">
+      <button type="button"  class="btn submit" onclick="submitForm()" (click)="this.editProfile();">Submit</button>
       <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
     </form>
   </div>
@@ -62,7 +62,6 @@
     }
     function submitForm() {
       let text = document.getElementById("newText").value;
-      document.getElementById("bio").innerText = text;
       /*Need backend function here */
       /*tEST */
       closeForm();
@@ -75,7 +74,7 @@
   <div class="form-popup-dc" id="myDeleteAcc">
     <form action= "/action_page" class="form-container-dc">
       <h1 id="areYouSure">Are You Sure You Want To Delete Your Account?</h1>
-      <a href="timeline.component.html"><button type="button"  class="btn delete" onclick="submitDelete()">Delete Account</button></a>
+      <button type="button"  class="btn delete" onclick="submitDelete()" (click)="deleteProfile()">Delete Account</button>
       <button type="button" class="btn cancel" onclick="closeFormDelete()">Cancel</button>
     </form>
   </div>

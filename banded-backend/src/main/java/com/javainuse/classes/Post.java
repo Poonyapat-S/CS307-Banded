@@ -60,6 +60,12 @@ public class Post {
     @Column(name="isAnon")
     private Boolean isAnon;
 
+    @Transient
+    private String topicName;
+
+    @Transient
+    private String userName;
+
     public Post(User user, Post parentPost, Topic topic, String postTitle, String postText, Boolean isAnon) {
         this.user = user;
         this.parentPost = parentPost;

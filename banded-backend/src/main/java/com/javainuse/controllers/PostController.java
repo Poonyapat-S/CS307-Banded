@@ -13,7 +13,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -24,11 +27,16 @@ public class PostController {
     private PostRepository postRepository;
     private TopicRepository topicRepository;
     private UserRepository userRepository;
+    private FollowService followService;
     private PostService postService;
 
     @GetMapping
     public List<Post> timeline(@AuthenticationPrincipal User user) {
-        return postRepository.findAll();
+        List<Post> toReturn = postRepository.findAll();
+        for(Post post: toReturn) {
+            post.setTopicName(post.getTopic().getTopicName());
+        }
+        return toReturn;
     }
 
     @PostMapping
@@ -46,6 +54,7 @@ public class PostController {
             topicRepository.save(topic);
         }
         newPost = new Post(user, null, topic, request.getPostTitle(), request.getPostText(), request.getIsAnon());
+        newPost.setPostTime(LocalDateTime.now());
         System.out.println(user.getUserID());
         postRepository.save(newPost);
         return new ResponseEntity<String>(HttpStatus.OK);
@@ -57,7 +66,11 @@ public class PostController {
         if(user.getUsername() == userName) return postRepository.findByUser(user);
         try {
             User foundUser = userRepository.findByUserName(userName).orElseThrow(() -> new UsernameNotFoundException(String.format("", "")));
-            return postRepository.findByUserAndIsAnonFalse(foundUser);
+            List<Post> toReturn = postRepository.findByUserAndIsAnonFalse(foundUser);
+            for(Post post: toReturn) {
+                post.setTopicName(post.getTopic().getTopicName());
+            }
+            return toReturn;
         }
         catch(Exception e) {
             return new ArrayList<Post>();
@@ -70,11 +83,43 @@ public class PostController {
         try {
            Topic foundTopic = topicRepository.findByTopicName(topicName).orElseThrow(() -> new Exception());
            List<Post> postList = postRepository.findByTopic(foundTopic);
-           return postService.anonymizeForTopics(postList);
+           return postService.anonymizeName(postList);
         }
         catch(Exception e) {
             return new ArrayList<Post>();
         }
+    }
+
+    @GetMapping(path = "/timeline")
+    public List<Post> genUserTimeline(@AuthenticationPrincipal User user, @RequestParam int count){
+      List<User> followedUsers = followService.retrieveFollowedUsers(user.getUserID());
+        List<Topic> followedTopics = followService.retrieveFollowedTopics(user.getUserID());
+        List<Post> allPosts = new ArrayList<Post>();
+        for(int i = 0; i < followedUsers.size(); i++){
+            allPosts.addAll(postRepository.findByUserAndIsAnonFalse(followedUsers.get(i)));
+        }
+        for(int i = 0; i < followedTopics.size(); i++){
+            allPosts.addAll(postService.anonymizeName(postRepository.findByTopic(followedTopics.get(i))));
+        }
+        allPosts.addAll(postService.anonymizeName(postRepository.findByUser(user)));
+        System.out.println(allPosts);
+        Comparator<Post> dateComparator = (Post p1, Post p2) ->p1.getPostTime().compareTo(p2.getPostTime());
+        Collections.sort(allPosts,dateComparator);
+        List<Post> noDup = allPosts.stream().distinct().collect(Collectors.toList());
+        Collections.reverse(allPosts);
+        List<Post> toReturn = new ArrayList<Post>();
+        int i = count;
+        System.out.println(i);
+        System.out.println(noDup);
+        while(i < count+10 && i < noDup.size()){
+            toReturn.add(noDup.get(i));
+            i++;
+        }
+        for(Post post: toReturn) {
+            post.setTopicName(post.getTopic().getTopicName());
+        }
+        System.out.println(toReturn);
+        return toReturn;
     }
 
     @PostMapping(path="/{postId}")
@@ -89,6 +134,7 @@ public class PostController {
         catch (Exception e){
             return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
         }
+
     }
 
     @GetMapping(path="/{postId}")
