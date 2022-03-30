@@ -15,7 +15,7 @@
 
         <!-- if signed in displays profile info -->
         <div class="user">
-          <div class="smallUserName">Kat</div>
+          <div class="smallUserName">{{currProfile.userName}}</div>
           <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
         </div>
       </div>
@@ -37,8 +37,8 @@
       </div>
       <div class="middlepane">
         <div class="timeline">
-          <!-- start of first post -->
-          <div class="post">
+          <!-- sample post -->
+          <!-- <div class="post">
             <div style="display: flex; justify-content: space-between;">
               <span class="post-time"> 3/4/22 9:00pm </span>
               <span class="post-user"> Kat </span>
@@ -53,11 +53,9 @@
               <div class="post-text"> Hey everyone whats up. title. </div>
             </div>
             <div class="post-footer">
-              <!-- Sam this the button that will redirect to the post page
-              currently redirects to login -->
-              <a href="/login" class="reply-button">Reply --></a>
+              <a href="/login" class="reply-button">Reply -></a>
             </div>
-          </div>
+          </div> -->
 
           <!-- start of first post -->
           <div class="post" *ngFor="let post of posts">
@@ -75,7 +73,7 @@
               <div class="post-text"> {{post.postText}} </div>
             </div>
             <div class="post-footer">
-              <!-- Sam this the button that will redirect to the post page
+              <!-- The button that will redirect to the post page
               currently redirects to login -->
               <a href="/login" class="reply-button">Reply --></a>
             </div>
