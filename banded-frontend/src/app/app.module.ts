@@ -14,7 +14,7 @@ import { CreateAccountComponent } from './create-account/create-account.componen
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
 
-//Sam added line below
+
 import { createPostComponent } from './createPost/createPost.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -34,7 +34,6 @@ import { TopicsComponent } from './topics/topics.component';
     CreateAccountComponent,
     TimelineComponent,
     ProfileComponent,
-    //Sam added line below just in case
     createPostComponent,
     TopicsComponent
   ],
