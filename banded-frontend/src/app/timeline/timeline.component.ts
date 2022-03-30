@@ -35,6 +35,15 @@ export class TimelineComponent implements OnInit {
     window.location.reload();
   }
 
+  searchUser(title:string) {
+    //also check if username is valid
+    if(title!="") {
+     alert(title);
+    } else {
+    alert("Please type a valid username");
+    }
+  }
+
   convertDateTime(postTime: Date): string {
     // console.log(postTime);
     // postTime = new Date(postTime);
