@@ -42,7 +42,7 @@ function loadLikedStatus() {
     document.getElementById("savePost").textContent = 'Save Post';
 //} else {
     // document.getElementById("savePost").textContent = 'Unsave Post'
- 
+
 //}
 
 //if(post User is NOT already followed) {
@@ -61,7 +61,13 @@ function closeForm() {
 
 function submitForm() {
     let text = document.getElementById("newText").value;
-    
+    var event = new CustomEvent('reply', {
+      detail: {
+        postText: text,
+      }
+    })
+    window.dispatchEvent(event);
+
     //HERE IS WHERE YOU SHOULD SEND BACKEND THE NEW COMMMENT(text)
 
     closeForm();
@@ -75,9 +81,9 @@ function followUser() {
     } else {
         document.getElementById("followThisUser").textContent = 'Follow This User'
     }
-    
+
 }
 
-  
+
 
 

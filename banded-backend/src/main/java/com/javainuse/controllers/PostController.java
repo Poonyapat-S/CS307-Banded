@@ -124,10 +124,13 @@ public class PostController {
 
     @PostMapping(path="/{postId}")
     public ResponseEntity<?> replyPost(@AuthenticationPrincipal User user, @PathVariable Integer postId, @RequestBody newPostRequest request) {
+        System.out.println("Reply called");
+        System.out.println(postId);
         try {
             Post parentPost = postRepository.findById(postId).orElseThrow(() -> new Exception());
             Topic topic = parentPost.getTopic();
             Post newPost = new Post(user, parentPost, topic, request.getPostTitle(), request.getPostText(), request.getIsAnon());
+            newPost.setPostTime(LocalDateTime.now());
             postRepository.save(newPost);
             return new ResponseEntity<String>(HttpStatus.OK);
         }

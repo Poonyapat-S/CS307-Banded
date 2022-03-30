@@ -26,4 +26,8 @@ export class PostService {
     return this.httpClient.get<Post>("http://localhost:8080/api/posts/" + id);
   }
 
+  public replyPost(post: Post) {
+    return this.httpClient.post("http://localhost:8080/api/posts/"+post.postID, post);
+  }
+
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../class/post';
 import { PostService } from '../service/post/post.service';
@@ -34,6 +34,15 @@ export class postViewingPageComponent implements OnInit {
 
   getPostService(): PostService {
     return this.postService;
+  }
+
+  @HostListener('window:reply', ['$event.detail'])
+  reply(detail: Post) {
+    var post = detail;
+    post.isAnon=false;
+    post.postTitle="Reply to "+this.currPost.postTitle;
+    post.postID = this.currPost.postID;
+    this.postService.replyPost(post).subscribe({next: response => alert("Replied to post."), error: err => console.log(err)});
   }
 }
 
