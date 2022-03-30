@@ -137,6 +137,16 @@ hr{
   font-family: 'Courier New', Courier, monospace;
 }
 
+.savedPosts {
+  text-align: center;
+  color: black;
+  text-decoration: inline-block;
+  background-color: lightgrey;
+  font-size: 20px;
+  position: absolute; left: 2%; top: 37%;
+  font-family: 'Courier New', Courier, monospace;
+}
+
 /* End of 4 buttons on the left */
 
 

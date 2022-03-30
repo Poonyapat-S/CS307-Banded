@@ -13,6 +13,7 @@ import { LoginUserComponent } from './login-user/login-user.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
+import { mySavedPostsComponent } from './mySavedPosts/mySavedPosts.component';
 
 //Sam added line below
 import { createPostComponent } from './createPost/createPost.component';
@@ -34,7 +35,8 @@ import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
     TimelineComponent,
     ProfileComponent,
     //Sam added line below just in case
-    createPostComponent
+    createPostComponent,
+    mySavedPostsComponent
   ],
   imports: [
     BrowserModule,
