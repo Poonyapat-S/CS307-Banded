@@ -41,8 +41,8 @@ div{
 /* End of the margins construction */
 
 .timeline-header {
-  display: grid;
-  grid-template-columns: 0 0;
+  display: flex; 
+  justify-content: space-between;
 }
 
 /* Banded Header */
@@ -50,14 +50,16 @@ div{
   color: black;
   font-size: 60px;
   position: relative;
-  left: -40px;
+  flex: left;
 }
 
 /* (for logged in users) Both the small username and small profile pic for header 
 * visiblity is hidden until user is logged in*/
 .timeline-header .user {
+  flex: right;
   display: grid;
   grid-template-columns: 100% 5px;
+  
 }
 
 .timeline-header .user .smallUserName {
@@ -121,10 +123,15 @@ div{
   left: -1%;
 }
 
-.post-icon{
+/* .post-icon{
   position:absolute;
   right:5px;
   top:0px;
+} */
+
+
+.post-user {
+  padding:5px 15px;
 }
 
 .post-time {
