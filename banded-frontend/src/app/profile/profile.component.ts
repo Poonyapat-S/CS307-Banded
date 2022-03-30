@@ -16,10 +16,11 @@ export class ProfileComponent implements OnInit {
   public viewingUserName: string;
 
   constructor(private profileService: ProfileService, private tokenService: TokenService, private router: Router, private route: ActivatedRoute) {
+    console.log(this.tokenService.getUser());
     this.viewingUserName="";
     this.currProfile = new Profile("", "", "", "", "", "");
     this.editBioText = "";
-    this.currUserName = this.tokenService.getUser().userName;
+    this.currUserName = this.tokenService.getUser().username;
     this.route.params.subscribe(params => {
       if(params['userName']) {
         this.viewingUserName=params['userName'];
