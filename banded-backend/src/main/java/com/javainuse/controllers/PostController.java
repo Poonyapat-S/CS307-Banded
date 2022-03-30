@@ -141,6 +141,8 @@ public class PostController {
     public Post getPost(@AuthenticationPrincipal User user, @PathVariable Integer postId) {
         try {
             Post parentPost = postRepository.findById(postId).orElseThrow(() -> new Exception());
+            parentPost.setTopicName(parentPost.getTopic().getTopicName());
+            parentPost.setUserName(parentPost.getUser().getUsername());
             return parentPost;
         }
         catch (Exception e){

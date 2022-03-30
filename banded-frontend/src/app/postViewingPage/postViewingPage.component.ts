@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../class/post';
-import { PostsService } from '../service/post/posts.service';
+import { PostService } from '../service/post/post.service';
 
 @Component({
   selector: 'app-timeline',
@@ -11,7 +11,7 @@ import { PostsService } from '../service/post/posts.service';
 export class postViewingPageComponent implements OnInit {
 
   public currPost: any;
-  constructor(private router: Router, private route: ActivatedRoute, private postService: PostsService) {this.route.params.subscribe(params => this.loadPost(params['postID']))};
+  constructor(private router: Router, private route: ActivatedRoute, private postService: PostService) {this.route.params.subscribe(params => this.loadPost(params['postID']))};
 
   ngOnInit(): void {
 

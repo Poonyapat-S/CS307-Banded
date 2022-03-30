@@ -35,12 +35,7 @@ export class TimelineComponent implements OnInit {
     window.location.reload();
   }
 
-  convertDateTime(postTime: Date): string {
-    // console.log(postTime);
-    // postTime = new Date(postTime);
-    // console.log(postTime);
-    // return postTime.toISOString().slice(0, 10) + " " + postTime.toISOString().slice(11, 19)
-    return formatDate(postTime, 'yyyy/MM/dd hh:mm a', "en-US");
+  public getPostService(): PostService {
+    return this.postService;
   }
-
 }
