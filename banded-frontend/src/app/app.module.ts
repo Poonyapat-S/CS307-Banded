@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { authInterceptorProviders } from './_helper/auth.interceptor';
 import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
 import { TopicsComponent } from './topics/topics.component';
+import { TopicTimelineComponent } from './topic-timeline/topic-timeline.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,7 +37,8 @@ import { TopicsComponent } from './topics/topics.component';
     ProfileComponent,
     //Sam added line below just in case
     createPostComponent,
-    TopicsComponent
+    TopicsComponent,
+    TopicTimelineComponent
   ],
   imports: [
     BrowserModule,
