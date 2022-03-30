@@ -19,16 +19,18 @@
   </script>
 </head>
 
+
 <!-- Calls the vis function on loading the body -->
 <body onload="vis()">
-
+  
   <!--Below Are the Verticle Lines for Margins-->
   <div class="v1"></div>
   <div class="v2"></div>
 
   <!-- code foe the timeline header (title and profile info) -->
   <div class="timeline-header">
-    <!--Banded Header-->
+    
+      <!--Banded Header-->
     <div class = "title"> Banded</div>
 
 
@@ -42,29 +44,31 @@
   <!-- line for end of header -->
   <hr>
 
-  <!-- The four buttons on the left hand side-->
+  <!-- The four buttons on the left hand side -->
+  <div>
+    <p></p>
+    <a routerLink="/createPost" class="nav-link"> <button class="side-button">Create Post</button></a>
+    <p></p>
+    <button class="side-button">Direct Messages</button>
+    <p></p>
+    <button class="side-button">Following Tags</button>
+    <p></p>
+    <button class="side-button">Browse Tags</button>
+    <p></p>
+    <button class="side-button">Settings</button>
+
+  </div>
 
   <div class="container">
-    <!-- The four buttons on the left hand side -->
-    <div>
-      <p></p>
-      <a routerLink="/createPost" class="nav-link"> <button class="side-button">Create Post</button></a>
-      <p></p>
-      <button class="side-button">Direct Messages</button>
-      <p></p>
-      <button class="side-button">Following Tags</button>
-      <p></p>
-      <button class="side-button">Browse Tags</button>
-      <p></p>
-      <button class="side-button">Settings</button>
-
-    </div>
 
     <div class="timeline">
-
+      
       <!-- start of first post -->
       <div class="post" *ngFor="let post of posts">
-        <div class="post-time"> {{this.convertDateTime(post.postTime)}} </div>
+        <div style="display: flex; justify-content: space-between;">
+          <span class="post-time"> {{this.convertDateTime(post.postTime)}} </span>
+          <span class="post-user"> {{post.userName}} </span>
+        </div>
         <div class="post-tags">
           <div class="name"></div> Tags:
           <div class="tag"> {{post.topicName}} </div>
@@ -77,7 +81,7 @@
         <div class="post-footer">
           <!-- Sam this the button that will redirect to the post page
           currently redirects to login -->
-          <a href="/login" class="reply-button">Reply --> </a>
+          <a href="/login" class="reply-button">Reply --></a>
         </div>
       </div>
 
@@ -86,11 +90,11 @@
 
       <!-- end of posts -->
     </div>
+  </div>
 
-    <div class="timeline-footer">
-      <!-- TODO this needs to pass a int to backend too -->
-      <button (click)=reloadPage() class="btn btn-success">Refresh</button>
-    </div>
+  <div class="timeline-footer">
+    <!-- TODO this needs to pass a int to backend too -->
+    <button onClick="window.location.reload();">Refresh Page</button>
   </div>
 </body>
 </html>
