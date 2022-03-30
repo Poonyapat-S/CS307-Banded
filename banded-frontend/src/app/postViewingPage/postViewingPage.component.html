@@ -20,7 +20,7 @@
 
 <div class="container">
     <!-- PLUG BACKEND CALLS HERE / Replace placeholders-->
-    <p class="postCreatorsName">{{ this.currPost.userName }}</p>
+    <a href="{{'/profile/'+this.currPost.userName}}"><p class="postCreatorsName">{{ this.currPost.userName }}</p></a>
     <p class="postTimeStamp">{{ this.getPostService().convertDateTime(this.currPost.postTime) }}</p>
     <p class="postTitle">{{ this.currPost.postTitle }}</p>
     <label class="postCaption">{{ this.currPost.postText }}</label>

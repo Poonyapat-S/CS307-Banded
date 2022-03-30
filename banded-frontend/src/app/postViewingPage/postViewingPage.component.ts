@@ -24,7 +24,7 @@ export class postViewingPageComponent implements OnInit {
     }
     else {
       this.currPost = data;
-      console.log(this.currPost);
+      console.log(data);
     }
   }
 

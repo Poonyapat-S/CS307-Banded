@@ -21,7 +21,7 @@
   <!--Banded Header-->
   <p class = "banded"> Banded</p>
 
- 
+
   <p class="userName">{{currProfile.name}}</p>
   <p class="smallUserName">{{currProfile.userName}}</p>
   <p  id="bio" class ="bio">{{currProfile.bio}}</p>
@@ -31,7 +31,7 @@
   <img class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
   <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
 
-  
+
   <!-- The four buttons on the left hand side-->
   <button class="createPost">Create Post</button>
   <button class="directMessages">Direct Messages</button>
@@ -43,7 +43,7 @@
   <a href="http://google.com"><button class="editBio">Edit Bio</button></a>
   -->
 
-  <button class="editBio" onclick="openForm()">Edit Bio</button>
+  <button class="editBio" onclick="openForm()" *ngIf="this.viewingUserName == this.currUserName">Edit Bio</button>
   <div class="form-popup" id="myForm">
     <form action= "/action_page" class="form-container">
       <h1 id="titleenter">Enter New Bio</h1>
@@ -70,7 +70,7 @@
 
 
  <!--Below Starts Delete Account-->
-  <button class="deleteAccount" onclick="openFormDelete()">Delete Account</button>
+  <button class="deleteAccount" onclick="openFormDelete()" *ngIf="this.viewingUserName == this.currUserName">Delete Account</button>
   <div class="form-popup-dc" id="myDeleteAcc">
     <form action= "/action_page" class="form-container-dc">
       <h1 id="areYouSure">Are You Sure You Want To Delete Your Account?</h1>

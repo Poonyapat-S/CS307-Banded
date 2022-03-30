@@ -40,7 +40,6 @@ public class Post {
     @Column(name = "timePosted")
     private LocalDateTime postTime;
 
-    @JsonIgnore
     @JsonBackReference
     @ManyToOne(targetEntity = Post.class, fetch=FetchType.LAZY)
     @JoinColumn(name="parentPostID")
