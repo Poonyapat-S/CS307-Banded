@@ -21,7 +21,7 @@
 <div class="container">
     <!-- PLUG BACKEND CALLS HERE / Replace placeholders-->
     <p class="postCreatorsName">{{ this.currPost.userName }}</p>
-    <p class="postTimeStamp">{{ this.currPost.postTime }}</p>
+    <p class="postTimeStamp">{{ this.getPostService().convertDateTime(this.currPost.postTime) }}</p>
     <p class="postTitle">{{ this.currPost.postTitle }}</p>
     <label class="postCaption">{{ this.currPost.postText }}</label>
     <label class="topicHeader">Topic:</label>

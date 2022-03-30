@@ -31,6 +31,10 @@ export class postViewingPageComponent implements OnInit {
   loadPost(postID: string) {
     this.postService.getPostFromId(postID).subscribe({next: data => {this.showOrSave(data)}});
   }
+
+  getPostService(): PostService {
+    return this.postService;
+  }
 }
 
 
