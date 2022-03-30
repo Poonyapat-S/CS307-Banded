@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head></head>   
+  <head></head>
 
   <body>
 
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="leftpane">
-        
+
         <!-- The four buttons on the left hand side -->
         <div>
           <p></p>
@@ -47,7 +47,7 @@
               <div class="name"></div> Topic:
               <div class="tag"> Bands </div>
             </div>
-    
+
             <div class="post-content">
               <div class = "post-title"> Looking for Bands </div>
               <div class="post-text"> Hey everyone whats up. title. </div>
@@ -67,7 +67,7 @@
               <div class="name"></div> Tags:
               <div class="tag"> {{post.topicName}} </div>
             </div>
-    
+
             <div class="post-content">
               <div class = "post-title"> {{post.postTitle}} </div>
               <div class="post-text"> {{post.postText}} </div>
@@ -75,13 +75,13 @@
             <div class="post-footer">
               <!-- The button that will redirect to the post page
               currently redirects to login -->
-              <a href="/login" class="reply-button">Reply --></a>
+              <a href="{{'/postViewingPage/'+post.postID}}" class="reply-button">Reply --></a>
             </div>
           </div>
-    
+
           <!-- spacing between posts -->
           <p></p>
-    
+
           <!-- end of posts -->
 
           <div class="timeline-footer">
