@@ -105,8 +105,9 @@ public class PostController {
         System.out.println(allPosts);
         Comparator<Post> dateComparator = (Post p1, Post p2) ->p1.getPostTime().compareTo(p2.getPostTime());
         Collections.sort(allPosts,dateComparator);
-        List<Post> noDup = allPosts.stream().distinct().collect(Collectors.toList());
         Collections.reverse(allPosts);
+        List<Post> noDup = allPosts.stream().distinct().collect(Collectors.toList());
+
         List<Post> toReturn = new ArrayList<Post>();
         int i = count;
         System.out.println(i);
