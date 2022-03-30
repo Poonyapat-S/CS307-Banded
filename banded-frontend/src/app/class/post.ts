@@ -2,6 +2,7 @@ import { Timestamp } from "rxjs";
 
 export class Post {
   constructor(
+  public postID: string,
   public userName: string,
   public postTitle: string,
   public postText: string,
