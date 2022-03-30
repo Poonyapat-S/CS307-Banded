@@ -103,16 +103,14 @@ public class PostController {
         }
         allPosts.addAll(postService.anonymizeName(postRepository.findByUser(user)));
         System.out.println(allPosts);
-        Comparator<Post> dateComparator = (Post p1, Post p2) ->p1.getPostTime().compareTo(p2.getPostTime());
-        Collections.sort(allPosts,dateComparator);
-        List<Post> noDup = allPosts.stream().distinct().collect(Collectors.toList());
-        Collections.reverse(allPosts);
+        allPosts = postService.sortByDate(allPosts);
+        allPosts = postService.removeDuplicates(allPosts);
         List<Post> toReturn = new ArrayList<Post>();
         int i = count;
         System.out.println(i);
-        System.out.println(noDup);
-        while(i < count+10 && i < noDup.size()){
-            toReturn.add(noDup.get(i));
+        System.out.println(allPosts);
+        while(i < count+10 && i < allPosts.size()){
+            toReturn.add(allPosts.get(i));
             i++;
         }
         for(Post post: toReturn) {
