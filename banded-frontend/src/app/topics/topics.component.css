@@ -1,0 +1,18 @@
+.topic {
+    width: max-content;
+    content: initial;
+    padding: 0.5px 2px;
+    margin: 2px;
+    display: inline-block;
+
+}
+
+.green {
+    background-color: green;
+    border: 2px solid darkgreen;
+}
+
+.red {
+    background-color: red;
+    border: 2px solid darkred;
+}
