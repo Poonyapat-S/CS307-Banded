@@ -1,17 +1,31 @@
-body {
-  background-color: lightgrey;
-  padding: 0px;
-  margin: 0;
-}
+* { margin: 0; padding: 0; }
 
-div{
-  /* height: 100%; */
-  width: 1000px;
-  margin: 0 auto;
-  flex-shrink: 3;
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: lightgrey;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 /* Start of the margins construction */
+.container {
+  min-width: 100%;
+  height: 100%;
+}
+
+/* ================================ left ================================ */
+
+.leftpane {
+  width: 20%;
+  height: 100%;
+  float: left;
+  /* background-color: lightgoldenrodyellow; */
+  border-collapse: collapse;
+}
+
+/* left vertical line */
 .v1 {
   border-left: 2px solid black;
   height: 100%;
@@ -21,104 +35,38 @@ div{
   top: 0;
 }
 
-.v2 {
-  border-left: 2px solid black;
-  height: 100%;
-  position: absolute;
-  left: 80%;
-  margin-left: -3px;
-  top: 0;
-}
-
-/* End of the margins construction */
-
-.timeline-header {
-  display: grid;
-  grid-template-columns: 0 0;
-}
-
-/* Banded Header */
-.timeline-header .title {
-  color: black;
-  font-size: 60px;
-  position: relative;
-  left: -40px;
-}
-
-.testerButton {
-  position: absolute;
-  top: 60%;
-  left: 2%;
-}
-/* Start of 4 buttons on the left */
-.createPost {
-  text-align: center;
-  color: black;
-  text-decoration: inline-block;
-  background-color: lightgrey;
-  font-size: 20px;
-  position: absolute; left: 2%; top: 17%;
-  font-family: 'Courier New', Courier, monospace;
-}
-/* (for logged in users) Both the small username and small profile pic for header
-* visiblity is hidden until user is logged in*/
-.timeline-header .user {
-  display: grid;
-  grid-template-columns: 100% 5px;
-}
-
-.timeline-header .user .smallUserName {
-  color: black;
-  font-size: 25px;
-  position: relative;
-  text-align: right;
-  right: 10px;
-  top: 29.5px;
-}
-
-.timeline-header .user .smallProfileImg {
-  width: 50px;
-  height: 50px;
-  border-radius: 40%;
-  position: relative;
-  top: 22px;
-  /* visibility: hidden; */
-}
-
-/* bottom line of header */
-.hr{
-  border-bottom: 2px solid black;
-  height: 100%;
-  position: relative;
-  top: 0;
-}
-
-.container {
-  display: grid;
-  grid-template-columns: 0 0;
-}
 /* For the 4 buttons on the left */
 .side-button {
+  position: relative;
+  margin: 1% 1%;
+  left:25%;
+
   text-align: center;
   color: black;
-  text-decoration: inline-block;
   background-color: darkgrey;
   font-size: 20px;
-  position: relative;
   padding: 5px;
-  left: -42%;
 }
 /* End of 4 buttons on the left */
 
+/* ================================ middle ================================ */
+
+.middlepane {
+  width: 60%;
+  height: 100%;
+  float: left;
+  /* background-color: lightgreen; */
+  border-collapse: collapse;
+}
 
 /* Start of timeline post display */
 
 .timeline{
-  margin-top:20px;
   position:relative;
 }
 
 .post{
+  margin: 20px;
   position:relative;
   background-color:#ececec;
   border-radius:15px;
@@ -128,10 +76,8 @@ div{
   left: -1%;
 }
 
-.post-icon{
-  position:absolute;
-  right:5px;
-  top:0px;
+.post-user {
+  padding:5px 15px;
 }
 
 .post-time {
@@ -141,7 +87,6 @@ div{
 .post-tags{
   padding:5px 15px;
   border-bottom: 1px solid #17191B;
-  /* overflow: auto; */
 }
 
 .post-tags .name{
@@ -150,13 +95,11 @@ div{
 }
 
 .post-tags .tag{
-  /* text-align: center; */
   width: max-content;
   border: 2px solid coral;
   content: initial;
   padding: 0.5px 2px;
   margin: 2px;
-  /* float: left; */
   display: inline-block;
 }
 
@@ -177,17 +120,6 @@ div{
   padding: 5px 15px;
 }
 
-.topicsFollowed {
-  text-align: center;
-  color: black;
-  text-decoration: inline-block;
-  background-color: lightgrey;
-  font-size: 20px;
-  position: absolute; right: 8%; top: 17%;
-  font-family: 'Courier New', Courier, monospace;
-}
-
-/* End of 4 buttons on the left */
 .post-text{
   margin-bottom:5px;
   padding:5px 15px;
@@ -203,32 +135,92 @@ div{
 
 /* Does nothing since putting href in the <a> tag gives all the visual indicators for the button */
 .reply-button {
-  cursor: pointer;
+  cursor: pointer; 
+}
+
+.refresh-button {
+  margin: 10px;
+  padding: 2px 5px;
+  cursor: pointer; 
 }
 
 .timeline-footer {
-  background-color: lightgray;
-  height: 30px;
+  position: relative;
+  height: 100%;
+  /* background-color: lightgray; */
 }
 
-.myBtn {
-  display: none; /* Hidden by default */
-  position: fixed; /* Fixed/sticky position */
-  bottom: 20px; /* Place the button at the bottom of the page */
-  right: 30px; /* Place the button 30px from the right */
-  z-index: 99; /* Make sure it does not overlap */
-  border: none; /* Remove borders */
-  outline: none; /* Remove outline */
-  background-color: red; /* Set a background color */
-  color: white; /* Text color */
-  cursor: pointer; /* Add a mouse pointer on hover */
-  padding: 15px; /* Some padding */
-  border-radius: 10px; /* Rounded corners */
-  font-size: 18px; /* Increase font size */
+/* ================================ right ================================ */
+
+.rightpane {
+  width: 20%;
+  height: 100%;
+  position: relative;
+  float: right;
+  /* background-color: lightblue; */
+  border-collapse: collapse;
 }
 
-.myBtn:hover {
-  background-color: #555; /* Add a dark-grey background on hover */
+/* right vertical line */
+.v2 {
+  border-left: 2px solid black;
+  height: 100%;
+  position: absolute;
+  right: 20%;
+  margin-left: -3px;
+  top: 0;
 }
 
-/* End of time line post display */
+/* ================================ top ================================ */
+
+.toppane {
+  width: 100%;
+  height: 100px;
+  border-collapse: collapse;
+  /* background-color: lightpink; */
+  border-bottom: 2px solid black;
+  text-align: center;
+  
+  /* Centering code */
+  display: flex;
+  align-items: center;
+}
+
+/* Banded Header */
+.toppane .title {
+  position: relative;
+  left: 21%;
+  /* padding: 0px 15px; */
+  color: black;
+  font-size: 60px;
+}
+
+/* (for logged in users) Both the small username and small profile pic for header 
+* visiblity is hidden until user is logged in*/
+.toppane .user {
+  /* visibility: hidden; */
+
+  display: flex;
+  align-items: center;
+  
+  position: relative;
+  left: 59%;
+  /* padding: 0px 15px; */
+}
+
+.toppane .user .smallUserName {
+  color: black;
+  font-size: 25px;
+  text-align: right;
+  padding: 0px 20px;
+  float: left;
+}
+
+.toppane .user .smallProfileImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  float: right;
+}
+
+/* End of the margins construction */
