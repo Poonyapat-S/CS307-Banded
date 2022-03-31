@@ -13,4 +13,20 @@ export class TopicService {
   public getTopics(): Observable<Topic[]> {
     return this.httpClient.get<Topic[]>("http://localhost:8080/topics");
   }
+
+  public getCurrentTopic(topicID: string): Observable<Topic> {
+    return this.httpClient.get<Topic>("http://localhost:8080/topics/getTopic/"+topicID);
+  }
+
+  public getIsFollowing(topicID: string): Observable<boolean> {
+    return this.httpClient.get<boolean>("http://localhost:8080/api/followcontrol/topic/isFollowing/"+topicID);
+  }
+
+  public followTopic(topicName: string) {
+    return this.httpClient.post("http://localhost:8080/api/followcontrol/followtopic", topicName);
+  }
+
+  public unFollowTopic(topicName: string) {
+    return this.httpClient.post("http://localhost:8080/api/followcontrol/unfollowtopic", topicName);
+  }
 }

@@ -28,4 +28,9 @@ public class TopicController {
     public List<Post> getAllPostInTopic(@PathVariable Integer topicID) {
         return null;
     }
+
+    @GetMapping(path="/getTopic/{topicID}")
+    public Topic getCurrentTopic(@PathVariable Integer topicID) {
+        return topicRepository.findByTopicID(topicID).orElse(null);
+    }
 }

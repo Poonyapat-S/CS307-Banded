@@ -23,6 +23,8 @@
 
         <!-- The four buttons on the left hand side -->
         <div>
+          <button class="side-button" *ngIf="this.isFollowing" (click)="this.unFollowTopic()" >Unfollow Topic</button>
+          <button class="side-button" *ngIf="!this.isFollowing" (click)="this.followTopic()">Follow Topic</button>
           <p></p>
           <a routerLink="/createPost" class="nav-link"> <button class="side-button">Create Post</button></a>
           <p></p>
