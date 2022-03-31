@@ -17,6 +17,9 @@ export class PostService {
   public get_topic_timeline(topicName:string, count: number) {
     return this.httpClient.get<Post[]>("http://localhost:8080/api/posts/topic/"+topicName+"?count="+count.toString());
   }
+  public get_guest_timeline() {
+    return this.httpClient.get<Post[]>("http://localhost:8080/api/posts/guest/timeline");
+  }
 
   public convertDateTime(postTime: Date): string {
     // console.log(postTime);

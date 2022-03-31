@@ -47,7 +47,7 @@ public class PostService {
         for(int i = 0; i < toReturn.size(); i++){
             if (toReturn.get(i).getIsAnon()){
                 //iterates through a list of fetched posts and changes all anonymous tagged names to anonymous
-                toReturn.get(i).getUser().setName("Anonymous");
+                toReturn.get(i).setUserName("Anonymous");
             }
         }
         return toReturn;

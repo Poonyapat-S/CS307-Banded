@@ -34,13 +34,25 @@ public class PostController {
     private FollowService followService;
     private PostService postService;
 
-    @GetMapping
-    public List<Post> timeline(@AuthenticationPrincipal User user) {
-        List<Post> toReturn = postRepository.findAll();
-        for(Post post: toReturn) {
+    @GetMapping("/guest/timeline")
+    public List<Post> guestTimeline() {
+        List<Post> posts = postRepository.findAll();
+        for(Post post: posts) {
             post.setTopicName(post.getTopic().getTopicName());
+            if(post.getIsAnon()){
+                post.setUserName("Anonymous");
+            }
+            else{
+                post.setUserName(post.getUser().getUsername());
+            }
         }
-        return toReturn;
+        postService.sortByDateTimeDesc(posts);
+        return posts;
+    }
+    @GetMapping("/guest/topics")
+    public List<Topic> getTopicList(){
+        List<Topic> allTopics = topicRepository.findAll();
+        return allTopics;
     }
 
     @PostMapping

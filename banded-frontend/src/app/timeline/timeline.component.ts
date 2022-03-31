@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { delay } from 'rxjs';
 import { Post } from '../class/post';
+import { TokenService } from '../service/auth/token.service';
 import { PostService } from '../service/post/post.service';
 import { Profile, ProfileService } from '../service/profile/profile.service';
 
@@ -16,11 +17,17 @@ export class TimelineComponent implements OnInit {
   public posts: Post[];
   private count: number;
 
-  constructor(private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute) {this.currProfile = new Profile("", "", "", "", "", ""); this.posts=[], this.count=0}
+  constructor(private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute, private tokenService: TokenService) {this.currProfile = new Profile("", "", "", "", "", ""); this.posts=[], this.count=0}
 
   ngOnInit() {
-    this.postService.get_timeline(0).pipe(delay(500)).subscribe((data: Post[]) => {this.posts=data; console.log(data)});
-    this.profileService.getProfile().subscribe(data => this.currProfile=data);
+    if(this.tokenService.getUser()) {
+      this.postService.get_timeline(0).pipe(delay(500)).subscribe((data: Post[]) => {this.posts=data; console.log(data)});
+      this.profileService.getProfile().subscribe(data => this.currProfile=data);
+    }
+    else {
+      console.log("guest");
+      this.postService.get_guest_timeline().pipe(delay(500)).subscribe((data: Post[]) => this.posts=data);
+    }
     console.log(this.currProfile)
   }
 
