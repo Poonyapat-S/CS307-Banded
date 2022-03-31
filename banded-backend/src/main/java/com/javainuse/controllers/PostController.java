@@ -30,7 +30,7 @@ public class PostController {
     private FollowService followService;
     private PostService postService;
 
-    @GetMapping("/guestTimeline")
+    @GetMapping("/guest/timeline")
     public List<Post> guestTimeline() {
         List<Post> posts = postRepository.findAll();
         for(Post post: posts) {
@@ -44,6 +44,11 @@ public class PostController {
         }
         postService.sortByDateTimeDesc(posts);
         return posts;
+    }
+    @GetMapping("/guest/topics")
+    public List<Topic> getTopicList(){
+        List<Topic> allTopics = topicRepository.findAll();
+        return allTopics;
     }
 
     @PostMapping

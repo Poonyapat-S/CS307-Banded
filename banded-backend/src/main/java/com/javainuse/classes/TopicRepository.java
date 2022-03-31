@@ -10,7 +10,8 @@ import java.util.Optional;
 public interface TopicRepository extends JpaRepository<Topic, Integer> {
     Optional<Topic> findByTopicName(String topicName);
     Optional<Topic> findByTopicID(Integer topicID);
-    
+    List<Topic> findAll();
+
     Boolean existsByTopicName(String topicName);
     boolean existsByTopicID(Integer topicID);
 }
