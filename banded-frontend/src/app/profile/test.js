@@ -24,3 +24,15 @@ function submitForm() {
     
     closeFormDelete()
   }
+
+  function followControl () {
+    if(document.getElementById('followButton').textContent == 'Follow/Unfollow' || document.getElementById('followButton').textContent == 'Follow') {
+      //Plug Back End Code to Tell backend the user is now FOLLOWED  
+      document.getElementById('followButton').textContent = 'Unfollow';
+      alert('Successfully Followed');
+    } else {
+      //Plug Back End Code to Tell backend the user is now UNFOLLOWED 
+      document.getElementById('followButton').textContent = 'Follow';
+      alert('Successfully Unfollowed');
+    }
+  }
