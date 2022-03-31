@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { delay } from 'rxjs';
 import { Post } from '../class/post';
 import { PostService } from '../service/post/post.service';
@@ -16,7 +16,7 @@ export class TopicTimelineComponent implements OnInit {
   public posts: Post[];
   private count: number;
 
-  constructor(private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute) {this.currProfile = new Profile("", "", "", "", "",""); this.posts=[], this.count=0}
+  constructor(private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute, private router: Router) {this.currProfile = new Profile("", "", "", "", "",""); this.posts=[], this.count=0}
 
   ngOnInit(): void {
     this.profileService.getProfile().subscribe(data => this.currProfile=data);
@@ -62,4 +62,9 @@ export class TopicTimelineComponent implements OnInit {
     return formatDate(postTime, 'yyyy/MM/dd hh:mm a', "en-US");
 
   }
+
+
 }
+export const TopicTimelineComponentProvider = [
+  { provide: TopicTimelineComponent, useClass: TopicTimelineComponent, multi: true }
+];

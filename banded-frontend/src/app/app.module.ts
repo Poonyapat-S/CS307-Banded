@@ -23,7 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { authInterceptorProviders } from './_helper/auth.interceptor';
 import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
 import { TopicsComponent } from './topics/topics.component';
-import { TopicTimelineComponent } from './topic-timeline/topic-timeline.component';
+import { TopicTimelineComponent, TopicTimelineComponentProvider } from './topic-timeline/topic-timeline.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +46,7 @@ import { TopicTimelineComponent } from './topic-timeline/topic-timeline.componen
     FormsModule,
     NgbModule,
   ],
-  providers: [authInterceptorProviders, UnauthInterceptorProvider],
+  providers: [authInterceptorProviders, UnauthInterceptorProvider, TopicTimelineComponentProvider],
   bootstrap: [AppComponent],
 })
 export class AppModule { }

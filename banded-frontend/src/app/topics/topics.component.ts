@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Topic } from '../class/topic';
+import { TopicService } from '../service/topic/topic.service';
 import { TopicTimelineComponent } from '../topic-timeline/topic-timeline.component';
 
 @Component({
@@ -10,15 +12,18 @@ import { TopicTimelineComponent } from '../topic-timeline/topic-timeline.compone
 export class TopicsComponent implements OnInit {
 
 // this page is to display all the topics
+  // this page is to display all the topics
 
-  constructor(private router: Router, private topicTimeline: TopicTimelineComponent) { }
+  public topics!: Topic[];
+  constructor(public router: Router, private topicTimeline: TopicTimelineComponent, private topicService: TopicService) { }
 
   ngOnInit(): void {
+    this.topicService.getTopics().subscribe(data => this.topics = data);
   }
 
   toggle = true;
   //both buttons change color together i am not smart enough to fix this
-  status = 'Disable'; 
+  status = 'Disable';
 
   // add a pass to this function that will let it differentiate which topic gets updated
   followUpdate(topicID: string, topicName: string) {
@@ -40,7 +45,11 @@ export class TopicsComponent implements OnInit {
   toTopic(topicName: string) {
     this.topicTimeline.load_page(topicName, 0);
     this.router.navigate(['topic'])
-    
+
+  }
+
+  navigate(topicID: string) {
+    this.router.navigate(['topic/'+topicID]);
   }
 
 }
