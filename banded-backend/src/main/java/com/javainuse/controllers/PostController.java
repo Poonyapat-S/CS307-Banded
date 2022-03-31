@@ -139,6 +139,9 @@ public class PostController {
         }
         for(Post post: toReturn) {
             post.setTopicName(post.getTopic().getTopicName());
+            if(!post.getUserName().equals("Anonymous")){
+                post.setUserName(post.getUser().getUsername());
+            }
         }
         System.out.println(toReturn);
         return toReturn;
