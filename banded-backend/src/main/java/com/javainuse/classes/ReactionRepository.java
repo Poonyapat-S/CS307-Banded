@@ -7,9 +7,8 @@ import java.util.List;
 
 @Repository
 public interface ReactionRepository extends JpaRepository<Reaction,Integer> {
-	List<Reaction> findByPostAndUser(Post post, User user);
-	List<Reaction> findByPostIDAndUserID(Integer postID, Integer userID);
-	
+	List<Reaction> findByUserID(Integer userID);
+	long countByPostID(Integer postID);
 	boolean existsByPostAndUser(Post post, User user);
 	boolean existsByPostIDAndUserID(Integer postID, Integer userID);
 }
