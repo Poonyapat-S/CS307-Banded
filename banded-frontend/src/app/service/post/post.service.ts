@@ -38,7 +38,7 @@ export class PostService {
   }
 
   public getIsLiked(id : number) {
-    return this.httpClient.get("http://localhost:8080/api/interaction/getlikestatus" + id.toString());
+    return this.httpClient.get<boolean>("http://localhost:8080/api/interaction/getlikestatus" + id.toString());
   }
 
   public likePost(id : number) {
@@ -50,7 +50,7 @@ export class PostService {
   }
 
   public getIsSaved(id : number) {
-    return this.httpClient.get("http://localhost:8080/api/interaction/getsavestatus" + id.toString());
+    return this.httpClient.get<boolean>("http://localhost:8080/api/interaction/getsavestatus" + id.toString());
   }
 
   public savePost(id : number) {

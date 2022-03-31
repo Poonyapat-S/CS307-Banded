@@ -3,6 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Post } from '../class/post';
 import { PostService } from '../service/post/post.service';
 
+declare function loadRedHeart(): any;
+declare function loadGreyHeart(): any;
+declare function loadSaveButton(): any;
+declare function loadUnsaveButton(): any;
+
 @Component({
   selector: 'app-timeline',
   templateUrl: './postViewingPage.component.html',
@@ -63,6 +68,22 @@ export class postViewingPageComponent implements OnInit {
   @HostListener('window:unsavePost')
   unsavePost() {
     this.postService.unsavePost(this.currPost.postID).subscribe({next: response => alert("Unsaved post!"), error: err => console.log(err)});
+  }
+
+  @HostListener('window:checkInteractionStatus')
+  checkInteractionStatus() {
+    var isLiked = this.postService.getIsLiked(this.currPost.postID);
+    var isSaved = this.postService.getIsSaved(this.currPost.postID);
+    if (!isLiked) {
+      loadGreyHeart();
+    } else {
+      loadRedHeart();
+    }
+    if (!isSaved) {
+      loadSaveButton();
+    } else {
+      loadUnsaveButton();
+    }
   }
 }
 

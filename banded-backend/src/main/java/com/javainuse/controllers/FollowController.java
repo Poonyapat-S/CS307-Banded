@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -149,5 +150,19 @@ public class FollowController {
 		System.out.println("Successfully unfollowed [" + unfollowedTopicName + "]");
 		
 		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@GetMapping(path = "/getfollowedtopics")
+	public List<Topic> getFollowedTopics(@AuthenticationPrincipal User currUser) {
+		List<TopicFollower> topicFollowerObjects = topicFollowerRepository.findByUserID(currUser.getUserID());
+		List<Topic> topicsFollowed = new ArrayList<>();
+		for (TopicFollower tf : topicFollowerObjects) {
+			try {
+				topicsFollowed.add(topicRepository.findByTopicID(tf.getTopicID()).orElseThrow());
+			} catch (Exception e) {
+				System.out.println("Error finding topic with topicID: [" + tf.getTopicID() + "]");
+			}
+		}
+		return topicsFollowed;
 	}
 }

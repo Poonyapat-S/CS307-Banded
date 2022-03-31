@@ -76,7 +76,7 @@ public class PostInteractionController {
 	}
 	
 	@GetMapping(path = "/getlikestatus/{postID}")
-	public Boolean isPostLiked(@AuthenticationPrincipal User currUser, @PathVariable Integer postID) {
+	public boolean isPostLiked(@AuthenticationPrincipal User currUser, @PathVariable Integer postID) {
 		return reactionRepository.existsByUserAndPostID(currUser, postID);
 	}
 	
@@ -138,7 +138,7 @@ public class PostInteractionController {
 	}
 	
 	@GetMapping(path = "/getsavestatus/{postID}")
-	public Boolean isPostSaved(@AuthenticationPrincipal User currUser, @PathVariable Integer postID) {
+	public boolean isPostSaved(@AuthenticationPrincipal User currUser, @PathVariable Integer postID) {
 		return savedPostRepository.existsByUserAndPostID(currUser, postID);
 	}
 }
