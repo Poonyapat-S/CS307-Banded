@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Topic } from '../class/topic';
 import { TopicService } from '../service/topic/topic.service';
 import { TopicTimelineComponent } from '../topic-timeline/topic-timeline.component';
@@ -15,10 +15,21 @@ export class TopicsComponent implements OnInit {
   // this page is to display all the topics
 
   public topics!: Topic[];
-  constructor(public router: Router, private topicTimeline: TopicTimelineComponent, private topicService: TopicService) { }
+  constructor(public router: Router, private topicTimeline: TopicTimelineComponent, private topicService: TopicService, private route: ActivatedRoute) {
+    this.route.params.subscribe(params => {
+      if(params['following']) {
+        this.topicService.getUserTopics().subscribe({next: data=>this.topics=data, error: err=>alert("Error")});
+      }
+      else {
+        alert("all topics")
+        this.topicService.getTopics().subscribe({next: data=>this.topics=data, error: err=>alert("Error")});
+      }
+    })
+  }
+
 
   ngOnInit(): void {
-    this.topicService.getTopics().subscribe(data => this.topics = data);
+    // this.topicService.getTopics().subscribe(data => this.topics = data);
   }
 
   toggle = true;

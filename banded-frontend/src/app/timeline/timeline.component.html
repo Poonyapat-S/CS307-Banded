@@ -28,7 +28,7 @@
           <p></p>
           <button class="side-button">Direct Messages</button>
           <p></p>
-          <button class="side-button">Following Topics</button>
+          <a routerLink="/topics/following" class="nav-link"> <button class="side-button">Following Topics</button></a>
           <p></p>
           <a routerLink="/topics" class="nav-link"> <button class="side-button">Browse Topics</button></a>
           <p></p>
@@ -73,8 +73,7 @@
               <div class="post-text"> {{post.postText}} </div>
             </div>
             <div class="post-footer">
-              <!-- The button that will redirect to the post page
-              currently redirects to login -->
+              <!-- The button that will redirect to the post page -->
               <a routerLink="{{'/postViewingPage/'+post.postID}}" class="reply-button">Reply --></a>
             </div>
           </div>

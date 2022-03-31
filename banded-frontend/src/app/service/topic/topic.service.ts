@@ -14,6 +14,10 @@ export class TopicService {
     return this.httpClient.get<Topic[]>("http://localhost:8080/topics");
   }
 
+  public getUserTopics(): Observable<Topic[]> {
+    return this.httpClient.get<Topic[]>("http://localhost:8080/api/followcontrol/getfollowedtopics");
+  }
+
   public getCurrentTopic(topicID: string): Observable<Topic> {
     return this.httpClient.get<Topic>("http://localhost:8080/topics/getTopic/"+topicID);
   }
