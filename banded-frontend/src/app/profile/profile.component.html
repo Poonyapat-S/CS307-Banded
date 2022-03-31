@@ -46,6 +46,11 @@
   -->
 
   <button class="editBio" onclick="openForm()" *ngIf="this.viewingUserName == this.currUserName">Edit Bio</button>
+
+  <!--ANDREW this is the line of code that controls follow unfollow-->
+  <button id="followButton" class="followBtn" onclick="followControl()" *ngIf="this.viewingUserName != this.currUserName">Follow/Unfollow</button>
+
+
   <div class="form-popup" id="myForm">
     <form action= "/action_page" class="form-container">
       <h1 id="titleenter">Enter New Bio</h1>
