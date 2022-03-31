@@ -18,14 +18,14 @@ public class TopicFollower {
 	private Integer topicFollowerID;
 	
 	@JsonIgnore
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
 	@JoinColumn(name="userID")
 	private User user;
 	@Column(name = "userID", updatable = false, insertable = false)
 	private Integer userID;
-	
+
 	@JsonIgnore
-	@ManyToOne(targetEntity = Topic.class, fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = Topic.class, fetch = FetchType.EAGER)
 	@JoinColumn(name="topicID")
 	private Topic topic;
 	@Column(name = "topicID", updatable = false, insertable = false)

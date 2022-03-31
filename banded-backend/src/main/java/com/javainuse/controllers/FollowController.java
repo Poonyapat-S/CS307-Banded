@@ -155,7 +155,7 @@ public class FollowController {
 	
 	@GetMapping(path = "/getfollowedtopics")
 	public List<Topic> getFollowedTopics(@AuthenticationPrincipal User currUser) {
-		List<TopicFollower> topicFollowerObjects = topicFollowerRepository.findByUserID(currUser.getUserID());
+		List<TopicFollower> topicFollowerObjects = topicFollowerRepository.findByUser(currUser);
 		List<Topic> topicsFollowed = new ArrayList<>();
 		for (TopicFollower tf : topicFollowerObjects) {
 			try {

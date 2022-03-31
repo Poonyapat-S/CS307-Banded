@@ -30,7 +30,7 @@
           <p></p>
           <button class="side-button">Direct Messages</button>
           <p></p>
-          <button class="side-button">Following Topics</button>
+          <a routerLink="/topics/following"><button class="side-button">Following Topics</button></a>
           <p></p>
           <a routerLink="/topics" class="nav-link"> <button class="side-button">Browse Topics</button></a>
           <p></p>
@@ -63,7 +63,7 @@
           <div class="post" *ngFor="let post of posts">
             <div style="display: flex; justify-content: space-between;">
               <span class="post-time"> {{this.convertDateTime(post.postTime)}} </span>
-              <a routerLink="{{'/profile/'+post.userName}}" *ngIf="post.userName != 'Anonymous'"><span class="post-user"> {{post.userName}} </span></a>
+              <a href="{{'/profile/'+post.userName}}" *ngIf="post.userName != 'Anonymous'"><span class="post-user"> {{post.userName}} </span></a>
               <span class="post-user"  *ngIf="post.userName == 'Anonymous'"> {{post.userName}} </span>
             </div>
             <div class="post-tags">

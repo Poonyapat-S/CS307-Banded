@@ -17,7 +17,7 @@ export class TopicsComponent implements OnInit {
   public topics!: Topic[];
   constructor(public router: Router, private topicTimeline: TopicTimelineComponent, private topicService: TopicService, private route: ActivatedRoute) {
     this.route.params.subscribe(params => {
-      if(params['following']) {
+      if(params['following'] == "following") {
         this.topicService.getUserTopics().subscribe({next: data=>this.topics=data, error: err=>alert("Error")});
       }
       else {
