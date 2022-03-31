@@ -65,7 +65,7 @@
             </div>
             <div class="post-tags">
               <div class="name"></div> Tags:
-              <div class="tag"> {{post.topicName}} </div>
+              <a href="{{'/topic/'+post.topicID}}"><div class="tag"> {{post.topicName}} </div> </a>
             </div>
 
             <div class="post-content">
@@ -75,7 +75,7 @@
             <div class="post-footer">
               <!-- The button that will redirect to the post page
               currently redirects to login -->
-              <a href="{{'/postViewingPage/'+post.postID}}" class="reply-button">Reply --></a>
+              <a routerLink="{{'/postViewingPage/'+post.postID}}" class="reply-button">Reply --></a>
             </div>
           </div>
 

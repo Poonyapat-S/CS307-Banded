@@ -19,7 +19,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setSubject((userDetails.getUsername()))
                 .setIssuedAt(new Date())
-                .setExpiration(new Date((new Date()).getTime() + 3600*1000))
+                .setExpiration(new Date((new Date()).getTime() + 7200*1000))
                 .signWith(SignatureAlgorithm.HS512, jwtSecret)
                 .compact();
     }
