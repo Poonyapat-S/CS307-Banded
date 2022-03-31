@@ -35,7 +35,8 @@
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "src/app/profile/test.js",
               "src/app/createPost/createPost.js",
-              "src/app/postViewingPage/postViewingPage.js"]
+              "src/app/postViewingPage/postViewingPage.js",
+             "src/app/followedUsers/followedUsers.js"]
           },
           "configurations": {
             "production": {

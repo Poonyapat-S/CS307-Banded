@@ -10,6 +10,9 @@ import { createPostComponent } from './createPost/createPost.component';
 import { postViewingPageComponent } from './postViewingPage/postViewingPage.component';
 import { TopicsComponent } from './topics/topics.component';
 import { TopicTimelineComponent } from './topic-timeline/topic-timeline.component';
+import { commentViewerComponent } from './commentViewer/commentViewer.component';
+import { followedUsersComponent } from './followedUsers/followedUsers.component';
+import { mySavedPostsComponent } from './mySavedPosts/mySavedPosts.component';
 
 const routes: Routes = [
   { path: '', component: TimelineComponent},
@@ -22,7 +25,10 @@ const routes: Routes = [
   { path: 'createPost', component: createPostComponent},
   {path: 'postViewingPage/:postID', component: postViewingPageComponent},
   { path: 'topics', component: TopicsComponent},
-  { path: 'topic/:topicID', component: TopicTimelineComponent}
+  { path: 'topic/:topicID', component: TopicTimelineComponent}, 
+  { path: 'commentViewer', component: commentViewerComponent}, 
+  {path: 'followedUsers', component: followedUsersComponent},
+  {path: 'mySavedPosts', component: mySavedPostsComponent}
 ];
 
 @NgModule({
