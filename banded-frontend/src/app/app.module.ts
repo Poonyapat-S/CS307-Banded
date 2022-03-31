@@ -13,9 +13,10 @@ import { LoginUserComponent } from './login-user/login-user.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
 import { TimelineComponent } from './timeline/timeline.component';
 import { ProfileComponent } from './profile/profile.component';
-
-
+import { commentViewerComponent } from './commentViewer/commentViewer.component';
+import { followedUsersComponent } from './followedUsers/followedUsers.component';
 import { createPostComponent } from './createPost/createPost.component';
+import { mySavedPostsComponent } from './mySavedPosts/mySavedPosts.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -37,7 +38,10 @@ import { TopicTimelineComponent, TopicTimelineComponentProvider } from './topic-
     ProfileComponent,
     createPostComponent,
     TopicsComponent,
-    TopicTimelineComponent
+    TopicTimelineComponent,
+    commentViewerComponent,
+    followedUsersComponent,
+    mySavedPostsComponent
   ],
   imports: [
     BrowserModule,

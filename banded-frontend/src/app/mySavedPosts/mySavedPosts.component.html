@@ -1,0 +1,105 @@
+
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="./mySavedPosts.component.css" rel="stylesheet">
+
+  <script type="text/javascript">
+    function vis() {
+      if(currProfile == null) {
+        document.getElementById("smallUserName").style.visibility="hidden";
+        document.getElementById("smallProfileImg").style.visibility="hidden";
+        console.log('invis');
+      } else {
+        document.getElementById("smallUserName").style.visibility="visible";
+        document.getElementById("smallProfileImg").style.visibility="visible";
+        console.log('vis');
+      }
+    }
+  </script>
+</head>
+
+<!-- Calls the vis function on loading the body -->
+<body onload="vis()">
+
+  <!--Below Are the Verticle Lines for Margins-->
+  <div class="v1"></div>
+  <div class="v2"></div>
+
+  <!-- code foe the timeline header (title and profile info) -->
+  <div class="timeline-header">
+    <!--Banded Header-->
+    <div class = "title"> Saved Posts</div>
+
+
+    <!-- if signed in displays profile info -->
+    <div class="user">
+      <div class="smallUserName">currProfile.userName</div>
+      <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+    </div>
+  </div>
+
+  <!-- line for end of header -->
+  <hr>
+
+  <!-- The four buttons on the left hand side-->
+
+  <div class="container">
+    <!-- The four buttons on the left hand side -->
+    <div>
+      <p></p>
+      <a routerLink="/createPost" class="nav-link"> <button class="side-button">Create Post</button></a>
+      <p></p>
+      <button class="side-button">Direct Messages</button>
+      <p></p>
+      <button class="side-button">Following Tags</button>
+      <p></p>
+      <button class="side-button">Browse Tags</button>
+      <p></p>
+      <button class="side-button">Settings</button>
+
+    </div>
+
+    <div class="timeline">
+
+      <!-- start of first post -->
+
+      <!--NEED TO PUT IN *ngFor = "let post be of ...." for saved posts in the div class below-->
+      <div class="post">
+        <div class="post-time"> time </div>
+        <div class="post-tags">
+          <div class="name"></div> Tags:
+          <div class="tag"> post.topicName </div>
+        </div>
+
+        <div class="post-content">
+          <div class = "post-title"> post.postTitle </div>
+          <div class="post-text"> post.postText </div>
+        </div>
+        <div class="post-footer">
+          <!-- Sam this the button that will redirect to the post page
+          currently redirects to login -->
+          <a href="/login" class="reply-button">Reply --> </a>
+        </div>
+      </div>
+
+      <!-- spacing between posts -->
+      <p></p>
+
+      <!-- end of posts -->
+
+      <!--
+      <div class="timeline-footer">
+        <button (click)=reloadPage() class="btn btn-success">Refresh</button>
+      </div>
+       -->
+
+    </div>
+
+    
+
+  </div>
+</body>
+</html>
