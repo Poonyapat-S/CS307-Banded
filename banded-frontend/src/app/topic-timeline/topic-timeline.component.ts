@@ -19,12 +19,15 @@ export class TopicTimelineComponent implements OnInit {
   constructor(private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute, private router: Router) {this.currProfile = new Profile("", "", "", "", "",""); this.posts=[], this.count=0}
 
   ngOnInit(): void {
+    var topicID="";
+    this.route.params.subscribe(params => topicID=params["topicID"]);
+    this.postService.get_topic_timeline(topicID, this.count).pipe(delay(500)).subscribe((data: Post[]) => {this.posts=data; console.log(data);});
     this.profileService.getProfile().subscribe(data => this.currProfile=data);
     console.log(this.currProfile)
   }
 
   public load_page(topicName: string, count: number) {
-    this.postService.get_topic_timeline(topicName, this.count).pipe(delay(500)).subscribe((data: Post[]) => {this.posts=data; console.log(data)});
+    this.postService.get_topic_timeline(topicName, this.count).pipe(delay(500)).subscribe((data: Post[]) => {this.posts=data; console.log(data);});
     this.profileService.getProfile().subscribe(data => this.currProfile=data);
     console.log(this.currProfile)
   }

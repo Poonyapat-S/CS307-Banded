@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'createPost', component: createPostComponent},
   {path: 'postViewingPage/:postID', component: postViewingPageComponent},
   { path: 'topics', component: TopicsComponent},
-  { path: 'topic', component: TopicTimelineComponent}
+  { path: 'topic/:topicID', component: TopicTimelineComponent}
 ];
 
 @NgModule({

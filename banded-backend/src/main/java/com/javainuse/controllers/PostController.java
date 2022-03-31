@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
+
+import javax.websocket.server.PathParam;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -17,6 +19,8 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static java.lang.Math.min;
 
 @RestController
 @AllArgsConstructor
@@ -77,15 +81,23 @@ public class PostController {
         }
     }
 
-    @GetMapping(path="/topic/{topicName}")
-    public List<Post> getPostInTopic(@AuthenticationPrincipal User user, @PathVariable String topicName)
+    @GetMapping(path="/topic/{topicID}")
+    public List<Post> getPostInTopic(@AuthenticationPrincipal User user, @PathVariable Integer topicID, @RequestParam int count)
     {
         try {
-           Topic foundTopic = topicRepository.findByTopicName(topicName).orElseThrow(() -> new Exception());
+           Topic foundTopic = topicRepository.findByTopicID(topicID).orElseThrow(() -> new Exception());
            List<Post> postList = postRepository.findByTopic(foundTopic);
-           return postService.anonymizeName(postList);
+           postList = postService.anonymizeName(postList);
+           postService.sortByDateTimeDesc(postList);
+           postService.removeDup(postList);
+           for(Post post: postList) {
+               post.setTopicName(foundTopic.getTopicName());
+               post.setUserName(post.getUser().getUsername());
+           }
+           return postList.subList(0, min(postList.size(), (count+1)*10));
         }
         catch(Exception e) {
+            System.out.println("Weird");
             return new ArrayList<Post>();
         }
     }
