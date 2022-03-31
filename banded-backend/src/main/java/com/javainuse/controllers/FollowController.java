@@ -70,14 +70,17 @@ public class FollowController {
 		}
 		
 		//make sure the follower connection already exists before trying to delete it
+		UserFollower rowToBeDeleted;
 		if (!userFollowerRepository.existsByFollowingUserAndFollowedUser(currUser, unfollowedUser)) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("UNFOLLOW FAILURE: no row deleted bc + " +
 					currUser.getUsername() + " (userID:" + currUser.getUserID() + ") was not following " +
 					unfollowedUserName + " (userID:" + unfollowedUser.getUserID() + ")");
+		} else {
+			//grab the exact UserFollowerObject to be deleted
+			rowToBeDeleted = userFollowerRepository.findByFollowingUserAndFollowedUser(currUser, unfollowedUser).orElseThrow();
 		}
 		
 		//delete the "follow link" between users
-		UserFollower rowToBeDeleted = new UserFollower(currUser, unfollowedUser);
 		userFollowerRepository.delete(rowToBeDeleted);
 		System.out.println("Successfully unfollowed [" + unfollowedUserName + "]");
 		
@@ -131,14 +134,17 @@ public class FollowController {
 		}
 		
 		//make sure the follower connection already exists before trying to delete it
+		TopicFollower rowToBeDeleted;
 		if (!topicFollowerRepository.existsByUserAndTopic(currUser, unfollowedTopic)) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("UNFOLLOW FAILURE: no row deleted bc + " +
 					currUser.getUsername() + " (userID:" + currUser.getUserID() + ") was not following " +
 					unfollowedTopicName + " (topicID:" + unfollowedTopic.getTopicID() + ")");
+		} else {
+			//retrieve the exact instance of this follow to be deleted
+			rowToBeDeleted = topicFollowerRepository.findByUserAndTopic(currUser, unfollowedTopic).orElseThrow();
 		}
 		
 		//delete the "follow link" between user and given topic
-		TopicFollower rowToBeDeleted = new TopicFollower(currUser, unfollowedTopic);
 		topicFollowerRepository.delete(rowToBeDeleted);
 		System.out.println("Successfully unfollowed [" + unfollowedTopicName + "]");
 		
