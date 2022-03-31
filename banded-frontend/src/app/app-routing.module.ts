@@ -26,6 +26,7 @@ const routes: Routes = [
   {path: 'postViewingPage/:postID', component: postViewingPageComponent},
   { path: 'topics', component: TopicsComponent},
   { path: 'topic/:topicID', component: TopicTimelineComponent}, 
+  { path: 'topics/following', component: TopicsComponent}, 
   { path: 'commentViewer', component: commentViewerComponent}, 
   {path: 'followedUsers', component: followedUsersComponent},
   {path: 'mySavedPosts', component: mySavedPostsComponent},
