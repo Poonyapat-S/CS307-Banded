@@ -36,4 +36,12 @@ export class ProfileService {
   public deleteProfile(userName: string) {
     return this.httpClient.delete<any>("http://localhost:8080/profile/delete/"+userName);
   }
+
+  public followUser(userName: string) {
+    return this.httpClient.post("http://localhost:8080/api/followcontrol/followuser", userName);
+  }
+
+  public unfollowUser(userName: string) {
+    return this.httpClient.post("http://localhost:8080/api/followcontrol/unfollowuser", userName);
+  }
 }
