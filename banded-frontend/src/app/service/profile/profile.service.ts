@@ -44,4 +44,8 @@ export class ProfileService {
   public unfollowUser(userName: string) {
     return this.httpClient.post("http://localhost:8080/api/followcontrol/unfollowuser", userName);
   }
+
+  public getFollowedUserNames() {
+    return this.httpClient.get<String[]>("http://localhost:8080/api/followcontrol/getfollowedusers");
+  }
 }

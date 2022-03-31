@@ -88,6 +88,21 @@ public class FollowController {
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
 	
+	@GetMapping(path = "/getfollowedusers")
+	public List<String> getFollowedUserNames(@AuthenticationPrincipal User currUser) {
+		List<UserFollower> userFollowerObjects = userFollowerRepository.findByFollowingID(currUser.getUserID());
+		List<String> usersFollowed = new ArrayList<>();
+		for (UserFollower uf : userFollowerObjects) {
+			try {
+				User u = userRepository.findByUserID(uf.getFollowedID()).orElseThrow();
+				usersFollowed.add(u.getUsername());
+			} catch (Exception e) {
+				System.out.println("Error finding User with userID: [" + uf.getFollowedID() + "]");
+			}
+		}
+		return usersFollowed;
+	}
+	
 	
 	/* -=-TOPIC-RELATED FUNCTIONS-=- */
 	@PostMapping(path = "/followtopic")
