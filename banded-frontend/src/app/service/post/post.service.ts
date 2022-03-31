@@ -37,4 +37,27 @@ export class PostService {
     return this.httpClient.post("http://localhost:8080/api/posts/"+post.postID, post);
   }
 
+  public getIsLiked(id : number) {
+    return this.httpClient.get("http://localhost:8080/api/interaction/getlikestatus" + id.toString());
+  }
+
+  public likePost(id : number) {
+    return this.httpClient.post("http://localhost:8080/api/interaction/like", id);
+  }
+
+  public unlikePost(id : number) {
+    return this.httpClient.post("http://localhost:8080/api/interaction/unlike", id);
+  }
+
+  public getIsSaved(id : number) {
+    return this.httpClient.get("http://localhost:8080/api/interaction/getsavestatus" + id.toString());
+  }
+
+  public savePost(id : number) {
+    return this.httpClient.post("http://localhost:8080/api/interaction/savepost", id);
+  }
+
+  public unsavePost(id : number) {
+    return this.httpClient.post("http://localhost:8080/api/interaction/unsavepost", id);
+  }
 }

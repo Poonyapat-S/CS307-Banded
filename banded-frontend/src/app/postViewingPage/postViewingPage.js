@@ -3,23 +3,23 @@ function toggleLike() {
     document.getElementById("heart").style.backgroundColor = "grey";
     document.getElementById("heart-a").style.backgroundColor = "grey";
     document.getElementById("heart-b").style.backgroundColor = "grey";
-    //BACKEND CODE TO CHANGE POST TO UNLIKED
-    alert('Unliked Post!');
+    window.dispatchEvent(new CustomEvent('unlikePost'));
+    //alert('Unliked Post!'); <-- calling this when successful in postViewingPage.component.ts
 } else {
     document.getElementById("heart").style.backgroundColor = "red";
     document.getElementById("heart-a").style.backgroundColor = "red";
     document.getElementById("heart-b").style.backgroundColor = "red";
-    //BACKEND CODE TO CHANGE POST TO LIKED
-    alert('Liked Post!');
+    window.dispatchEvent(new CustomEvent('likePost'));
+    //alert('Liked Post!'); <-- calling this when successful in postViewingPage.component.ts
 }}
 
 function toggleSave()  {
     if(document.getElementById("savePost").textContent == 'Save Post') {
         document.getElementById("savePost").textContent = 'Unsave Post';
-        //INCLUDE BACKEND CODE TO MAKE POST SAVED
+        window.dispatchEvent(new CustomEvent('savePost'));
     } else {
         document.getElementById("savePost").textContent = 'Save Post';
-        //INCLUDE BACKEND CODE TO MAKE POST UNSAVED
+        window.dispatchEvent(new CustomEvent('unsavePost'));
     }
 }
 
@@ -68,7 +68,7 @@ function submitForm() {
     })
     window.dispatchEvent(event);
 
-    //HERE IS WHERE YOU SHOULD SEND BACKEND THE NEW COMMMENT(text)
+    //HERE IS WHERE YOU SHOULD SEND BACKEND THE NEW COMMENT(text)
 
     closeForm();
   }

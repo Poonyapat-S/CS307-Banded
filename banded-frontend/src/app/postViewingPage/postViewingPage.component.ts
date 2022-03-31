@@ -44,6 +44,26 @@ export class postViewingPageComponent implements OnInit {
     post.postID = this.currPost.postID;
     this.postService.replyPost(post).subscribe({next: response => alert("Replied to post."), error: err => console.log(err)});
   }
+
+  @HostListener('window:likePost')
+  likePost() {
+    this.postService.likePost(this.currPost.postID).subscribe({next: response => alert("Liked post!"), error: err => console.log(err)});
+  }
+
+  @HostListener('window:unlikePost')
+  unlikePost() {
+    this.postService.unlikePost(this.currPost.postID).subscribe({next: response => alert("Unliked post!"), error: err => console.log(err)});
+  }
+
+  @HostListener('window:savePost')
+  savePost() {
+    this.postService.savePost(this.currPost.postID).subscribe({next: response => alert("Saved post!"), error: err => console.log(err)});
+  }
+
+  @HostListener('window:unsavePost')
+  unsavePost() {
+    this.postService.unsavePost(this.currPost.postID).subscribe({next: response => alert("Unsaved post!"), error: err => console.log(err)});
+  }
 }
 
 
