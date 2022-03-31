@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Profile, ProfileService } from '../service/profile/profile.service';
 import { TokenService } from '../service/auth/token.service';
@@ -50,6 +50,16 @@ export class ProfileComponent implements OnInit {
 
   public deleteProfile() {
     this.profileService.deleteProfile(this.currProfile.userName).subscribe({next: response => {alert("Profile Deleted"); this.tokenService.signOut(); this.router.navigate(['']);}, error: err => alert("Unauthorized")});
+  }
+
+  @HostListener('window:follow')
+  public followUser() {
+    this.profileService.followUser(this.viewingUserName).subscribe({next: response => alert("Followed "+this.viewingUserName+"!"), error: err => console.log(err)});
+  }
+
+  @HostListener('window:unfollow')
+  public unfollowUser() {
+    this.profileService.unfollowUser(this.viewingUserName).subscribe({next: response => alert("Unfollowed "+this.viewingUserName+"!"), error: err => console.log(err)});
   }
 
 }

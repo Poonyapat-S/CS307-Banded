@@ -21,18 +21,18 @@ function submitForm() {
 
   function submitDeletion(){
     /*Send back to timeline */
-    
+
     closeFormDelete()
   }
 
   function followControl () {
     if(document.getElementById('followButton').textContent == 'Follow/Unfollow' || document.getElementById('followButton').textContent == 'Follow') {
-      //Plug Back End Code to Tell backend the user is now FOLLOWED  
+      window.dispatchEvent(new CustomEvent('follow'));
       document.getElementById('followButton').textContent = 'Unfollow';
-      alert('Successfully Followed');
+      //alert('Successfully Followed');
     } else {
-      //Plug Back End Code to Tell backend the user is now UNFOLLOWED 
+      window.dispatchEvent(new CustomEvent('unfollow'));
       document.getElementById('followButton').textContent = 'Follow';
-      alert('Successfully Unfollowed');
+      //alert('Successfully Unfollowed');
     }
   }

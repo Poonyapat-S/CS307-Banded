@@ -25,11 +25,10 @@ function toggleSave()  {
 
 function loadLikedStatus() {
 //This is the function that loads the heart into the correct color, depending on if it was liked already or not
-  window.dispatchEvent(new CustomEvent('checkInteractionStatus'));
 //  if (post is not liked) {
-    //document.getElementById("heart").style.backgroundColor = "grey";
-    //document.getElementById("heart-a").style.backgroundColor = "grey";
-    //document.getElementById("heart-b").style.backgroundColor = "grey";
+    document.getElementById("heart").style.backgroundColor = "grey";
+    document.getElementById("heart-a").style.backgroundColor = "grey";
+    document.getElementById("heart-b").style.backgroundColor = "grey";
 // }
 // else {
  //   document.getElementById("heart").style.backgroundColor = "red";
@@ -40,16 +39,17 @@ function loadLikedStatus() {
 
 //This is the part that loads in whether it was saved or not already
 //if (post was NOT already saved) {
-    //document.getElementById("savePost").textContent = 'Save Post';
+    document.getElementById("savePost").textContent = 'Save Post';
 //} else {
     // document.getElementById("savePost").textContent = 'Unsave Post'
 
 //}
 
 //if(post User is NOT already followed) {
-    document.getElementById("followThisUser").textContent = 'Follow This User';
+    //document.getElementById("followThisUser").textContent = 'Follow This User';
     // } else {
-        // document.getElementById("followThisUser").textContent = 'Unfollow This User'
+        document.getElementById("followThisUser").textContent = 'Unfollow This User'
+  window.dispatchEvent(new CustomEvent('checkInteractionStatus'));
 }
 
 function loadRedHeart() {
