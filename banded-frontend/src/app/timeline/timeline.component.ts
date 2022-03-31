@@ -1,6 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { delay } from 'rxjs';
 import { Post } from '../class/post';
 import { TokenService } from '../service/auth/token.service';
@@ -17,7 +17,7 @@ export class TimelineComponent implements OnInit {
   public posts: Post[];
   private count: number;
 
-  constructor(private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute, private tokenService: TokenService) {this.currProfile = new Profile("", "", "", "", "", ""); this.posts=[], this.count=0}
+  constructor(private router: Router, private profileService: ProfileService, private postService: PostService, private route: ActivatedRoute, private tokenService: TokenService) {this.currProfile = new Profile("", "", "", "", "", ""); this.posts=[], this.count=0}
 
   ngOnInit() {
     if(this.tokenService.getUser()) {
@@ -47,10 +47,10 @@ export class TimelineComponent implements OnInit {
     return this.postService;
   }
 
-  searchUser(title:string) {
-    //also check if username is valid
-    if(title!="") {
-     alert(title);
+  searchUser(userName:string) {
+    if(userName!="") {
+      this.router.navigate(['/profile/'+ userName])
+      alert('Searchign for profile ' + userName + "...");
     } else {
     alert("Please type a valid username");
     }

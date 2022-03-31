@@ -13,6 +13,7 @@ import { TopicTimelineComponent } from './topic-timeline/topic-timeline.componen
 import { commentViewerComponent } from './commentViewer/commentViewer.component';
 import { followedUsersComponent } from './followedUsers/followedUsers.component';
 import { mySavedPostsComponent } from './mySavedPosts/mySavedPosts.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   { path: '', component: TimelineComponent},
@@ -21,14 +22,18 @@ const routes: Routes = [
   { path: 'login', component: LoginUserComponent},
   { path: 'create-account', component: CreateAccountComponent},
   { path: 'profile', component: ProfileComponent},
-  { path: 'profile/:userName', component: ProfileComponent},
   { path: 'createPost', component: createPostComponent},
   {path: 'postViewingPage/:postID', component: postViewingPageComponent},
   { path: 'topics', component: TopicsComponent},
   { path: 'topic/:topicID', component: TopicTimelineComponent}, 
   { path: 'commentViewer', component: commentViewerComponent}, 
   {path: 'followedUsers', component: followedUsersComponent},
-  {path: 'mySavedPosts', component: mySavedPostsComponent}
+  {path: 'mySavedPosts', component: mySavedPostsComponent},
+  { path: 'profile/:userName', component: ProfileComponent},
+
+  // // put all other paths above
+  // { path: '404', component: ErrorPageComponent},
+  // { path: '**', redirectTo: '404'}, // if page not found go to timeline
 ];
 
 @NgModule({

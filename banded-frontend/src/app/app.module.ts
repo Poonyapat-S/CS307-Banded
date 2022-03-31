@@ -25,6 +25,7 @@ import { authInterceptorProviders } from './_helper/auth.interceptor';
 import { UnauthInterceptorProvider } from './_helper/unauth.interceptor';
 import { TopicsComponent } from './topics/topics.component';
 import { TopicTimelineComponent, TopicTimelineComponentProvider } from './topic-timeline/topic-timeline.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { TopicTimelineComponent, TopicTimelineComponentProvider } from './topic-
     TopicTimelineComponent,
     commentViewerComponent,
     followedUsersComponent,
-    mySavedPostsComponent
+    mySavedPostsComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
