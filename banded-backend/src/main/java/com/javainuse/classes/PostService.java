@@ -5,9 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.ListIterator;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -62,5 +61,15 @@ public class PostService {
             posts = new ArrayList<>();
         }
         return posts;
+    }
+
+    public void sortByDateTimeDesc(List<Post> allPosts) {
+        Comparator<Post> dateComparator = Comparator.comparing(Post::getPostTime);
+        Collections.sort(allPosts,dateComparator);
+        Collections.reverse(allPosts);
+    }
+
+    public List<Post> removeDup(List<Post> allPosts) {
+        return allPosts.stream().distinct().collect(Collectors.toList());
     }
 }

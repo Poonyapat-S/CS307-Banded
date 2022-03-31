@@ -102,11 +102,8 @@ public class PostController {
             allPosts.addAll(postService.anonymizeName(postRepository.findByTopic(followedTopics.get(i))));
         }
         allPosts.addAll(postService.anonymizeName(postRepository.findByUser(user)));
-        System.out.println(allPosts);
-        Comparator<Post> dateComparator = (Post p1, Post p2) ->p1.getPostTime().compareTo(p2.getPostTime());
-        Collections.sort(allPosts,dateComparator);
-        Collections.reverse(allPosts);
-        List<Post> noDup = allPosts.stream().distinct().collect(Collectors.toList());
+        postService.sortByDateTimeDesc(allPosts);
+        List<Post> noDup = postService.removeDup(allPosts);
 
         List<Post> toReturn = new ArrayList<Post>();
         int i = count;
