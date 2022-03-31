@@ -165,7 +165,7 @@ public class FollowController {
 			}
 		}
 		return topicsFollowed;
-
+	}
 
 	@GetMapping(path="/topic/isFollowing/{topicID}")
 	public Boolean getIsFollowing(@AuthenticationPrincipal User user, @PathVariable Integer topicID) {
