@@ -13,5 +13,5 @@ public interface TopicRepository extends JpaRepository<Topic, Integer> {
     List<Topic> findAll();
 
     Boolean existsByTopicName(String topicName);
-    boolean existsByTopicID(Integer topicID);
+    Boolean existsByTopicID(Integer topicID);
 }

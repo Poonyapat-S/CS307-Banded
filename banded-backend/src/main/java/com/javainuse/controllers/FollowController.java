@@ -92,6 +92,7 @@ public class FollowController {
 	/* -=-TOPIC-RELATED FUNCTIONS-=- */
 	@PostMapping(path = "/followtopic")
 	public ResponseEntity<String> followTopic(@AuthenticationPrincipal User currUser, @RequestBody String newFollow) {
+		System.out.println("Follow Topic Called: "+newFollow);
 		if (!topicRepository.existsByTopicName(newFollow)) {
 			//if the topic cannot be found in the Topic database (checking by name), throw an exception
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("FOLLOW FAILURE: Topic with topicName [" + newFollow + "] not found");
@@ -164,5 +165,10 @@ public class FollowController {
 			}
 		}
 		return topicsFollowed;
+
+
+	@GetMapping(path="/topic/isFollowing/{topicID}")
+	public Boolean getIsFollowing(@AuthenticationPrincipal User user, @PathVariable Integer topicID) {
+		return topicFollowerRepository.existsByUserAndTopic(user, topicRepository.findByTopicID(topicID).orElse(null));
 	}
 }
