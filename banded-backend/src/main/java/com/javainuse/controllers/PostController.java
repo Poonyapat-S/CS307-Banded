@@ -170,6 +170,7 @@ public class PostController {
             Post parentPost = postRepository.findById(postId).orElseThrow(() -> new Exception());
             parentPost.setTopicName(parentPost.getTopic().getTopicName());
             parentPost.setUserName(parentPost.getUser().getUsername());
+            if(parentPost.getIsAnon()) parentPost.setUserName("Anonymous");
             return parentPost;
         }
         catch (Exception e){
