@@ -24,7 +24,7 @@ public class Post {
     private Integer postID;
 
     @JsonIgnore
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(name="userID")
     private User user;
 
@@ -41,7 +41,7 @@ public class Post {
     private LocalDateTime postTime;
 
     @JsonBackReference
-    @ManyToOne(targetEntity = Post.class, fetch=FetchType.LAZY)
+    @ManyToOne(targetEntity = Post.class, fetch=FetchType.EAGER)
     @JoinColumn(name="parentPostID")
     private Post parentPost;
 
@@ -49,7 +49,7 @@ public class Post {
     private Integer parentPostID;
 
     @JsonIgnore
-    @ManyToOne(targetEntity = Topic.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Topic.class, fetch = FetchType.EAGER)
     @JoinColumn(name="topicID")
     private Topic topic;
 
