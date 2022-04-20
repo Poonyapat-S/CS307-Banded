@@ -1,7 +1,11 @@
+* { margin: 0; padding: 0;}
 body {
   background-color: lightgrey;
-  padding: 0px;
+  width: 100%;
+  height: 100%;
   margin: 0;
+  padding: 0;
+
   
 }
 
@@ -55,6 +59,27 @@ hr{
   left: 22%;
   font-family: 'Courier New', Courier, monospace;
 }
+
+table {
+  border-collapse: collapse;
+  empty-cells: show;
+}
+
+.infoTable {
+  border-collapse: separate;
+  border-spacing:0 15px;
+  column-count: 2;
+  column-gap: 40px;
+ 
+}
+
+
+.infoHeader {
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: 50;
+}
+
+
 
 /* Big Username */
   .userName {
@@ -167,6 +192,31 @@ hr{
   font-family: 'Courier New', Courier, monospace;
 }
 
+.blockBtn {
+  text-align: center;
+  color: black;
+  text-decoration: inline-block;
+  background-color: lightgrey;
+  font-size: 20px;
+  position: absolute; right: 13.5%; top: 17%;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.editInfo {
+  text-align: center;
+  color: black;
+  text-decoration: inline-block;
+  background-color: lightgrey;
+  font-size: 20px;
+  position: absolute; right: 8%; top: 22%;
+  font-family: 'Courier New', Courier, monospace;
+  cursor:pointer;
+}
+
+.editInfo:hover {
+  background-color: lightgoldenrodyellow;
+}
+
 /* End of 4 buttons on the left */
 
 
@@ -220,7 +270,29 @@ hr{
     position: absolute; left: 29%; top: 55%; 
   }
 
-  
+  .iform-container {
+    align-items: center;
+    padding: 10px;
+    background-color: lightgrey;
+    max-width: 500px;
+    min-width: 500px;
+  }
+
+  .infoHeader {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-align: center;
+  }
+
+  .changeEmail {
+    background-color: lightblue;
+    border-color: black;
+    border-radius: 30%;
+  }
+
+  .changeEmail:hover {
+    background-color: rgb(230, 238, 80);
+  }
   
   .form-popup {
     display: none;
@@ -235,7 +307,6 @@ hr{
     max-width: 500px;
     padding: 10px;
     background-color: lightgrey;
-    
   }
 
   
@@ -320,3 +391,71 @@ hr{
     margin-bottom:10px;
     opacity: 0.8;
   }
+
+  /* Start of the margins construction */
+.pageContainer {
+  min-width: 100%;
+  height: 100%;
+}
+
+/* ================================ left ================================ */
+
+.leftpane {
+  width: 20%;
+  height: 100%;
+  float: left;
+  /* background-color: lightgoldenrodyellow; */
+  border-collapse: collapse;
+}
+/* ================================ top ================================ */
+.toppane {
+  width: 100%;
+  height: 100px;
+  border-collapse: collapse;
+  /* background-color: lightpink; */
+  border-bottom: 2px solid black;
+  text-align: center;
+  
+  /* Centering code */
+  display: flex;
+  align-items: center;
+}
+
+/* Banded Header */
+.toppane .title {
+  position: relative;
+  left: 21%;
+  /* padding: 0px 15px; */
+  color: black;
+  font-size: 60px;
+}
+
+/* (for logged in users) Both the small username and small profile pic for header 
+* visiblity is hidden until user is logged in*/
+.toppane .user {
+  /* visibility: hidden; */
+
+  display: flex;
+  align-items: center;
+  
+  position: relative;
+  left: 59%;
+  /* padding: 0px 15px; */
+}
+
+.toppane .user .smallUserName {
+  color: black;
+  font-size: 25px;
+  text-align: right;
+  padding: 0px 20px;
+  float: left;
+}
+
+.toppane .user .smallProfileImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  float: right;
+}
+
+/* End of the margins construction */
