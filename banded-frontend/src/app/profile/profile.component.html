@@ -8,29 +8,34 @@
 <!---SAM TEST-->
 
 <body>
+  <!--THis is now gone. Maybe someone deleted it? Could cause concerns later - Sam.-->
+  <script src="./profilePageAssets.ts"></script>
   <div class="div"></div>
 
   <!--Below Are the Verticle Lines for Margins-->
   <div class="v1"></div>
   <div class="v2"></div>
-  <hr class="dashed-border">
 
-<!--THis is now gone. Maybe someone deleted it? Could cause concerns later - Sam.-->
-  <script src="./profilePageAssets.ts"></script>
-
-  <!--Banded Header-->
-  <p class = "banded"> Banded</p>
-
-
+  <div class="pageContainer">
+    <div class="toppane">
+      <!--Banded Header-->
+      <p class = "banded"> Banded</p>
+      <div class="smallUserName">{{currProfile.userName}}</div>
+      <img class="smallProfileImg"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+    </div> <!--End of Top Pane-->
+    
+  </div><!--End of Page Container-->
+  
+ 
   <p class="userName">{{currProfile.name}}</p>
-  <p class="smallUserName">{{currProfile.userName}}</p>
-  <p  id="bio" class ="bio">{{currProfile.bio}}</p>
-
-  <p class = "topicHeader"> Topics Following:</p>
-  <p class="topicsFollowed"> Topics will show here</p>
-  <img class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
   <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
 
+
+  <p  id="bio" class ="bio">{{currProfile.bio}}</p>
+
+  
+  <img class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+  
 
   <!-- The four buttons on the left hand side-->
   <a routerLink="/createPost"><button class="createPost">Create Post</button></a>
@@ -41,14 +46,95 @@
   <a routerLink="/mySavedPosts" class="nav-link"><button class="savedPosts">My Saved Posts</button></a>
 
   <!--The border less buttons for editBio and DeleteAccount-->
-  <!-- This is what was old
-  <a href="http://google.com"><button class="editBio">Edit Bio</button></a>
-  -->
+   <button class="editBio" onclick="openForm()" *ngIf="this.viewingUserName == this.currUserName">Edit Bio</button>
 
-  <button class="editBio" onclick="openForm()" *ngIf="this.viewingUserName == this.currUserName">Edit Bio</button>
-
-  <!--ANDREW this is the line of code that controls follow unfollow-->
+  <!--Follow/Unfollow User On another user's profile-->
   <button id="followButton" class="followBtn" onclick="followControl()" *ngIf="this.viewingUserName != this.currUserName">Follow/Unfollow</button>
+  <!--Block/Unblock User on another user's profile-->
+  <button id="blockButton" class="blockBtn" onclick="blockControl()" *ngIf="this.viewingUserName != this.currUserName">Block</button>
+
+
+  <!--Button For Editing Log-in Information-->
+  <button id="editInfo" class="editInfo" onclick="openInfoForm()" *ngIf="this.viewingUserName == this.currUserName">Edit Information</button>
+
+  <div class="form-popup" id="infoForm">
+    <form action= "/action_page" class="iform-container">
+      <h1 class="infoHeader">Change Info</h1>
+
+       <table class="infoTable">
+
+        <tr>
+          <td style="font-weight: bold; text-decoration: underline; font-size: 20px;">Change Email</td> 
+        </tr>
+
+        <tr>
+          <td>Current Email:</td>
+          <td><input id= "oldE" class= "infoInput" type="text" placeholder="Current Email"></td>
+        </tr>
+
+        <tr>
+          <td>New Email:</td>
+          
+          <td><input id= "newE" class= "infoInput" type="text" placeholder="New Email Goes Here"></td>
+        </tr>
+
+        <tr>
+          <td>Submit New Email:</td>
+          
+          <td><button onclick="submitNewEmail()" class= "infoInput" class="changeEmail">Submit</button></td>
+        </tr>
+
+         <!-----------------------------------End Of Email Change------------------------------------------------------------>
+        
+         <tr>
+          <td style="font-weight: bold; text-decoration: underline; font-size: 20px;">Change Password</td> 
+        </tr>
+
+        <tr>
+          <td>Current Password:</td>
+          <td><input id="oldP" class= "infoInput" type="text" placeholder="Current Password"></td>
+        </tr>
+
+        <tr>
+          <td>New Password:</td>
+          
+          <td><input id="newP" class= "infoInput" type="text" placeholder="New Password Goes Here"></td>
+        </tr>
+
+        <tr>
+          <td>Retype New Password:</td>
+          
+          <td><input id="newP2" class= "infoInput" type="text" placeholder="New Password Goes Here"></td>
+        </tr>
+
+        <tr>
+          <td>Submit New Password:</td>
+          
+          <td><button onclick="submitNewPassword()" class= "infoInput" class="changeEmail">Submit</button></td>
+        </tr>
+
+        
+
+        <!-----------------------------------End Of Password Change------------------------------------------------------------>
+       </table>
+
+      
+       <button onclick="closeInfo()">Cancel</button>
+      
+    </form>
+  </div>
+
+
+
+
+
+
+
+  <!----------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------------------------------------------------------------------------------------->
 
 
   <div class="form-popup" id="myForm">
