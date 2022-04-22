@@ -28,13 +28,13 @@
   
  
   <p class="userName">{{currProfile.name}}</p>
-  <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+  <img id="sP" class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
 
 
   <p  id="bio" class ="bio">{{currProfile.bio}}</p>
 
   
-  <img class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+  <img id="bP" class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
   
 
   <!-- The four buttons on the left hand side-->
@@ -56,6 +56,28 @@
 
   <!--Button For Editing Log-in Information-->
   <button id="editInfo" class="editInfo" onclick="openInfoForm()" *ngIf="this.viewingUserName == this.currUserName">Edit Information</button>
+  <button id="editPicture" class="editPic" onclick="openPicForm()" *ngIf="this.viewingUserName == this.currUserName">Profile Picture</button>
+
+  <div class="form-popup" id="picForm">
+    <form action= "/action_page" class="pform-container"> 
+      <h1 class="infoHeader">Change Profile Picture</h1>
+        <table class="picTable">
+          <tr><td style="font-weight: bold; text-decoration: underline; font-size: 20px;">Click Your New Profile Picture</td></tr>
+          <tr>
+          <td><img class="picSelection" src="https://today.duke.edu/sites/default/files/styles/story_hero/public/Dolphin%20Research%20Center_Louie.jpeg?itok=wo4vavnx" width="100" height="100" onclick="submitDolphin()"></td>
+          <td><img class="picSelection" src="https://kubrick.htvapps.com/htv-prod-media.s3.amazonaws.com/images/baby-giraffe-2-1605021557.jpg?crop=1.00xw:1.00xh;0,0&resize=640:*" width="100" height="100" onclick="submitGiraffe()"></td>
+          </tr>
+          <tr>
+          <td><img class="picSelection" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIWRGfspKQD2OFuHoRM1240tJfAjNObkelBA&usqp=CAU" width="100" height="100" onclick="submitLion()"></td>
+          <td><img class="picSelection" src="https://www.learnreligions.com/thmb/ItEkoS8widSPJlMvrwRf6LPJuKg=/3744x3744/smart/filters:no_upscale()/big-tortoise-185095684-58a888f43df78c345bfd0690.jpg" width="100" height="100" onclick="submitTortoise()"></td>
+          </tr>
+          <tr>
+            <td><button onclick="closePicture()">Cancel</button></td>
+          </tr>
+        </table>
+    </form>
+  </div>
+    
 
   <div class="form-popup" id="infoForm">
     <form action= "/action_page" class="iform-container">

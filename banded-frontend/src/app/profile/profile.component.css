@@ -73,6 +73,14 @@ table {
  
 }
 
+.picTable {
+  border-collapse: separate;
+  border-spacing:0 15px;
+  column-count: 2;
+  column-gap: 40px;
+ 
+}
+
 
 .infoHeader {
   font-family: 'Courier New', Courier, monospace;
@@ -213,6 +221,17 @@ table {
   cursor:pointer;
 }
 
+.editPic{
+  text-align: center;
+  color: black;
+  text-decoration: inline-block;
+  background-color: lightgrey;
+  font-size: 20px;
+  position: absolute; right: 8.6%; top: 27%;
+  font-family: 'Courier New', Courier, monospace;
+  cursor:pointer;
+}
+
 .editInfo:hover {
   background-color: lightgoldenrodyellow;
 }
@@ -283,6 +302,22 @@ table {
     color: black;
     text-align: center;
   }
+
+
+  .pform-container {
+    align-items: center;
+    padding: 10px;
+    background-color: lightgrey;
+    max-width: 500px;
+    min-width: 500px;
+  }
+
+  .PicHeader {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-align: center;
+  }
+
 
   .changeEmail {
     background-color: lightblue;
@@ -459,3 +494,8 @@ table {
 }
 
 /* End of the margins construction */
+
+.picSelection:hover {
+  cursor:grab;
+}
+
