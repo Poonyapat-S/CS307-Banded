@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="./dmPage.component.css" rel="stylesheet">
+    </head>
+
+
+<body onload="loadFollowedStatus()">
+     <!--Below Are the Verticle Lines for Margins-->
+     <div class="v1"></div>
+     <div class="v2"></div>
+
+     <div class="container">
+       <div class="toppane">
+         <!--Banded Header-->
+         <div class = "title"> Banded</div>
+
+         <!-- if signed in displays profile info -->
+            <div class="user">
+             <div class="smallUserName">dummy</div>
+             <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+            </div> 
+        </div><!--End of Top Pane "user"-->
+       
+       <!--Start of Left Pane-->
+       <div class="leftpane">
+         <!-- The four buttons on the left hand side -->
+         <div>
+           <p></p>
+           <p></p>
+           <a routerLink="" class="nav-link"> <button class="side-button">Timeline</button></a>
+           <p></p>
+         </div>
+       </div>
+       <!--End of Left Pane-->
+
+
+       <div class="middlepane">
+         <div class="timeline">
+
+           <!-- start of first post -->
+           <!--Backend INsert for *ngFor = ...-->
+           <div class="post">
+             <div style="display: flex; justify-content: space-between;">
+               <span class="post-time"> Conversation With User:</span>
+             </div>
+
+
+             <div class="post-content">
+               <div class = "post-title"> Dummy Username </div>
+            </div>
+
+             <div class="post-footer">
+               <!-- The button that will redirect to the post page
+               currently redirects to login -->
+               <div class = "post-title" style="text-align: left; font-size: 16px;"> 00:00:0000 </div>
+               <div class = "post-title" style="text-align: left; font-size: 18px;"> Most Recent Message: </div>
+               <div class = "post-text">Dummy Most Recent Message</div>
+               
+               <!--Button For Viewing Conversation *** SHOULD BE SIMILAR TO POST VIEWING PAGE-->
+               <a href="/conversation" class="nav-link"><button>View Conversation</button></a>
+
+             </div>
+           </div>
+
+           <!-- spacing between posts -->
+           <p></p>
+
+           <!-- end of posts -->
+
+           <div class="timeline-footer">
+             <!-- TODO this needs to pass a int to backend too -->
+             <button class = "refresh-button" onClick="window.location.reload();">Refresh Page</button>
+           </div>
+         </div>
+       </div>
+
+
+     </div>
+
+     
+
+
+  </body>
+</html>

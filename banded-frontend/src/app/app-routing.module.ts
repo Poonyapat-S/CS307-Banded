@@ -14,6 +14,8 @@ import { commentViewerComponent } from './commentViewer/commentViewer.component'
 import { followedUsersComponent } from './followedUsers/followedUsers.component';
 import { mySavedPostsComponent } from './mySavedPosts/mySavedPosts.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
+import { dmPageComponent } from './dmPage/dmPage.component';
+import { conversationComponent } from './conversation/conversation.component';
 
 const routes: Routes = [
   { path: '', component: TimelineComponent},
@@ -31,6 +33,8 @@ const routes: Routes = [
   {path: 'followedUsers', component: followedUsersComponent},
   {path: 'mySavedPosts', component: mySavedPostsComponent},
   { path: 'profile/:userName', component: ProfileComponent},
+  { path: 'dmPage', component: dmPageComponent },
+  { path: 'conversation', component: conversationComponent}
 
   // // put all other paths above
   // { path: '404', component: ErrorPageComponent},
