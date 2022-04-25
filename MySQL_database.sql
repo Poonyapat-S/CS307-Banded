@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `cs307group27` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `cs307group27`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: cs307group27
@@ -28,7 +26,11 @@ CREATE TABLE `block` (
   `blockedUserID` int NOT NULL,
   `blockerUserID` int NOT NULL,
   `blockID` int NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`blockID`)
+  PRIMARY KEY (`blockID`),
+  KEY `FK_block_blockerUserID_user_userID_idx` (`blockerUserID`),
+  KEY `FK_block_blockedUserID_user_userID` (`blockedUserID`),
+  CONSTRAINT `FK_block_blockedUserID_user_userID` FOREIGN KEY (`blockedUserID`) REFERENCES `user` (`userID`),
+  CONSTRAINT `FK_block_blockerUserID_user_userID` FOREIGN KEY (`blockerUserID`) REFERENCES `user` (`userID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -204,4 +206,4 @@ CREATE TABLE `userfollower` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-22 22:14:18
+-- Dump completed on 2022-04-25 18:04:43
