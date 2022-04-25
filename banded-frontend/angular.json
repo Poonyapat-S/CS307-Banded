@@ -36,7 +36,8 @@
               "src/app/profile/test.js",
               "src/app/createPost/createPost.js",
               "src/app/postViewingPage/postViewingPage.js",
-             "src/app/followedUsers/followedUsers.js"]
+             "src/app/followedUsers/followedUsers.js",
+              "src/app/conversation/conversation.js"]
           },
           "configurations": {
             "production": {

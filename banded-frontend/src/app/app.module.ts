@@ -17,6 +17,8 @@ import { commentViewerComponent } from './commentViewer/commentViewer.component'
 import { followedUsersComponent } from './followedUsers/followedUsers.component';
 import { createPostComponent } from './createPost/createPost.component';
 import { mySavedPostsComponent } from './mySavedPosts/mySavedPosts.component';
+import { dmPageComponent } from './dmPage/dmPage.component';
+
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -27,6 +29,7 @@ import { TopicsComponent } from './topics/topics.component';
 import { TopicTimelineComponent, TopicTimelineComponentProvider } from './topic-timeline/topic-timeline.component';
 import { ErrorPageComponent } from './error-page/error-page.component';
 import { FollowingTopicComponent } from './topic/following-topic/following-topic.component';
+import { conversationComponent } from './conversation/conversation.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +48,9 @@ import { FollowingTopicComponent } from './topic/following-topic/following-topic
     followedUsersComponent,
     mySavedPostsComponent,
     ErrorPageComponent,
-    FollowingTopicComponent
+    FollowingTopicComponent,
+    dmPageComponent,
+    conversationComponent
   ],
   imports: [
     BrowserModule,

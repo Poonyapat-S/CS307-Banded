@@ -1,0 +1,266 @@
+* { margin: 0; padding: 0; }
+
+body, html {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: lightgrey;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+/* Start of the margins construction */
+.container {
+  min-width: 100%;
+  height: 100%;
+}
+
+/* ================================ left ================================ */
+
+.leftpane {
+  width: 20%;
+  height: 100%;
+  float: left;
+  /* background-color: lightgoldenrodyellow; */
+  border-collapse: collapse;
+}
+
+/* left vertical line */
+.v1 {
+  border-left: 2px solid black;
+  height: 100%;
+  position: absolute;
+  left: 20%;
+  margin-left: -3px;
+  top: 0;
+}
+
+/* For the 4 buttons on the left */
+.side-button {
+  position: relative;
+  margin: 1% 1%;
+  left:25%;
+  
+  text-align: center;
+  color: black;
+  background-color: darkgrey;
+  font-size: 20px;
+  padding: 5px;
+}
+/* End of 4 buttons on the left */
+
+/* ================================ middle ================================ */
+
+.middlepane {
+  width: 60%;
+  height: 100%;
+  
+  float: left;
+  /* background-color: lightgreen; */
+  border-collapse: collapse;
+}
+
+/* Start of timeline post display */
+
+.timeline{
+  position:relative;
+}
+
+.post{
+  margin: 20px;
+  position:relative;
+  background-color:#ececec;
+  border-radius:15px;
+  border:1px solid #17191B;
+  transition:all 0.3s ease;
+  overflow:hidden;
+  left: -1%;
+}
+
+.post-user {
+  padding:5px 15px;
+}
+
+.post-time {
+  padding:5px 15px;
+}
+
+.post-tags{
+  padding:5px 15px;
+  border-bottom: 1px solid #17191B;
+}
+
+.post-tags .name{
+  margin-right:5px;
+  float: left;
+}
+
+.post-tags .tag{
+  width: max-content;
+  border: 2px solid coral;
+  content: initial;
+  padding: 0.5px 2px;
+  margin: 2px;
+  display: inline-block;
+}
+
+.post-content{
+  padding:5px 15px;
+  background-color:#ececec;
+}
+
+.post-content strong{
+  color:#666;
+  font-style:italic;
+  margin-right:5px;
+}
+
+.post-title {
+  font-size: 20px;
+  font-style: italic;
+  padding: 5px 15px;
+}
+
+.post-text{
+  margin-bottom:5px;
+  padding:5px 15px;
+  text-align: left;
+}
+
+.post-footer{
+  padding: 2px 15px;
+  border-top: 1px solid #17191B;
+  background-color:#ececec;
+  text-align:right;
+  font-style:italic;
+}
+
+/* Does nothing since putting href in the <a> tag gives all the visual indicators for the button */
+.reply-button {
+  cursor: pointer; 
+}
+
+.refresh-button {
+  margin: 10px;
+  padding: 2px 5px;
+  cursor: pointer; 
+}
+
+.timeline-footer {
+  position: relative;
+  height: 100%;
+  /* background-color: lightgray; */
+}
+
+/* ================================ right ================================ */
+
+.rightpane {
+  width: 20%;
+  height: 100%;
+  position: relative;
+  float: right;
+  /* background-color: lightblue; */
+  border-collapse: collapse;
+}
+
+/* right vertical line */
+.v2 {
+  border-left: 2px solid black;
+  height: 100%;
+  position: absolute;
+  right: 20%;
+  margin-left: -3px;
+  top: 0;
+}
+
+/* ================================ top ================================ */
+
+.toppane {
+  width: 100%;
+  height: 100px;
+  border-collapse: collapse;
+  /* background-color: lightpink; */
+  border-bottom: 2px solid black;
+  text-align: center;
+  
+  /* Centering code */
+  display: flex;
+  align-items: center;
+}
+
+/* Banded Header */
+.toppane .title {
+  position: relative;
+  left: 21%;
+  /* padding: 0px 15px; */
+  color: black;
+  font-size: 60px;
+}
+
+/* (for logged in users) Both the small username and small profile pic for header 
+* visiblity is hidden until user is logged in*/
+.toppane .user {
+  /* visibility: hidden; */
+
+  display: flex;
+  align-items: center;
+  
+  position: relative;
+  left: 59%;
+  /* padding: 0px 15px; */
+}
+
+.toppane .user .smallUserName {
+  color: black;
+  font-size: 25px;
+  text-align: right;
+  padding: 0px 20px;
+  float: left;
+}
+
+.toppane .user .smallProfileImg {
+  width: 50px;
+  height: 50px;
+  border-radius: 40%;
+  float: right;
+}
+
+.iform-container {
+    align-items: center;
+    padding: 10px;
+    background-color: lightgrey;
+    max-width: 500px;
+    min-width: 500px;
+  }
+
+  .infoHeader {
+    font-family: 'Courier New', Courier, monospace;
+    color: black;
+    text-align: center;
+  }
+
+/* End of the margins construction */
+
+.form-popup {
+    display: none;
+  
+    position: fixed;
+    bottom: 100px;
+    right: 15px;
+    
+    z-index: 9;
+  }
+  .form-container {
+    max-width: 500px;
+    padding: 10px;
+    background-color: lightgrey;
+  }
+
+  
+  .form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
