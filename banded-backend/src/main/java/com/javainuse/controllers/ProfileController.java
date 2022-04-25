@@ -87,7 +87,7 @@ public class ProfileController {
             if (flags.length() > 0) return ResponseEntity.status(HttpStatus.CONFLICT).body(flags);
             String encoded = passwordEncoder.encode(newPassword);
             User toComp = userRepository.findByUserName(user.getUsername()).orElseThrow(() -> new UsernameNotFoundException(String.format("", "")));
-            if(encoded.equals(toComp.getPassword())){
+            if(passwordEncoder.matches(newPassword,toComp.getPassword())){
                 return ResponseEntity.status(HttpStatus.CONFLICT).body("Duplicate Password");
             }
             user.setPassword(encoded);
