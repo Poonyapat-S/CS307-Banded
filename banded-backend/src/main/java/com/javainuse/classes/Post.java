@@ -64,6 +64,12 @@ public class Post {
 
     @Transient
     private String userName;
+    
+    @Transient
+    private String interactionType;
+    
+    @Transient
+    private LocalDateTime interactionTime;
 
     public Post(User user, Post parentPost, Topic topic, String postTitle, String postText, Boolean isAnon) {
         this.user = user;
