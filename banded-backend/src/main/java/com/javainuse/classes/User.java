@@ -38,6 +38,15 @@ public class User implements UserDetails {
     private String favBand;
     @Column(name="fav_song")
     private String favSong;
+    @JsonIgnore
+    @Column(name="locked_until")
+    private Timestamp LockedUntil;
+    @JsonIgnore
+    @Column(name="locked")
+    private Boolean locked;
+    @JsonIgnore
+    @Column(name="invalid_tries")
+    private Integer InvalidTries;
 
 //    @JsonBackReference
 //    @OneToMany
@@ -46,9 +55,6 @@ public class User implements UserDetails {
     @JsonIgnore
     @Transient
     private UserAuthorities userAuthorities = UserAuthorities.USER;
-    @JsonIgnore
-    @Transient
-    private Boolean locked = false;
     @JsonIgnore
     @Transient
     private Boolean enabled = true;

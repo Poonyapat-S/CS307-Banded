@@ -45,6 +45,8 @@ public class RegistrationService {
             user.setUserName(userReg.getUserName());
             user.setPassword(passwordEncoder.encode(userReg.getPassword()));
             user.setEmail(userReg.getEmail());
+            user.setInvalidTries(0);
+            user.setLocked(false);
             userRepository.save(user);
             return new ResponseEntity("User registered successfully", HttpStatus.OK);
         }
