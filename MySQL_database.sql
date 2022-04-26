@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `cs307group27` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `cs307group27`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: cs307group27
@@ -92,6 +94,7 @@ CREATE TABLE `reaction` (
   `reactionID` int NOT NULL AUTO_INCREMENT,
   `postID` int NOT NULL,
   `userID` int NOT NULL,
+  `reactionTime` datetime NOT NULL,
   PRIMARY KEY (`reactionID`),
   KEY `FK_reaction_userID_user_userID_idx` (`userID`),
   KEY `FK_reaction_postID_post_postID_idx` (`postID`),
@@ -111,6 +114,7 @@ CREATE TABLE `savedpost` (
   `postID` int NOT NULL,
   `userID` int NOT NULL,
   `savedPostID` int NOT NULL AUTO_INCREMENT,
+  `savedTime` datetime NOT NULL,
   PRIMARY KEY (`savedPostID`),
   KEY `FK_savedpost_userID_user_userID_idx` (`userID`),
   KEY `FK_savedpost_postID_post_postID_idx` (`postID`),
@@ -206,4 +210,4 @@ CREATE TABLE `userfollower` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-25 18:04:43
+-- Dump completed on 2022-04-25 20:02:23
