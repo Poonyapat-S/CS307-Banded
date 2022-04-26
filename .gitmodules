@@ -1,6 +1,3 @@
 [submodule "banded-backend"]
 	path = banded-backend
 	url = https://github.com/Poonyapat-S/banded-backend.git
-[submodule "banded-frontend"]
-	path = banded-frontend
-	url = https://github.com/Poonyapat-S/banded-frontend.git
