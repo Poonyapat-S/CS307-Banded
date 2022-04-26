@@ -19,6 +19,8 @@
 -- Table structure for table `block`
 --
 
+CREATE Database if not EXISTS `cs307group27`;
+USE `cs307group27`;
 DROP TABLE IF EXISTS `block`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -172,6 +174,8 @@ CREATE TABLE `user` (
   `enabled` bit(1) DEFAULT NULL,
   `locked` bit(1) DEFAULT NULL,
   `user_authorities` varchar(45) DEFAULT NULL,
+  `locked_until` datetime DEFAULT NULL,
+  `invalid_tries` int DEFAULT 0,
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)

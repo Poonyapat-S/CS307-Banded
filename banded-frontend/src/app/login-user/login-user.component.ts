@@ -34,8 +34,9 @@ export class LoginUserComponent implements OnInit {
         alert("Login Successful");
         this.router.navigate(['profile'])},
       error: (err) => {
-        console.log(err.status)
-        this.errorMessage = "Invalid Credentials";
+        console.log(err.status);
+        console.log(err);
+        this.errorMessage = err.error;
         this.submitted = true;
         this.isLoginFailed = true;
       }})
