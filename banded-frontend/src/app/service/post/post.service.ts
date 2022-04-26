@@ -2,6 +2,7 @@ import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Post } from 'src/app/class/post';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -11,14 +12,14 @@ export class PostService {
   constructor(private httpClient: HttpClient) { }
 
   public get_timeline(count: number) {
-    return this.httpClient.get<Post[]>("http://localhost:8080/api/posts/timeline?count="+count.toString());
+    return this.httpClient.get<Post[]>(environment.API_URL+"/api/posts/timeline?count="+count.toString());
   }
 
   public get_topic_timeline(topicName:string, count: number) {
-    return this.httpClient.get<Post[]>("http://localhost:8080/api/posts/topic/"+topicName+"?count="+count.toString());
+    return this.httpClient.get<Post[]>(environment.API_URL+"/api/posts/topic/"+topicName+"?count="+count.toString());
   }
   public get_guest_timeline() {
-    return this.httpClient.get<Post[]>("http://localhost:8080/api/posts/guest/timeline");
+    return this.httpClient.get<Post[]>(environment.API_URL+"/api/posts/guest/timeline");
   }
 
   public convertDateTime(postTime: Date): string {
@@ -30,34 +31,34 @@ export class PostService {
   }
 
   public getPostFromId(id: string) {
-    return this.httpClient.get<Post>("http://localhost:8080/api/posts/" + id);
+    return this.httpClient.get<Post>(environment.API_URL+"/api/posts/" + id);
   }
 
   public replyPost(post: Post) {
-    return this.httpClient.post("http://localhost:8080/api/posts/"+post.postID, post);
+    return this.httpClient.post(environment.API_URL+"/api/posts/"+post.postID, post);
   }
 
   public getIsLiked(id : number) {
-    return this.httpClient.get<boolean>("http://localhost:8080/api/interaction/getlikestatus" + id.toString());
+    return this.httpClient.get<boolean>(environment.API_URL+"/api/interaction/getlikestatus" + id.toString());
   }
 
   public likePost(id : number) {
-    return this.httpClient.post("http://localhost:8080/api/interaction/like", id);
+    return this.httpClient.post(environment.API_URL+"/api/interaction/like", id);
   }
 
   public unlikePost(id : number) {
-    return this.httpClient.post("http://localhost:8080/api/interaction/unlike", id);
+    return this.httpClient.post(environment.API_URL+"/api/interaction/unlike", id);
   }
 
   public getIsSaved(id : number) {
-    return this.httpClient.get<boolean>("http://localhost:8080/api/interaction/getsavestatus" + id.toString());
+    return this.httpClient.get<boolean>(environment.API_URL+"/api/interaction/getsavestatus" + id.toString());
   }
 
   public savePost(id : number) {
-    return this.httpClient.post("http://localhost:8080/api/interaction/savepost", id);
+    return this.httpClient.post(environment.API_URL+"/api/interaction/savepost", id);
   }
 
   public unsavePost(id : number) {
-    return this.httpClient.post("http://localhost:8080/api/interaction/unsavepost", id);
+    return this.httpClient.post(environment.API_URL+"/api/interaction/unsavepost", id);
   }
 }

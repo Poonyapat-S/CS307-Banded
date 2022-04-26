@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 // import { throws } from 'assert';
@@ -23,14 +24,14 @@ export class HttpClientService {
 
   getUsers() {
     console.log("test call");
-    return this.httpClient.get<User[]>('http://localhost:8080/api/user/allusers');
+    return this.httpClient.get<User[]>(environment.API_URL + '/api/user/allusers');
   }
 
   public deleteUsers(user: User) {
-    return this.httpClient.delete<User>("http://localhost:8080/users/"+user.userName);
+    return this.httpClient.delete<User>(environment.API_URL + "/users/"+user.userName);
   }
 
   public createUser(user: User) {
-    return this.httpClient.post("http://localhost:8080/api/v1/registration", user, {responseType: 'text'});
+    return this.httpClient.post(environment.API_URL+"/api/v1/registration", user, {responseType: 'text'});
   }
 }
