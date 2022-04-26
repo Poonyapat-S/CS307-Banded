@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -33,6 +34,9 @@ public class Reaction {
 	private User user;
 	@Column(name = "userID", updatable = false, insertable = false)
 	private Integer userID;
+	
+	@Column(name = "reactionTime")
+	private LocalDateTime reactionTime;
 	
 	public Reaction(Post post, User user) {
 		this.post = post;

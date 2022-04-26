@@ -9,6 +9,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping(path = "/api/interaction")
@@ -18,6 +20,7 @@ public class PostInteractionController {
 	private PostRepository postRepository;
 	private ReactionRepository reactionRepository;
 	private SavedPostRepository savedPostRepository;
+	private PostInteractionService postInteractionService;
 	
 	/* -=- REACTION-RELATED FUNCTIONS -=- */
 	@PostMapping(path = "/like")
@@ -140,5 +143,10 @@ public class PostInteractionController {
 	@GetMapping(path = "/getsavestatus/{postID}")
 	public boolean isPostSaved(@AuthenticationPrincipal User currUser, @PathVariable Integer postID) {
 		return savedPostRepository.existsByUserAndPostID(currUser, postID);
+	}
+	
+	@GetMapping(path = "/getpostinteractions")
+	public List<Post> getPostInteractions(@RequestParam Integer userID) {
+		return postInteractionService.retrieveUserPostInteractions(userID);
 	}
 }
