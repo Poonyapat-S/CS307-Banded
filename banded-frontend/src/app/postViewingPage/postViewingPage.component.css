@@ -1,0 +1,295 @@
+body {
+    /*background-color: lightgrey; */
+    padding: 0px;
+    margin: 0;
+    
+  }
+  
+  div{
+    width: 1000px;
+    margin: 0 auto;
+    flex-shrink: 3;
+  }
+  
+   /* Start of the margins construction */
+  .v1 {
+    border-left: 2px solid black;
+    height: 100%;
+    position: absolute;
+    left: 20%;
+    margin-left: -3px;
+    top: 0;
+  }
+
+  .commentViewer {
+    font-family:'Courier New', Courier, monospace;
+    text-decoration: inline-block;
+    font-size: 20px;
+    background-color: lemonchiffon;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 20%;
+    position: absolute;
+    top: 61%;
+    left: 46%;
+}
+  
+  .v2 {
+    border-left: 2px solid black;
+    height: 100%;
+    position: absolute;
+    left: 80%;
+    margin-left: -3px;
+    top: 0;
+  }
+  
+  .dashed-border {
+    width: 100%;
+    top: 13.5%;
+    border: 1px solid black;
+  }
+  
+  hr{
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    width: 2px;
+    color: solid black;
+  }
+  /* End of the margins construction */
+  
+  
+  /* Banded Header */
+  .banded {
+    color: black;
+    font-size: 60px;
+    position: relative;
+    top: 3%;
+    left: 22%;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .postRectangle {
+      width: 400;
+      height: 180;
+      position: absolute;
+      fill: blue;
+      stroke: pink;
+      stroke-width: 5;
+      opacity: 0.5;
+  }
+
+  .postCreatorsName {
+    color: black;
+    font-size: 30px;
+    position: absolute;
+    top: 18%;
+    left: 23%;
+    font-family: 'Courier New', Courier, monospace;
+  }
+ 
+  .postTimeStamp {
+    color: black;
+    font-size: 20px;
+    position: absolute;
+    top: 22.5%;
+    left: 23%;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .postTitle {
+    color: black;
+    font-size: 40px;
+    position: absolute;
+    top: 28%;
+    left: 23%;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+  }
+
+  .topicHeader {
+    color: black;
+    font-size: 25px;
+    position: absolute;
+    top: 20%;
+    left: 60%;
+    font-family: 'Courier New', Courier, monospace;
+
+  }
+  .postCaption {
+    color: black;
+    font-size: 25px;
+    position: absolute;
+    top: 35%;
+    left: 24%;
+    font-family: 'Courier New', Courier, monospace;
+    max-width: 800px;
+    word-wrap: break-word;
+  }
+
+  .postTopic {
+    color: black;
+    font-size: 25px;
+    position: absolute;
+    top: 20%;
+    left: 65%;
+    font-family: 'Courier New', Courier, monospace;
+    max-width: 220px;
+    word-wrap: break-word;
+    font-weight: bold;
+  }
+  .container {
+    border-radius: 15px;
+    background-color: rgb(255, 160, 122,0.5);
+    padding: 250px;
+    width: 1090px;
+ 
+    
+  }
+
+  
+  .heart-shape{
+    position: absolute;
+    top: 61%;
+    left: 24%;
+    width: 50px;
+    height: 50px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    
+    border-color: red;
+    border-width: 0px;
+  }
+  
+  .heart-shape-a{
+    position: absolute;
+    top: 59%;
+    left: 23%;
+    width: 50px;
+    height: 50px;
+    content: '';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+    
+    border-color: red;
+    border-width: 0px;
+  }
+  .heart-shape-b {
+    position: absolute;
+    top: 59%;
+    left: 25%;
+    width: 50px;
+    height: 50px;
+    content: '';
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -o-border-radius: 50%;
+    border-radius: 50%;
+   
+    border-color: red;
+    border-width: 0px;
+  }
+
+  .backToTimeline1 {
+    text-align: center;
+    color: black;
+    text-decoration: inline-block;
+    background-color: lightgrey;
+    font-size: 20px;
+    position: absolute; left: 2%; top: 17%;
+    font-family: 'Courier New', Courier, monospace;
+  }
+
+  .savePost {
+      font-family:'Courier New', Courier, monospace;
+      text-decoration: inline-block;
+      font-size: 20px;
+      background-color: lemonchiffon;
+      border-color: black;
+      border-width: 1px;
+      border-radius: 20%;
+      position: absolute;
+      top: 61%;
+      left: 29%;
+  }
+
+  .commentPost {
+    font-family:'Courier New', Courier, monospace;
+    text-decoration: inline-block;
+    font-size: 20px;
+    background-color: lemonchiffon;
+    border-color: black;
+    border-width: 1px;
+    border-radius: 20%;
+    position: absolute;
+    top: 61%;
+    left: 65%;
+}
+  
+.form-popup {
+    display: none;
+  
+    position: absolute;
+    bottom: 10%;
+    right: 10%;
+    
+    z-index: 9;
+  }
+  .form-container {
+    max-width: 500px;
+    padding: 10px;
+    background-color: lightgrey;
+    
+  }
+
+  
+  .form-container input[type=text], .form-container input[type=password] {
+    width: 100%;
+    padding: 15px;
+    margin: 5px 0 22px 0;
+    border: none;
+    background: #f1f1f1;
+  }
+ 
+  .form-container .submit {
+    background-color: lightblue;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+  .form-container .cancel {
+    background-color: lightcoral;
+    color: white;
+    padding: 16px 20px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    margin-bottom:10px;
+    opacity: 0.8;
+  }
+
+  .comment{
+    color: black;
+    font-size: 20px;
+    text-align: left;
+    position: absolute; left: 830px; top: 30%;
+    font-family: 'Courier New', Courier, monospace;
+ }
+ .followThisUser {
+  text-align: center;
+  color: black;
+  text-decoration: inline-block;
+  background-color: lightgrey;
+  font-size: 20px;
+  position: absolute; left: 2%; top: 17%;
+  font-family: 'Courier New', Courier, monospace;
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head onload="forceRefresh()">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./postViewingPage.component.css" rel="stylesheet">
+
+</head>
+
+<body onload="loadLikedStatus()">
+  <div class="div"></div>
+  <!--Below Are the Verticle Lines for Margins-->
+  <div class="v1"></div>
+  <div class="v2"></div>
+  <hr class="dashed-border">
+  <!--Banded Header-->
+  <p class = "banded">Banded</p>
+
+  <button id= "followThisUser" class = "followThisUser" onclick="followUser()">Follow This User</button>
+
+<div class="container">
+    <!-- PLUG BACKEND CALLS HERE / Replace placeholders-->
+    <a href="{{'/profile/'+this.currPost.userName}}"><p class="postCreatorsName">{{ this.currPost.userName }}</p></a>
+    <p class="postTimeStamp">{{ this.getPostService().convertDateTime(this.currPost.postTime) }}</p>
+    <p class="postTitle">{{ this.currPost.postTitle }}</p>
+    <label class="postCaption">{{ this.currPost.postText }}</label>
+    <label class="topicHeader">Topic:</label>
+    <label class="postTopic">{{ this.currPost.topicName }}</label>
+
+    <button id ="heart" class= "heart-shape" onclick="toggleLike()"></button>
+    <button id ="heart-a" class= "heart-shape-a" onclick="toggleLike()"></button>
+    <button id ="heart-b" class= "heart-shape-b" onclick="toggleLike()"></button>
+    <button id = "savePost" class = "savePost" onclick="toggleSave()">Save/Unsave Post</button>
+    <a routerLink="/commentViewer" class="nav-link"><button id = "viewComments" class = "commentViewer">View Comments</button></a>
+
+    <button class="commentPost" onclick="openForm()">Comment On Post</button>
+    <div class="form-popup" id="myForm">
+    <form action= "/action_page" class="form-container">
+      <h1 id="titleenter">Enter Comment</h1>
+      <input type="text" placeholder="Enter Comment" name="comment" id="newText">
+      <button type="button"  class="btn submit" onclick="submitForm()">Submit</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+</div>
+
+
+
+<!--Not working for some reason
+<a routerLink="/" class="nav-link"><button class="backToTimeline1">Back To Timeline</button></a>
+-->
+
+</body>
+

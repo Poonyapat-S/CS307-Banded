@@ -1,0 +1,36 @@
+<html>
+   <head>  
+    </head>
+
+   <body>
+       
+        <div class="col-md-6">
+            
+            <h2 class="text-center">Login</h2>
+            <form>
+                <p></p>
+                <div class="form-group">
+                    <label for="name">Username:</label>
+                    <input [(ngModel)]="credentials.userName" placeholder="Username" name="username" class="form-control" id="username">
+                </div>
+        
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input [(ngModel)]="credentials.password" placeholder="Password" name="password" class="form-control" id="password">
+                </div>
+
+                <div class="form-group">
+                    <div class="alert alert-danger" role="alert" *ngIf="submitted && isLoginFailed">
+                        Login failed: {{ errorMessage }}
+                    </div>
+                </div>
+
+                <!-- <button class="btn btn-success" (click)="createUser()">Create</button> //-->
+            </form>
+            <p></p>
+            <button (click)=login() class="btn btn-success">Login</button>
+
+        </div>
+   </body>  
+</html>
+

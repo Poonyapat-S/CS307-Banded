@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+
+    <body>
+        <!-- for when backend is linked -->
+        <div class="topics" *ngFor="let topic of topics">
+            <button
+                class = "'topic'+{{topic.topicID}}"
+                (click)="this.navigate(topic.topicID)"
+                [ngClass]="{'green' : toggle, 'red': !toggle}">
+                {{topic.topicName}}
+            </button>
+        </div>
+
+        <!-- for visual (can be deleted when backend is linked) -->
+        <!-- <button id = "btn1"
+            class = "topic"
+            (click)="toTopic('topic')"
+            [ngClass]="{'green' : toggle, 'red': !toggle}">
+            topic
+        </button>
+
+        <button id = "btn2"
+            class = "topic"
+            (click)="toTopic('hello')"
+            [ngClass]="{'green' : toggle, 'red': !toggle}">
+            hello
+        </button> -->
+    </body>
+</html>

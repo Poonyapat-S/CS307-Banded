@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="./profile.component.css" rel="stylesheet">
+</head>
+<!---SAM TEST-->
+
+<body>
+  <!--THis is now gone. Maybe someone deleted it? Could cause concerns later - Sam.-->
+  <script src="./profilePageAssets.ts"></script>
+  <div class="div"></div>
+
+  <!--Below Are the Verticle Lines for Margins-->
+  <div class="v1"></div>
+  <div class="v2"></div>
+
+  <div class="pageContainer">
+    <div class="toppane">
+      <!--Banded Header-->
+      <p class = "banded"> Banded</p>
+      <div class="smallUserName">{{currProfile.userName}}</div>
+      <img class="smallProfileImg"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+    </div> <!--End of Top Pane-->
+    
+  </div><!--End of Page Container-->
+  
+ 
+  <p class="userName">{{currProfile.name}}</p>
+  <img id="sP" class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+
+
+  <p  id="bio" class ="bio">{{currProfile.bio}}</p>
+
+  
+  <img id="bP" class= "profileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+  
+
+  <!-- The four buttons on the left hand side-->
+  <a routerLink="/createPost"><button class="createPost">Create Post</button></a>
+  <a href="/dmPage" class="nav-link"><button class="directMessages">Direct Messages</button></a>
+  <button class="followingTags">Following Tags</button>
+  <button class= "settings">Settings</button>
+  <a href="/followedUsers" class ="nav-link"><button class="followedUsers">Followed Users</button></a>
+  <a routerLink="/mySavedPosts" class="nav-link"><button class="savedPosts">My Saved Posts</button></a>
+
+  <!--The border less buttons for editBio and DeleteAccount-->
+   <button class="editBio" onclick="openForm()" *ngIf="this.viewingUserName == this.currUserName">Edit Bio</button>
+
+  <!--Follow/Unfollow User On another user's profile-->
+  <button id="followButton" class="followBtn" onclick="followControl()" *ngIf="this.viewingUserName != this.currUserName">Follow/Unfollow</button>
+  <!--Block/Unblock User on another user's profile-->
+  <button id="blockButton" class="blockBtn" onclick="blockControl()" *ngIf="this.viewingUserName != this.currUserName">Block</button>
+
+
+  <!--Button For Editing Log-in Information-->
+  <button id="editInfo" class="editInfo" onclick="openInfoForm()" *ngIf="this.viewingUserName == this.currUserName">Edit Information</button>
+  <button id="editPicture" class="editPic" onclick="openPicForm()" *ngIf="this.viewingUserName == this.currUserName">Profile Picture</button>
+
+  <div class="form-popup" id="picForm">
+    <form action= "/action_page" class="pform-container"> 
+      <h1 class="infoHeader">Change Profile Picture</h1>
+        <table class="picTable">
+          <tr><td style="font-weight: bold; text-decoration: underline; font-size: 20px;">Click Your New Profile Picture</td></tr>
+          <tr>
+          <td><img class="picSelection" src="https://today.duke.edu/sites/default/files/styles/story_hero/public/Dolphin%20Research%20Center_Louie.jpeg?itok=wo4vavnx" width="100" height="100" onclick="submitDolphin()"></td>
+          <td><img class="picSelection" src="https://kubrick.htvapps.com/htv-prod-media.s3.amazonaws.com/images/baby-giraffe-2-1605021557.jpg?crop=1.00xw:1.00xh;0,0&resize=640:*" width="100" height="100" onclick="submitGiraffe()"></td>
+          </tr>
+          <tr>
+          <td><img class="picSelection" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQIWRGfspKQD2OFuHoRM1240tJfAjNObkelBA&usqp=CAU" width="100" height="100" onclick="submitLion()"></td>
+          <td><img class="picSelection" src="https://www.learnreligions.com/thmb/ItEkoS8widSPJlMvrwRf6LPJuKg=/3744x3744/smart/filters:no_upscale()/big-tortoise-185095684-58a888f43df78c345bfd0690.jpg" width="100" height="100" onclick="submitTortoise()"></td>
+          </tr>
+          <tr>
+            <td><button onclick="closePicture()">Cancel</button></td>
+          </tr>
+        </table>
+    </form>
+  </div>
+    
+
+  <div class="form-popup" id="infoForm">
+    <form action= "/action_page" class="iform-container">
+      <h1 class="infoHeader">Change Info</h1>
+
+       <table class="infoTable">
+
+        <tr>
+          <td style="font-weight: bold; text-decoration: underline; font-size: 20px;">Change Email</td> 
+        </tr>
+
+        <tr>
+          <td>Current Email:</td>
+          <td><input id= "oldE" class= "infoInput" type="text" placeholder="Current Email"></td>
+        </tr>
+
+        <tr>
+          <td>New Email:</td>
+          
+          <td><input id= "newE" class= "infoInput" type="text" placeholder="New Email Goes Here"></td>
+        </tr>
+
+        <tr>
+          <td>Submit New Email:</td>
+          
+          <td><button onclick="submitNewEmail()" class= "infoInput" class="changeEmail">Submit</button></td>
+        </tr>
+
+         <!-----------------------------------End Of Email Change------------------------------------------------------------>
+        
+         <tr>
+          <td style="font-weight: bold; text-decoration: underline; font-size: 20px;">Change Password</td> 
+        </tr>
+
+        <tr>
+          <td>Current Password:</td>
+          <td><input id="oldP" class= "infoInput" type="text" placeholder="Current Password"></td>
+        </tr>
+
+        <tr>
+          <td>New Password:</td>
+          
+          <td><input id="newP" class= "infoInput" type="text" placeholder="New Password Goes Here"></td>
+        </tr>
+
+        <tr>
+          <td>Retype New Password:</td>
+          
+          <td><input id="newP2" class= "infoInput" type="text" placeholder="New Password Goes Here"></td>
+        </tr>
+
+        <tr>
+          <td>Submit New Password:</td>
+          
+          <td><button onclick="submitNewPassword()" class= "infoInput" class="changeEmail">Submit</button></td>
+        </tr>
+
+        
+
+        <!-----------------------------------End Of Password Change------------------------------------------------------------>
+       </table>
+
+      
+       <button onclick="closeInfo()">Cancel</button>
+      
+    </form>
+  </div>
+
+
+
+
+
+
+
+  <!----------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------------------------------------------------------------------------------------->
+  <!----------------------------------------------------------------------------------------------------------------->
+
+
+  <div class="form-popup" id="myForm">
+    <form action= "/action_page" class="form-container">
+      <h1 id="titleenter">Enter New Bio</h1>
+      <input [(ngModel)]="this.editBioText" type="text" placeholder="Enter New Bio" name="bio" id="newText">
+      <button type="button"  class="btn submit" onclick="submitForm()" (click)="this.editProfile();">Submit</button>
+      <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+    </form>
+  </div>
+
+  <script>
+    function openForm() {
+      document.getElementById("myForm").style.display = "block";
+    }
+    function closeForm() {
+      document.getElementById("myForm").style.display = "none";
+    }
+    function submitForm() {
+      let text = document.getElementById("newText").value;
+      /*Need backend function here */
+      /*tEST */
+      closeForm();
+    }
+  </script>
+
+
+ <!--Below Starts Delete Account-->
+  <button class="deleteAccount" onclick="openFormDelete()" *ngIf="this.viewingUserName == this.currUserName">Delete Account</button>
+  <div class="form-popup-dc" id="myDeleteAcc">
+    <form action= "/action_page" class="form-container-dc">
+      <h1 id="areYouSure">Are You Sure You Want To Delete Your Account?</h1>
+      <button type="button"  class="btn delete" onclick="submitDelete()" (click)="deleteProfile()">Delete Account</button>
+      <button type="button" class="btn cancel" onclick="closeFormDelete()">Cancel</button>
+    </form>
+  </div>
+
+  <script>
+     function openFormDelete() {
+      document.getElementById("myDeleteAcc").style.display = "block";
+    }
+    function closeFormDelete() {
+      document.getElementById("myDeleteAcc").style.display = "none";
+    }
+      function submitDeletion(){
+        /*NEED BACKEND FUNCTION HERE TO ACTUALLY DELETE */
+        closeFormDelete()
+      }
+  </script>
+
+
+
+
+
+
+
+
+
+</body>
+<!--THis is the second change for the test Sam-->
+</html>

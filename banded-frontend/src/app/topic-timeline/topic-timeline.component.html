@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head></head>
+
+  <body>
+
+    <!--Below Are the Verticle Lines for Margins-->
+    <div class="v1"></div>
+    <div class="v2"></div>
+
+    <div class="container">
+      <div class="toppane">
+        <!--Banded Header-->
+        <div class = "title"> Banded</div>
+
+        <!-- if signed in displays profile info -->
+        <div class="user">
+          <div class="smallUserName">{{currProfile.userName}}</div>
+          <img class= "smallProfileImg" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSf1Mcs-qS5Q5-CO5gtMi3uhprMUS0ee7dijxa3nei0XEK41jFbXyWlIDr1CA0KKGdD33o&usqp=CAU" alt= usernameholder>
+        </div>
+      </div>
+      <div class="leftpane">
+
+        <!-- The four buttons on the left hand side -->
+        <div>
+          <button class="side-button" *ngIf="this.isFollowing" (click)="this.unFollowTopic()" >Unfollow Topic</button>
+          <button class="side-button" *ngIf="!this.isFollowing" (click)="this.followTopic()">Follow Topic</button>
+          <p></p>
+          <a routerLink="/createPost" class="nav-link"> <button class="side-button">Create Post</button></a>
+          <p></p>
+          <button class="side-button">Direct Messages</button>
+          <p></p>
+          <a routerLink="/topics/following"><button class="side-button">Following Topics</button></a>
+          <p></p>
+          <a routerLink="/topics" class="nav-link"> <button class="side-button">Browse Topics</button></a>
+          <p></p>
+          <button class="side-button">Settings</button>
+        </div>
+      </div>
+      <div class="middlepane">
+        <div class="timeline">
+          <!-- sample post -->
+          <!-- <div class="post">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="post-time"> 3/4/22 9:00pm </span>
+              <span class="post-user"> Kat </span>
+            </div>
+            <div class="post-tags">
+              <div class="name"></div> Topic:
+              <div class="tag"> Bands </div>
+            </div>
+
+            <div class="post-content">
+              <div class = "post-title"> Looking for Bands </div>
+              <div class="post-text"> Hey everyone whats up. title. </div>
+            </div>
+            <div class="post-footer">
+              <a href="/login" class="reply-button">Reply -></a>
+            </div>
+          </div> -->
+
+          <!-- start of first post -->
+          <div class="post" *ngFor="let post of posts">
+            <div style="display: flex; justify-content: space-between;">
+              <span class="post-time"> {{this.convertDateTime(post.postTime)}} </span>
+              <a href="{{'/profile/'+post.userName}}" *ngIf="post.userName != 'Anonymous'"><span class="post-user"> {{post.userName}} </span></a>
+              <span class="post-user"  *ngIf="post.userName == 'Anonymous'"> {{post.userName}} </span>
+            </div>
+            <div class="post-tags">
+              <div class="name"></div> Tags:
+              <a href="{{'/topic/'+post.topicID}}"><div class="tag"> {{post.topicName}} </div> </a>
+            </div>
+
+            <div class="post-content">
+              <div class = "post-title"> {{post.postTitle}} </div>
+              <div class="post-text"> {{post.postText}} </div>
+            </div>
+            <div class="post-footer">
+              <!-- The button that will redirect to the post page
+              currently redirects to login -->
+              <a routerLink="{{ '/postViewingPage/'+post.postID }}" class="reply-button">Reply --></a>
+            </div>
+          </div>
+
+          <!-- spacing between posts -->
+          <p></p>
+
+          <!-- end of posts -->
+
+          <div class="timeline-footer">
+            <!-- TODO this needs to pass a int to backend too -->
+            <button class = "refresh-button" onClick="window.location.reload();">Refresh Page</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="rightpane">
+        <div class="container">
+          <div class="form-group" style="padding: 5px;">
+           <label for="usr">Name:</label>
+           <input type="text" #titleInput class="form-control">
+           </div>
+           <button type="button" (click) = "searchUser(titleInput.value)" class="refresh-button">Search</button>
+         </div>
+      </div>
+    </div>
+  </body>
+</html>
