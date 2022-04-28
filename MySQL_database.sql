@@ -1,3 +1,5 @@
+CREATE DATABASE  IF NOT EXISTS `cs307group27` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `cs307group27`;
 -- MySQL dump 10.13  Distrib 8.0.28, for Win64 (x86_64)
 --
 -- Host: localhost    Database: cs307group27
@@ -31,7 +33,7 @@ CREATE TABLE `block` (
   KEY `FK_block_blockedUserID_user_userID` (`blockedUserID`),
   CONSTRAINT `FK_block_blockedUserID_user_userID` FOREIGN KEY (`blockedUserID`) REFERENCES `user` (`userID`),
   CONSTRAINT `FK_block_blockerUserID_user_userID` FOREIGN KEY (`blockerUserID`) REFERENCES `user` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -52,7 +54,7 @@ CREATE TABLE `dm` (
   KEY `FK_dm_senderID_user_userID` (`senderID`),
   CONSTRAINT `FK_dm_recipientID_user_userID` FOREIGN KEY (`recipientID`) REFERENCES `user` (`userID`),
   CONSTRAINT `FK_dm_senderID_user_userID` FOREIGN KEY (`senderID`) REFERENCES `user` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -78,7 +80,7 @@ CREATE TABLE `post` (
   CONSTRAINT `FK_post_parentPostID_post_postID` FOREIGN KEY (`parentPostID`) REFERENCES `post` (`postID`),
   CONSTRAINT `FK_post_topicID_topic_topicID` FOREIGN KEY (`topicID`) REFERENCES `topic` (`topicID`),
   CONSTRAINT `FK_post_userID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -92,12 +94,13 @@ CREATE TABLE `reaction` (
   `reactionID` int NOT NULL AUTO_INCREMENT,
   `postID` int NOT NULL,
   `userID` int NOT NULL,
+  `reactionTime` datetime NOT NULL,
   PRIMARY KEY (`reactionID`),
   KEY `FK_reaction_userID_user_userID_idx` (`userID`),
   KEY `FK_reaction_postID_post_postID_idx` (`postID`),
   CONSTRAINT `FK_reaction_postID_post_postID` FOREIGN KEY (`postID`) REFERENCES `post` (`postID`),
   CONSTRAINT `FK_reaction_userID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -111,12 +114,13 @@ CREATE TABLE `savedpost` (
   `postID` int NOT NULL,
   `userID` int NOT NULL,
   `savedPostID` int NOT NULL AUTO_INCREMENT,
+  `savedTime` datetime NOT NULL,
   PRIMARY KEY (`savedPostID`),
   KEY `FK_savedpost_userID_user_userID_idx` (`userID`),
   KEY `FK_savedpost_postID_post_postID_idx` (`postID`),
   CONSTRAINT `FK_savedpost_postID_post_postID` FOREIGN KEY (`postID`) REFERENCES `post` (`postID`),
   CONSTRAINT `FK_savedpost_userID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -131,7 +135,7 @@ CREATE TABLE `topic` (
   `topicName` varchar(45) NOT NULL,
   PRIMARY KEY (`topicID`),
   UNIQUE KEY `topicName_UNIQUE` (`topicName`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -150,7 +154,7 @@ CREATE TABLE `topicfollower` (
   KEY `FK_topicfollower_topicID_topic_topicID_idx` (`topicID`),
   CONSTRAINT `FK_topicfollower_followerID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`),
   CONSTRAINT `FK_topicfollower_topicID_topic_topicID` FOREIGN KEY (`topicID`) REFERENCES `topic` (`topicID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -172,12 +176,11 @@ CREATE TABLE `user` (
   `enabled` bit(1) DEFAULT NULL,
   `locked` bit(1) DEFAULT NULL,
   `user_authorities` varchar(45) DEFAULT NULL,
-  `locked_until` datetime DEFAULT NULL,
-  `invalid_tries` int DEFAULT 0,
+  `profilePic` int DEFAULT '1',
   PRIMARY KEY (`userID`),
   UNIQUE KEY `username_UNIQUE` (`username`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=35 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -196,7 +199,7 @@ CREATE TABLE `userfollower` (
   KEY `FK_followerID_idx` (`followerID`),
   CONSTRAINT `FK_userfollower_followerID_user_userID` FOREIGN KEY (`followerID`) REFERENCES `user` (`userID`),
   CONSTRAINT `FK_userfollower_userID_user_userID` FOREIGN KEY (`userID`) REFERENCES `user` (`userID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -208,4 +211,4 @@ CREATE TABLE `userfollower` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-04-25 18:04:43
+-- Dump completed on 2022-04-28  9:58:26
